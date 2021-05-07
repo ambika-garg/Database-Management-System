@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_rcedskill',
+        'NAME': 'db_rced',
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
@@ -127,5 +127,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'core/static'),
 )
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 #############################################################
 #############################################################

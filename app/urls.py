@@ -14,4 +14,6 @@ urlpatterns = [
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
 
+    path('progEntre', views.progEnt, name = 'program entre')
+
 ]

@@ -5,66 +5,88 @@
 <main class="c-main">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header"><strong><h3>EDIT PROGRAMS</h3></strong></div>
+            <div class="card-header"><strong><h3>ADD PROGRAM</h3></strong></div>
             <div class="card-body">
-                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter program ID"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Department ID</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Department ID"><span class="help-block"></span>
-                        </div>
-                    </div>
+                <form class="form-horizontal" action="\program" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="text-input" type="text" name="department_id" placeholder="Enter program ID"><span class="help-block"></span>-->
+<!--                            {{ form.department_id }}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="text-input">Department ID</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="text-input" type="text" name="Department ID" placeholder="Enter Department ID"><span class="help-block"></span>-->
+<!--                            {{ form.department_id }}-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="email-input">Program name</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="email-input" type="text" name="email-input" placeholder="Enter program name"><span class="help-block"></span>
+                            <input class="form-control" id="email-input" type="text" name="program_name" placeholder="Enter program name" required><span class="help-block"></span>
+                            {{ form.program_name }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="email-input">Department name</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="email-input" type="text" name="program_name" placeholder="Enter program's department" required><span class="help-block"></span>
+                            {{ form.department_name }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">State</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter State where program held"><span class="help-block"></span>
+                            <input class="form-control" id="text-input" type="text" name="state" placeholder="Enter State where program held" required><span class="help-block"></span>
+                            {{ form.state }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">No of participants</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter total number of participants"><span class="help-block"></span>
+                            <input class="form-control" id="text-input" type="number" name="financial_year" placeholder="Enter total number of participants" required><span class="help-block"></span>
+                            {{ form.financial_year }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">Financial Year</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter year in which program held"><span class="help-block"></span>
+                            <input class="form-control" id="text-input" type="text" name="no_of_participants" placeholder="Enter year in which program held" required><span class="help-block"></span>
+                            {{ form.no_of_participants }}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Address</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Address"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">City</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter City"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Collage name</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter collage name"><span class="help-block"></span>
-                        </div>
-                    </div>
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="text-input">Address</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Address"><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="text-input">City</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter City"><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="text-input">Collage name</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter collage name"><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="card-footer">
-                        <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
-                        <button class="btn btn-sm btn-danger" type="reset"> Reset</button>
+                        <button class="btn btn-primary" type="submit">
+                            <svg class="c-icon">
+                                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
+                            </svg>Submit
+                        </button>
+                        <button class="btn btn-danger" type="reset">
+                            <svg class="c-icon">
+                                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
+                            </svg>Reset
+                        </button>
                     </div>
             </div>
         </div>
