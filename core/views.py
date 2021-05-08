@@ -59,16 +59,3 @@ def progEnt(request):
             form = Program_entreform()
     return render(request, 'ui-program_ent.html',{'form':form})
 
-        # form = Program_entreform(request.POST)
-    #     print(form)
-    #     if form.is_valid():
-    #         try:
-    #             form.save()
-    #             messages.success(request, 'Program Added Successfully!')
-    #         except:
-    #             pass
-    #
-    # else:
-    #     form = Program_entreform()
-    # return render(request, 'ui-program_ent.html', {'form':form})
-

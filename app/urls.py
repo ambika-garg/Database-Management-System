@@ -11,8 +11,6 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
-    # path('admin/', admin.site.urls),
-    # path('progEnt/', views.progEnt, name='program_entre'),
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
 
