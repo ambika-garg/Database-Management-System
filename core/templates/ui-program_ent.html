@@ -6,8 +6,8 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header"><strong><h3>ADD PROGRAM</h3></strong></div>
-            <div class="card-body">
-                <form class="form-horizontal" action="\program" method="post" enctype="multipart/form-data">
+            <for class="card-body">
+                <form class="form-horizontal" action="\prog_Ent\" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 <!--                    <div class="form-group row">-->
 <!--                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>-->
@@ -24,38 +24,38 @@
 <!--                        </div>-->
 <!--                    </div>-->
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="email-input">Program name</label>
+                        <label class="col-md-2 col-form-label" >Program name</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="email-input" type="text" name="program_name" placeholder="Enter program name" required><span class="help-block"></span>
-                            {{ form.program_name }}
+                            <input class="form-control" id="" type="text" value = "{{ form.program_name }}" name="program_name" placeholder="Enter program name" required><span class="help-block"></span>
+
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="email-input">Department name</label>
+                        <label class="col-md-2 col-form-label" for=" ">Department name</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="email-input" type="text" name="program_name" placeholder="Enter program's department" required><span class="help-block"></span>
-                            {{ form.department_name }}
+                            <input class="form-control" id=" " type="text" name="depart" value = "{{ form.depart }}" placeholder="Enter program's department" required><span class="help-block"></span>
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">State</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="state" placeholder="Enter State where program held" required><span class="help-block"></span>
-                            {{ form.state }}
+                            <input class="form-control" id="text-input" type="text" value = "{{ form.state }}" name="state" placeholder="Enter State where program held" required><span class="help-block"></span>
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">No of participants</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="number" name="financial_year" placeholder="Enter total number of participants" required><span class="help-block"></span>
-                            {{ form.financial_year }}
+                            <input class="form-control" type="number" name="financial_year" value = "{{ form.financial_year }}" placeholder="Enter total number of participants" required><span class="help-block"></span>
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">Financial Year</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="no_of_participants" placeholder="Enter year in which program held" required><span class="help-block"></span>
-                            {{ form.no_of_participants }}
+                            <input class="form-control"  type="text" name="no_of_participants" value = "{{ form.no_of_participants }}" placeholder="Enter year in which program held" required><span class="help-block"></span>
+
                         </div>
                     </div>
 <!--                    <div class="form-group row">-->
@@ -87,10 +87,13 @@
                                 <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
                             </svg>Reset
                         </button>
+                        {% if message %}
+                        {% for message in messages %}
+                            <h2> {{message}} </h2>
+                        {% endfor %}
+                        {% endif %}
                     </div>
-            </div>
-        </div>
-    </div>
+                </form>
 </main>
 {% endblock content %}
 <!-- Specific Page JS goes HERE  -->

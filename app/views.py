@@ -2,8 +2,8 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-from app.forms import Program_entreform
-from app.models import prog_entre
+# from app.forms import Program_entreform
+# from app.models import program_entre
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
@@ -35,19 +35,4 @@ def pages(request):
     
         html_template = loader.get_template( 'page-500.html' )
         return HttpResponse(html_template.render(context, request))
-
-
-def progEnt(request):
-    if request.method == "POST":
-        form = prog_entreform(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                messages.success(request, 'Program Added Successfully!')
-            except:
-                pass
-
-    else:
-        form = prog_entreform()
-    return render(request, 'ui-program_ent.html', {'form':form})
 

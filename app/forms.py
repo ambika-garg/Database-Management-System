@@ -1,7 +1,7 @@
 from django import forms
-from app.models import prog_entre
-
-class Program_entreform(forms.ModelForm):
-    class Meta:
-        model = prog_entre
-        fields = "__all__"
+# from app.models import program_entre
+#
+# class Program_entreform(forms.ModelForm):
+#     class Meta:
+#         model = program_entre
+#         fields = ['depart_name', 'program_name', 'state', 'financial_year', 'no_of_participants']
