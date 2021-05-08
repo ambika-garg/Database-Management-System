@@ -46,6 +46,7 @@ def deptEnt(request):
 def insprogEnt(request):
     print("Entered")
     form = Program_entreform(request.POST)
+    print(form)
     if request.method == "POST":
         form = Program_entreform(request.POST)
         print("1")
