@@ -37,8 +37,13 @@ def pages(request):
         html_template = loader.get_template( 'page-500.html' )
         return HttpResponse(html_template.render(context, request))
 
+def deptSkill(request):
+    return render(request, 'ui-department_skill.html')
 
-def progEnt(request):
+def deptEnt(request):
+    return render(request, 'ui-department_ent.html')
+    
+def insprogEnt(request):
     print("Entered")
     form = Program_entreform(request.POST)
     if request.method == "POST":
