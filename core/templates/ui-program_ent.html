@@ -1,5 +1,5 @@
 {% extends "layouts/base_ent.html" %} {% block title %} UI Typography {% endblock %}
-
+{% load crispy_forms_tags %}
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
 <main class="c-main">
@@ -7,8 +7,9 @@
         <div class="card">
             <div class="card-header"><strong><h3>ADD PROGRAM</h3></strong></div>
             <for class="card-body">
-                <form class="form-horizontal" action="\prog_Ent\" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
 <!--                    <div class="form-group row">-->
 <!--                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>-->
 <!--                        <div class="col-md-3">-->
@@ -26,36 +27,47 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for=" " >Program name</label>
                         <div class="col-md-3">
-                            <input class="form-control" id=" " type="text" name="program_name" value = "{{ form.program_name }}" placeholder="Enter program name" required><span class="help-block"></span>
-
+                            {{ form.program_name }}
+<!--                            <input class="form-control" id=" " type="text" name="programname" placeholder="Enter program name" value="">-->
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for=" ">Department name</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id=" " type="text" name="depart" value = "{{ form.depart }}" placeholder="Enter program's department" required><span class="help-block"></span>
+                            <div class="col-md-3">
+<!--                                <select class=form-control" id="select1" name="depart" data-value="{{ depart_name }}">-->
+                                {{ form.depart_name }}
+                            </div>
+<!--                                </select>-->
 
-                        </div>
+<!--                            </div>-->
+<!--                              <select class="form-control" id="" name="select1">-->
+<!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
+<!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
+<!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
+<!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
+<!--                              </select>-->
+<!--                            </div>-->
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">State</label>
                         <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" value = "{{ form.state }}" name="state" placeholder="Enter State where program held" required><span class="help-block"></span>
+                            {{ form.state }}
+<!--                            <input class="form-control" id="" type="text" value = "{{ state }}" name="State" placeholder="Enter State where program held" required><span class="help-block"></span>-->
 
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">No of participants</label>
                         <div class="col-md-3">
-                            <input class="form-control" type="number" name="financial_year" value = "{{ form.financial_year }}" placeholder="Enter total number of participants" required><span class="help-block"></span>
-
+<!--                            <input class="form-control" type="number" name="financialyear" value = "{{ financial_year }}" placeholder="Enter total number of participants" required><span class="help-block"></span>-->
+                            {{ form.financial_year }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">Financial Year</label>
                         <div class="col-md-3">
-                            <input class="form-control"  type="text" name="no_of_participants" value = "{{ form.no_of_participants }}" placeholder="Enter year in which program held" required><span class="help-block"></span>
-
+<!--                            <input class="form-control"  type="text" name="participants" value = "{{ no_of_participants }}" placeholder="Enter year in which program held" required><span class="help-block"></span>-->
+                            {{ form.no_of_participants }}
                         </div>
                     </div>
 <!--                    <div class="form-group row">-->
@@ -77,7 +89,7 @@
 <!--                        </div>-->
 <!--                    </div>-->
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-primary" type="submit" value="{{ submit }}">
                             <svg class="c-icon">
                                 <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
                             </svg>Submit

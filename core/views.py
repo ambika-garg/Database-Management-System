@@ -46,14 +46,13 @@ def deptEnt(request):
 def insprogEnt(request):
     print("Entered")
     form = Program_entreform(request.POST)
-    print(form)
     if request.method == "POST":
-        form = Program_entreform(request.POST)
-        print("1")
-        if request.POST.get('depart') and request.POST.get('program_name') and request.POST.get('state') and request.POST.get('financial_year') and request.POST.get('no_of_particiapnts'):
+        print(request.POST.get('depart_name'))
+
+        if request.POST.get('depart_name') and request.POST.get('program_name') and request.POST.get('state') and request.POST.get('financial_year') and request.POST.get('no_of_particiapnts'):
             print("1")
             saverecord = program_entre()
-            saverecord.depart = request.POST.get('depart')
+            saverecord.depart = request.POST.get('depart_name')
             saverecord.program_name = request.POST.get('program_name')
             saverecord.state = request.POST.get('state')
             saverecord.financial_year = request.POST.get('financial_year')

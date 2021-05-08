@@ -27,8 +27,8 @@ class dept_entre(models.Model):
     # class Meta:
     #     verbose_name_plural = "department"
     #
-    # def __str__(self):
-    #     return self.department_name
+    def __str__(self):
+        return self.department_name
 
 
 class program_entre(models.Model):

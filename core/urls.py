@@ -13,7 +13,7 @@ urlpatterns = [
     path('admin' , admin.site.urls),
     path('deptSkill', deptSkill, name='deptSkill'),
     path('deptEnt', deptEnt, name='deptEnt'),
-    path('insprogEnt/', insprogEnt, name='insprogEnt'),
+    path('insprogEnt', insprogEnt, name='insprogEnt'),
     path("", include("authentication.urls")), # Auth routes - login / register
     path("", include("app.urls"))             # UI Kits Html files
 ]
