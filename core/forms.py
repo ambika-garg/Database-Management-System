@@ -4,7 +4,7 @@ from core.models import program_entre
 class Program_entreform(forms.ModelForm):
     class Meta:
         model = program_entre
-        fields = ['program_name','depart_name', 'state', 'financial_year', 'no_of_participants']
+        fields = ('program_name','depart_name', 'state', 'financial_year', 'no_of_participants')
 
         #updating value of columns
         labels = {
@@ -15,3 +15,7 @@ class Program_entreform(forms.ModelForm):
             'no_of_participants':'Participants'
 
         }
+    def __init__(self, *args, **kwargs):
+        super(Program_entreform, self).__init__(*args, **kwargs)
+        self.fields['depart_name'].empty_label = "Select"
+
