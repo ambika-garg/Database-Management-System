@@ -5,52 +5,160 @@
 
 <main class="c-main">
     <div class="container-fluid">
-        <div class="fade-in">
-            <div class="card">
-                <div class="card-header">
-                    <h1>PARTICIPANTS</h1>
-                </div>
-                <div class="card-body">
-                    <p>Add the PARTICIPANTs in Database</p>
-                    <div class="col-sm-30">
-                        <div class="card">
-                            <div class="card-header"><strong><b> PARTICIPANT</b></strong> </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="vat"><b><i> PROGRAM ID</b></i></label>
-                                    <input class="form-control" id="vat" type="text" placeholder="Enter your Program ID">
-                                </div>
-                                <div class="form-group">
-                                    <label for="company"><b><i>PARTICIPANT NAME</i></b></label>
-                                    <input class="form-control" id="company" type="text" placeholder="Enter your Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="vat"><i><b>FATHER'S NAME</i></b></label>
-                                    <input class="form-control" id="vat" type="text" placeholder="Enter your Father's Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="street"><i><b>DATE OF BIRTH</i></b></label>
-                                    <input class="form-control" id="street" type="date" placeholder="Enter Date Of Birth">
-                                </div>
-                                <div class="form-group">
-                                    <label for="city"><i><b>City</i></b></label>
-                                    <input class="form-control" id="city" type="text" placeholder="Enter your city">
-                                </div>
-                                <div class="form-group">
-                                    <label for="postal-code"><i><b>Postal Code</i></b></label>
-                                    <input class="form-control" id="postal-code" type="text" placeholder="Postal Code">
-                                </div>
-                                <div class="col-sm-3">
-                                    <button class=" btn btn-block btn-primary " type="button ">ADD PARTICIPANT</button>
-                                </div>
-
-                                <!-- /.row-->
-
-                            </div>
+        <div class="card">
+            <div class="card-header"><strong><h3>EDIT Participants</h3></strong></div>
+            <div class="card-body">
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                  
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Serial number</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter Serial number"><span class="help-block"></span>
                         </div>
                     </div>
-                    <!-- /.col-->
-                </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Program ID"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="email-input">Participant name</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter participant name"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Father/Husband's Name</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter Father/Husband Name"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Id proof</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Id proof"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Date of Birth</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="Date" name="text-input" placeholder="Enter Date of Birth"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="ccyear">Category</label>
+                        <div class="col-md-3">
+                        <select class="form-control" id="ccyear">
+                          <option>General</option>
+                          <option>SC/ST</option>
+                          <option>OBC</option>
+                          <option>Others</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="email-input">Email</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="email-input" type="email" name="email-input" placeholder="Enter participant name"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Address</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter State where program held"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Contact Number</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="tel" name="text-input" placeholder="Enter contact number"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="ccyear">Gender</label>
+                        <div class="col-md-3">
+                        <select class="form-control" id="ccyear">
+                          <option>Male</option>
+                          <option>Female</option>
+                          <option>Others</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Job</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter job"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Qualification</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Qualification"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Date on which unit started</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="date" name="text-input" placeholder="Enter Date "><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Number of Participants employed</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter Total Participants"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Place of unit</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter unit place"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Amount deposited</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter amount deposited"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="ccyear">Financed By</label>
+                        <div class="col-md-3">
+                        <select class="form-control" id="ccyear">
+                          <option>Bank</option>
+                          <option>Self</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Date of Loan released</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="date" name="text-input" placeholder="Enter Date of loan released"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">CE</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter CE amount"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">WC</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter Wc amount"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="text-input">Total Cost</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter Totat cost"><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                        <button class="btn btn-sm btn-danger" type="reset"> Reset</button>
+                    </div>
             </div>
         </div>
     </div>
