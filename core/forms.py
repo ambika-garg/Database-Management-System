@@ -1,7 +1,7 @@
 from django import forms
 from core.models import program_entre
 
-class Program_entreform(forms.ModelForm):
+class program_entreform(forms.ModelForm):
     class Meta:
         model = program_entre
         fields = ('program_name','depart_name', 'state', 'financial_year', 'no_of_participants')
@@ -16,6 +16,6 @@ class Program_entreform(forms.ModelForm):
 
         }
     def __init__(self, *args, **kwargs):
-        super(Program_entreform, self).__init__(*args, **kwargs)
+        super(program_entreform, self).__init__(*args, **kwargs)
         self.fields['depart_name'].empty_label = "Select"
 

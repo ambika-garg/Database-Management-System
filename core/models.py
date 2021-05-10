@@ -77,17 +77,27 @@ class participant_skill(models.Model):
     mothers_name = models.CharField(max_length=25, blank=True)
     religion = models.CharField(max_length=25, blank=True, choices=RELIGION_CHOICES)
     category = models.CharField(max_length=25, blank=True, choices=CATEGORY_CHOICES)
-    education_level = models.CharField(max_length=25, blank=True)
-    pa_same_as_ca = models.CharField(max_length=25, blank=True, choices=PA_SAME_AS_CA_CHOICES)
-    training_status = models.CharField(max_length=25, blank=True)
-    heard_about_us = models.CharField(max_length=25, blank=True)
-    comm_address = participant_comm_address_skill()
     disability = participant_disability_skill()
     domicile = participant_domicile_skill()
     participant_id = participant_id_skill()
     mobile = participant_mobile_skill()
+    education_level = models.CharField(max_length=25, blank=True)
     perm_address = participant_perm_address_skill()
+    pa_same_as_ca = models.CharField(max_length=25, blank=True, choices=PA_SAME_AS_CA_CHOICES)
+    comm_address = participant_comm_address_skill()
+    training_status = models.CharField(max_length=25, blank=True)
     participant_job_details = participant_job_details_skill()
+    heard_about_us = models.CharField(max_length=25, blank=True)
+    def comm_address_check(self):
+        if self.pa_same_as_ca == 'Yes' and self.comm_address is not None:
+            raise ValidationError('Permanent Adsress is same as Communication Address!')
+        elif self.pa_same_as_ca == 'No' and self.comm_address is None:
+            raise ValidationError('Permanent Adsress is not same as Communication Address!')
+    def participant_job_details_check(self):
+        if self.training_status == 'Fresher' and self.participant_job_details is not None:
+            raise ValidationError('Job details are not required for Fresher!')
+        elif self.training_status == 'Experienced' and self.participant_job_details is None:
+            raise ValidationError('Job details are required for Experienced!')
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = ['Mr','Ms','Mrs','Mx'] 
@@ -109,6 +119,9 @@ class participant_disability_skill(CompositeField):
     TYPE_CHOICES = ['Locomotor Disability','Leprosy Cured Person','Dwarfism','Acid Attack Victim','Blindness/Visual Impairment','Low-vision (Visual Impairment)','Deaf','Hard of Hearing','Speech and Language Disability','Intellectual Disability /Mental Retardation','Autism Spectrum Disorder','Specific Learning Disabilities','Mental Behavior-Mental Illness','Haemophilia','Thalassemia','Sickle Cell Disease','Deaf Blindness','Cerebral Palsy','Multiple Sclerosis','Muscular Dystrophy']
     disability_input = models.CharField(max_length=25, blank=True, choices=INPUT_CHOICES)
     disability_type = models.CharField(max_length=25, blank=True)
+    def disability_check(self):
+        if self.disability_input == 'Yes' and self.disability_type is None:
+            raise ValidationError('Disability type cannot be null!')
 
 class participant_domicile_skill(CompositeField):
     dom_state = models.CharField(max_length=25, blank=True)
@@ -120,7 +133,12 @@ class participant_id_skill(CompositeField):
     id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES)
     alt_id_type = models.CharField(max_length=25, blank=True, choices=ALT_ID_TYPE_CHOICES)
     aadhaar_ref_no = models.IntegerField(unique=True)
-    id_no = models.IntegerField(unique=True)
+    alt_id_no = models.IntegerField(unique=True)
+    def alt_it_type_check(self):
+        if self.id_type == 'Aadhar ID' and self.alt_id_type is not None:
+            raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
+        elif self.id_type == 'Aadhar ID' and self.alt_id_no is not None:
+            raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
 
 class participant_job_details_skill(CompositeField):
     EMPLOYED_CHOICES = ['Yes','No']
@@ -172,12 +190,12 @@ class participant_entre(models.Model):
     father_or_husband_name = models.CharField(max_length=50, unique=False)
     gender = models.CharField(max_length=10, unique=False)
     date_of_birth = models.DateField()
-    aadhar_number = models.IntegerField(max_length=20, unique=True)  # id number#re
+    aadhar_number = models.IntegerField(max_length=20, unique=True)  # id number
     primary_email = models.EmailField(max_length=50)
     secondary_email = models.EmailField(max_length=50)
     primary_mobile_number = models.IntegerField(unique=True)
     secondary_mobile_number = models.IntegerField(unique=True)
-    category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES)  # text choices general sc st obc
+    category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES) 
     job = models.CharField(max_length=25, unique=False)
     qualification = models.CharField(max_length=25, unique=False)
     project_identified = models.CharField(max_length=50, unique=False)
