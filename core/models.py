@@ -39,3 +39,5 @@ class program_entre(models.Model):
     financial_year = models.IntegerField()
     no_of_participants = models.IntegerField(null=True)
     objects = models.Manager()
+    def __str__(self):
+        return self.program_name
