@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from collectionfield.models import CollectionField
 
-
 # Create your models here.
 class category(models.Model):
     category_name = models.CharField(max_length=100)
@@ -22,7 +21,6 @@ class dept_entre(models.Model):
 class dept_skill(models.Model):
     category_skill = models.ForeignKey(category, default=2, verbose_name="category", on_delete=models.CASCADE)
     department_name_skill = models.CharField(max_length=100)
-
     def __str__(self):
         return self.department_name_skill
 
