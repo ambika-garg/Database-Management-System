@@ -62,6 +62,10 @@ class participant_skill(models.Model):
     CATEGORY_CHOICES = ['General', 'OBC', 'SC', 'ST']
     GENDER_CHOICES = ['Male', 'Female', 'Transgender']
     MARITAL_STATUS_CHOICES = ['Single/Unmarried', 'Married', 'Widowed', 'Divorced', 'Separated', 'Not to be Disclosed']
+    PA_SAME_AS_CA_CHOICES=['Yes','No']
+    RELIGION_CHOICES=['Atheist','Others','Hinduism','Chrstianity','Islam','Jews','Buddhism','Zoroastrian','Jainism','Not to be Disclosed']
+    TRAINING_STATUS_CHOICES=['Fresher','Experienced']
+    HEARD_ABOUT_US_CHOICES=['Poster','SMS','Training Provider','Internet','Government Agency','Radio','Newspaper','Television','Advertisements','Social Media','Pamphlets','Recorded phone','Message','Newsletter','Kaushal Mela','Call Center','Rozgar Mela', 'Others','Event/Workshop','Others']
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
     name_skill = participant_name_skill()
@@ -71,10 +75,10 @@ class participant_skill(models.Model):
     marital_status = models.CharField(max_length=25, blank=True, choices=MARITAL_STATUS_CHOICES)
     fathers_name = models.CharField(max_length=25, blank=True)
     mothers_name = models.CharField(max_length=25, blank=True)
-    religion = models.CharField(max_length=25, blank=True)
+    religion = models.CharField(max_length=25, blank=True, choices=RELIGION_CHOICES)
     category = models.CharField(max_length=25, blank=True, choices=CATEGORY_CHOICES)
     education_level = models.CharField(max_length=25, blank=True)
-    pa_same_as_ca = models.CharField(max_length=25, blank=True)
+    pa_same_as_ca = models.CharField(max_length=25, blank=True, choices=PA_SAME_AS_CA_CHOICES)
     training_status = models.CharField(max_length=25, blank=True)
     heard_about_us = models.CharField(max_length=25, blank=True)
     comm_address = participant_comm_address_skill()
@@ -111,8 +115,10 @@ class participant_domicile_skill(CompositeField):
     dom_district = models.CharField(max_length=25, blank=True)
 
 class participant_id_skill(CompositeField):
-    id_type = models.CharField(max_length=25, blank=True)
-    alt_id_type = models.CharField(max_length=25, blank=True)
+    ID_TYPE_CHOICES = ['Alternate ID', 'Aadhar ID']
+    ALT_ID_TYPE_CHOICES = ['PAN Card','Voter ID Card','Domicile Certificate', 'ST/SC Certificate','Permanent Residential Certificate (PRC)','Driving License','Ration Card','Birth Certificate issued by Government','BPL Card','National Population Register (NPR) Card','Identity proof by Gazetted officers','Passport','Jail Identification Card/ Number','School leaving certificate/10th certificate','Letter of domicile from SDM/DM/Government Authority']
+    id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES)
+    alt_id_type = models.CharField(max_length=25, blank=True, choices=ALT_ID_TYPE_CHOICES)
     aadhaar_ref_no = models.IntegerField(unique=True)
     id_no = models.IntegerField(unique=True)
 
