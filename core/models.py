@@ -52,24 +52,21 @@ class program_entre(models.Model):
 class program_skill(models.Model):
     depart_name = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
     program_name = models.CharField(max_length=100, unique = True)
-    location = models.CharField(max_length=100, blank = True)
     financial_year = models.DateField()
     trade =  models.CharField(max_length=100, blank = True)
     no_of_participants = models.IntegerField(null=True)
-    objects = models.Manager() #doubt    
+    objects = models.Manager() 
     def __str__(self):
         return self.program_name
 
-class program_address_state_skill(models.Model): 
+class program_address_skill(models.Model): 
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     state = models.CharField(max_length=25, blank = True) #doubt
-
-class program_address_location_skill(models.Model):
-    program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     location = models.CharField(max_length=100, blank = True) #doubt    
 
 class participant_skill(models.Model): 
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
+    participant_id_skill = models.IntegerField(primary_key=True, unique = true)
     gender = models.CharField(max_length=25, blank = True)
     dob = models.DateField()
     email = models.CharField(max_length=25, blank = True, unique=True)
@@ -82,8 +79,6 @@ class participant_skill(models.Model):
     pa_same_as_ca = models.CharField(max_length=25, blank = True)
     training_status = models.CharField(max_length=25, blank = True)
     heard_about_us = models.CharField(max_length=25, blank = True)
-    # def __str__(self):
-    #     return self.  #doubt
 
 class participant_name_skill(models.Model):
     participant_id_skill = models.ForeignKey(participant_skill, on_delete=models.CASCADE)
@@ -122,7 +117,7 @@ class participant_job_details_skill(models.Model):
     prev_exp_sector = models.CharField(max_length=25, blank = True)
     no_of_months = models.IntegerField()
     employed = models.CharField(max_length=25, blank = True)
-    employment_status = models.CharField(max_length=25, blank = True)
+    employment_status = models.CharField(max_length=25, blank = True,unique=False)
     employment_details = models.CharField(max_length=50, blank = True)
 
 class participant_mobile_skill(models.Model):
@@ -130,7 +125,7 @@ class participant_mobile_skill(models.Model):
     country_code = models.IntegerField()
     mobile_number = models.IntegerField(unique = True)
 
-class participant_number_skill(models.Model): #doubt
+class participant_number_skill(models.Model): 
     participant_id_skill = models.ForeignKey(participant_skill, on_delete=models.CASCADE)
     number1 = models.IntegerField()
     number2 = models.IntegerField()
@@ -138,26 +133,26 @@ class participant_number_skill(models.Model): #doubt
 class participant_perm_address_skill(models.Model):
     participant_id_skill = models.ForeignKey(participant_skill, on_delete=models.CASCADE)
     address_perm = models.CharField(max_length=100, blank = True)
-    state_perm = models.CharField(max_length=25, blank = True)
-    district_perm = models.CharField(max_length=25, blank = True)
+    state_perm = models.CharField(max_length=25, blank = True, unique=False)
+    district_perm = models.CharField(max_length=25, blank = True, unique=False)
     pincode_perm = models.IntegerField()
-    city_perm = models.CharField(max_length=25, blank = True)
-    tehsil_perm = models.CharField(max_length=25, blank = True)
-    constituency_perm = models.CharField(max_length=25, blank = True)
+    city_perm = models.CharField(max_length=25, blank = True, unique=False)
+    tehsil_perm = models.CharField(max_length=25, blank = True, unique=False)
+    constituency_perm = models.CharField(max_length=25, blank = True, unique=False)
 
 class placement_skill(models.Model):
     participant_id_skill = models.ForeignKey(participant_skill, on_delete=models.CASCADE)
-    course_name = models.CharField(max_length=50, blank = True)
-    placement_status = models.CharField(max_length=25, blank = True)
-    reason = models.CharField(max_length=25, blank = True)
-    employer_name = models.CharField(max_length=25, blank = True)
-    job_type = models.CharField(max_length=25, blank = True)
-    job_position = models.CharField(max_length=25, blank = True)
+    course_name = models.CharField(max_length=50, blank = True,unique=False)
+    placement_status = models.CharField(max_length=25, blank = True,unique=False)
+    reason = models.CharField(max_length=25, blank = True,unique=False)
+    employer_name = models.CharField(max_length=25, blank = True,unique=False)
+    job_type = models.CharField(max_length=25, blank = True, unique=False)
+    job_position = models.CharField(max_length=25, blank = True,unique=False)
     salary = models.IntegerField()
     job_id = models.IntegerField()
-    other_benefit = models.CharField(max_length=100, blank = True)
+    other_benefit = models.CharField(max_length=100, blank = True,unique=False)
     date_of_joining = models.DateField()
-    contact_person = models.CharField(max_length=25, blank = True)
+    contact_person = models.CharField(max_length=25, blank = True,unique=False)
     contact_person_no = models.IntegerField()
 
 class placement_skill(models.Model):
@@ -167,6 +162,7 @@ class placement_skill(models.Model):
 
 class participant_entre(models.Model): 
     program_id = models.ForeignKey(program_entre,default=1,on_delete=models.CASCADE)
+    participant_id_ent = models.IntegerField(primary_key=True, unique = true)
     ID_proof = models.CharField(max_length=20,unique=True)
     category = models.CharField(max_length=20,unique=False)
     job = models.CharField(max_length=25,unique=False)
@@ -179,8 +175,6 @@ class participant_entre(models.Model):
     date_of_loan_release = models.DateField()
     commencement_date = models.DateField()
     no_of_persons_employed = models.IntegerField()
-    # def __str__(self):
-    #     return self. #doubt
 
 class participant_email_entre(models.Model): 
     serial_number=models.ForeignKey(participant_entre,default=1,on_delete=models.CASCADE)
@@ -200,7 +194,7 @@ class participant_project_cost_entre(models.Model):
     serial_number=models.ForeignKey(participant_entre,default=1,on_delete=models.CASCADE)
     CE= models.IntegerField()
     WC= models.IntegerField()
-    total= models.IntegerField() #default=CE+WC
+    total= models.IntegerField() #CE+WC
 
 class participant_ID_entre(models.Model):
     ID_proof =models.ForeignKey(participant_entre,default=1,on_delete=models.CASCADE) #kya hai?
