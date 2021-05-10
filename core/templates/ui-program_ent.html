@@ -8,21 +8,6 @@
             <for class="card-body">
                 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>-->
-                    <!--                        <div class="col-md-3">-->
-                    <!--                            <input class="form-control" id="text-input" type="text" name="department_id" placeholder="Enter program ID"><span class="help-block"></span>-->
-                    <!--                            {{ form.department_id }}-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-md-2 col-form-label" for="text-input">Department ID</label>-->
-                    <!--                        <div class="col-md-3">-->
-                    <!--                            <input class="form-control" id="text-input" type="text" name="Department ID" placeholder="Enter Department ID"><span class="help-block"></span>-->
-                    <!--                            {{ form.department_id }}-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">participant ID</label>
                         <div class="col-md-3">
@@ -43,17 +28,8 @@
                             <!--                                <select class=form-control" id="select1" name="depart" data-value="{{ depart_name }}">-->
                             {{ form.depart_name }}
                         </div>
-                        <!--                                </select>-->
-
-                        <!--                            </div>-->
-                        <!--                              <select class="form-control" id="" name="select1">-->
-                        <!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
-                        <!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
-                        <!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
-                        <!--                                <option value="{{ depart_name }}">{{ depart_name }}</option>-->
-                        <!--                              </select>-->
-                        <!--                            </div>-->
                     </div>
+
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="text-input">Location</label>
                         <div class="col-md-3">
@@ -93,25 +69,7 @@
                             <!--                            <input class="form-control"  type="text" name="participants" value = "{{ no_of_participants }}" placeholder="Enter year in which program held" required><span class="help-block"></span>-->
                             {{ form.no_of_participants }}
                         </div>
-                    </div>
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-md-2 col-form-label" for="text-input">Address</label>-->
-                    <!--                        <div class="col-md-3">-->
-                    <!--                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Address"><span class="help-block"></span>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-md-2 col-form-label" for="text-input">City</label>-->
-                    <!--                        <div class="col-md-3">-->
-                    <!--                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter City"><span class="help-block"></span>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-md-2 col-form-label" for="text-input">Collage name</label>-->
-                    <!--                        <div class="col-md-3">-->
-                    <!--                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter collage name"><span class="help-block"></span>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+
                     <div class="card-footer">
                         <button class="btn btn-success" type="submit">
                             <svg class="c-icon">
@@ -122,11 +80,10 @@
                             <svg class="c-icon">
                                 <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
                             </svg>Reset
-                        </button> {% if message %} {% for message in messages %}
-                        <h2> {{message}} </h2>
-                        {% endfor %} {% endif %}
+                        </button>
                     </div>
-                </form>
+            </form>
+
 </main>
 {% endblock content %}
 <!-- Specific Page JS goes HERE  -->

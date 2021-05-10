@@ -50,17 +50,6 @@ def insprogEnt(request):
             form.save()
             messages.success(request, 'Program Added Successfully!')
         return redirect('/insprogEnt')
-        # if request.POST.get('depart_name') and request.POST.get('program_name') and request.POST.get('state') and request.POST.get('financial_year') and request.POST.get('no_of_particiapnts'):
-        #     print("1")
-        #     saverecord = program_entre()
-        #     saverecord.depart = request.POST.get('depart_name')
-        #     saverecord.program_name = request.POST.get('program_name')
-        #     saverecord.state = request.POST.get('state')
-        #     saverecord.financial_year = request.POST.get('financial_year')
-        #     saverecord.no_of_participants = request.POST.get('no_of_participants')
-        #     saverecord.save()
-        #     messages.success(request, 'Program Added Successfully!')
-        #     return redirect('/view')
     else:
         form = Program_entreform()
     return render(request, 'ui-program_ent.html',{'form':form})
