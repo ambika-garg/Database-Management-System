@@ -32,10 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',  # Enable the inner app
     'crispy_forms'
-
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
