@@ -1,0 +1,50 @@
+{% extends "layouts/base_skill.html" %} {% block title %} UI Typography {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<div class="card">
+    <div class="card-header"><i class="fa fa-align-justify"></i> Simple Table</div>
+    <div class="card-body">
+        <table class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Participant ID</th>
+                    <th>Program name</th>
+                    <th>Department name</th>
+                    <th>Location</th>
+                    <th>Collage Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>No of participants</th>
+                    <th>Financial year</th>
+                    <th>Edit/Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">
+                            <a href="/insprogEnt"><button class="btn btn-success btn-sm px-4" type="submit"> Edit </button></a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">
+                            <a href="/insprogEnt"><button class="btn btn-danger btn-sm px-4" type="submit"> Delete </button></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

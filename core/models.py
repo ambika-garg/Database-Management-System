@@ -110,7 +110,7 @@ class participant_idcard_skill(CompositeField):
     ID_TYPE_CHOICES = (('Alternate ID','Alternate ID'), ('Aadhar ID','Aadhar ID'))
     ALT_ID_TYPE_CHOICES = (('PAN Card','PAN Card'),('Voter ID Card','Voter ID Card'),('Domicile Certificate','Domicile Certificate'),('ST/SC Certificate','ST/SC Certificate'),('Permanent Residential Certificate (PRC)','Permanent Residential Certificate (PRC)'),('Driving License','Driving License'),('Ration Card','Ration Card'),('Birth Certificate issued by Government','Birth Certificate issued by Government'),('BPL Card','BPL Card'),('National Population Register (NPR) Card','National Population Register (NPR) Card''Identity proof by Gazetted officers'),('Passport','Passport'),('Jail Identification Card/ Number','Jail Identification Card/ Number'),('School leaving certificate/10th certificate','School leaving certificate/10th certificate'),('Letter of domicile from SDM/DM/Government Authority','Letter of domicile from SDM/DM/Government Authority'))
     id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES)
-    alt_id_type = models.CharField(max_length=25, blank=True, choices=ALT_ID_TYPE_CHOICES)
+    alt_id_type = models.CharField(max_length=100, blank=True, choices=ALT_ID_TYPE_CHOICES)
     aadhaar_ref_no = models.IntegerField(unique=True)
     alt_id_no = models.IntegerField(unique=True)
 
@@ -128,7 +128,7 @@ class participant_job_details_skill(CompositeField):
     prev_exp_sector = models.CharField(max_length=25, blank=True)
     no_of_months = models.IntegerField()
     employed = models.CharField(max_length=25, blank=True, choices=EMPLOYED_CHOICES)
-    employment_status = models.CharField(max_length=25, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
+    employment_status = models.CharField(max_length=100, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
     employment_details = models.CharField(max_length=100, blank=True)
 
 class participant_mobile_skill(CompositeField):
