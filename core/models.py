@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from collectionfield.models import CollectionField
 from django.core.exceptions import ValidationError
+from django.db.models.fields import CharField, EmailField
 
 # Create your models here.
 
@@ -22,6 +23,7 @@ class dept_entre(models.Model):
 
     def __str__(self):
         return self.department_nam_ent
+        
 #3
 class dept_skill(models.Model):
     category_skill = models.ForeignKey(category, default=2, verbose_name="category", on_delete=models.CASCADE)
@@ -30,18 +32,9 @@ class dept_skill(models.Model):
     def __str__(self):
         return self.department_name_skill
 
-class placement_id_skill(CompositeField):
-    batch_id = models.IntegerField()
-    rced_batch_id = models.IntegerField()
-
-class program_address_entre(CompositeField):
-    location = models.CharField(max_length=50,unique=False)
-    city = models.CharField(max_length=40,unique=False)
-
-class participant_address_entre(CompositeField):
-    location = models.CharField(max_length=100,unique=False)
-    city =  models.CharField(max_length=50,unique=False)
-    state =  models.CharField(max_length=40,unique=False)
+class program_address(CompositeField):
+    location = models.CharField(max_length=50, unique=False)
+    city = models.CharField(max_length=40, unique=False)
 
 class program_entre(models.Model):
     depart_name_ent = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
@@ -50,29 +43,80 @@ class program_entre(models.Model):
     financial_year_ent = models.CharField(max_length=10)
     college_name_ent = models.CharField(max_length=100)
     no_of_participants_ent = models.IntegerField(null=True)
-    address_ent = program_address_entre()
+    address_ent = program_address()
     objects = models.Manager()
 
     def __str__(self):
         return self.program_name_ent
 
-class program_address_skill(CompositeField):
-    state = models.CharField(max_length=30)
-    location = models.CharField(max_length=50, unique=False)
-    city = models.CharField(max_length=40, unique=False)
-
-
 class program_skill(models.Model):
     depart_name_skill = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
     program_name_skill = models.CharField(max_length=100, unique=True)
+    state = models.CharField(max_length=30)
     financial_Year_skill= models.CharField(max_length=10)
     trade_skill = models.CharField(max_length=100, blank=True)
     no_of_participants_skill = models.IntegerField(null=True)
-    address_skill = program_address_skill()
+    address_skill = program_address()
     objects = models.Manager()
-
     def __str__(self):
         return self.program_name_skill
+
+class participant_address_entre(CompositeField):
+    location = models.CharField(max_length=100,unique=False)
+    city =  models.CharField(max_length=50,unique=False)
+    state =  models.CharField(max_length=40,unique=False)
+
+class participant_mobile(CompositeField):
+    country_code = models.IntegerField()
+    mobile_number = CollectionField(item_type=int, collection_type=set, max_length=10)    
+
+class participant_idcard(CompositeField):
+    ID_TYPE_CHOICES = (('Alternate ID','Alternate ID'), ('Aadhar ID','Aadhar ID'))
+    ALT_ID_TYPE_CHOICES = (('PAN Card','PAN Card'),('Voter ID Card','Voter ID Card'),('Domicile Certificate','Domicile Certificate'),('ST/SC Certificate','ST/SC Certificate'),('Permanent Residential Certificate (PRC)','Permanent Residential Certificate (PRC)'),('Driving License','Driving License'),('Ration Card','Ration Card'),('Birth Certificate issued by Government','Birth Certificate issued by Government'),('BPL Card','BPL Card'),('National Population Register (NPR) Card','National Population Register (NPR) Card''Identity proof by Gazetted officers'),('Passport','Passport'),('Jail Identification Card/ Number','Jail Identification Card/ Number'),('School leaving certificate/10th certificate','School leaving certificate/10th certificate'),('Letter of domicile from SDM/DM/Government Authority','Letter of domicile from SDM/DM/Government Authority'))
+    id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES)
+    alt_id_type = models.CharField(max_length=25, blank=True, choices=ALT_ID_TYPE_CHOICES)
+    aadhaar_ref_no = models.IntegerField(unique=True)
+    alt_id_no = models.IntegerField(unique=True)
+
+    def alt_it_type_check(self):
+        if self.id_type == 'Aadhar ID' and self.alt_id_type is not None:
+            raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
+        elif self.id_type == 'Aadhar ID' and self.alt_id_no is not None:
+            raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
+
+class participant_entre(models.Model):
+    CATEGORY_CHOICES = (('General','General'),( 'OBC', 'OBC'),( 'SC','SC'),('ST','ST' ))
+    GENDER_CHOICES = (('Male','Male'),( 'Female', 'Female'),( 'Transgender','Transgender'))
+    program_id = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
+    participant_id_ent = models.IntegerField(primary_key=True, unique=True)
+    name_of_trainee = models.CharField(max_length=50,unique=False)
+    father_or_husband_name = models.CharField(max_length=50, unique=False)
+    gender = models.CharField(max_length=25, blank=True, choices=GENDER_CHOICES)
+    date_of_birth = models.DateField()
+    idcard_entre = participant_idcard()
+    mobile_entre = participant_mobile()
+    category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES) 
+    job = models.CharField(max_length=25, unique=False)
+    qualification = models.CharField(max_length=25, unique=False)
+    project_identified = models.CharField(max_length=50, unique=False)
+    items_to_be_manufactured = models.CharField(max_length=50, unique=False)
+    place_of_unit = models.CharField(max_length=40, unique=False)
+    self_or_bank_financed = models.CharField(max_length=20, unique=False)
+    own_contribution_amount = models.IntegerField()
+    date_of_loan_release = models.DateField()
+    commencement_date = models.DateField()
+    no_of_persons_employed = models.IntegerField()
+    email =CollectionField(item_type=EmailField, collection_type=set, max_length=10)
+    address_entre = participant_address_entre()
+
+class participant_project_cost_entre(models.Model):
+    Serial_number = models.ForeignKey(participant_entre, default=1, on_delete=models.CASCADE)
+    CE = models.IntegerField(default=0)
+    WC = models.IntegerField(default=0)
+
+    @property
+    def total(self):
+        return self.CE + self.WC
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = (('Mr','Mr'),('Ms','Ms'),('Mrs','Mrs'),('Mx','Mx'))
@@ -89,7 +133,6 @@ class participant_comm_address_skill(CompositeField):
     tehsil_comm = models.CharField(max_length=25, blank=True)
     constituency_comm = models.CharField(max_length=25, blank=True)
 
-
 class participant_disability_skill(CompositeField):
     INPUT_CHOICES = (('Yes','Yes'),('No', 'No'))
     TYPE_CHOICES = (('Locomotor Disability','Locomotor Disability'),('Leprosy Cured Person','Leprosy Cured Person'),('Dwarfism', 'Dwarfism'),( 'Acid Attack Victim',  'Acid Attack Victim'), ('Blindness/VisualImpairment','Blindness/VisualImpairment'),('Low-vision (Visual Impairment)','Low-vision (Visual Impairment)'),('Deaf','Deaf'), ('Hard of Hearing','Hard of Hearing'), ('Speech and Language Disability','Speech and Language Disability'),('Intellectual Disability /Mental Retardation', 'Intellectual Disability /Mental Retardation'),('Autism Spectrum Disorder','Autism Spectrum Disorder'),('Specific Learning Disabilities','Specific Learning Disabilities'), ('Mental Behavior-Mental Illness','Mental Behavior-Mental Illness'), ('Haemophilia','Haemophilia'), ('Thalassemia','Thalassemia'), ('Sickle Cell Disease','Sickle Cell Disease'), ('Deaf Blindness','Deaf Blindness'), ('Cerebral Palsy','Cerebral Palsy'), ('Multiple Sclerosis','Multiple Sclerosis'),('Muscular Dystrophy', 'Muscular Dystrophy'))
@@ -98,8 +141,6 @@ class participant_disability_skill(CompositeField):
     def disability_check(self):
         if self.disability_input == 'Yes' and self.disability_type is None:
             raise ValidationError('Disability type cannot be null!')
-
-
 
 class participant_domicile_skill(CompositeField):
     dom_state = models.CharField(max_length=25, blank=True)
@@ -131,10 +172,6 @@ class participant_job_details_skill(CompositeField):
     employment_status = models.CharField(max_length=100, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
     employment_details = models.CharField(max_length=100, blank=True)
 
-class participant_mobile_skill(CompositeField):
-    country_code = models.IntegerField()
-    mobile_number = CollectionField(item_type=int, collection_type=set, max_length=10)
-
 class participant_perm_address_skill(CompositeField):
     address_perm = models.CharField(max_length=100, blank=True)
     state_perm = models.CharField(max_length=25, blank=True, unique=False)
@@ -153,7 +190,7 @@ class participant_skill(models.Model):
     TRAINING_STATUS_CHOICES=(('Fresher','Fresher'),('Experienced','Experienced'))
     HEARD_ABOUT_US_CHOICES=(('Poster','Poster'),('SMS','SMS') , ('Training Provider','Training Provider'),( 'Internet', 'Internet'),('Government Agency','Government Agency') ,('Radio','Radio') ,('Newspaper','Newspaper'),('Television','Television'),('Advertisements','Advertisements'),('Social Media','Social Media'),('Pamphlets','Pamphlets'),('Recorded phone','Recorded phone'),('Message','Message'),('Newsletter','Newsletter'),('Kaushal Mela','Kaushal Mela'),('Call Center','Call Center'),('Rozgar Mela','Rozgar Mela'),( 'Others', 'Others'),('Event/Workshop','Event/Workshop'))
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
-    participant_id = models.IntegerField(primary_key=True, unique=True)
+    participant_id_skill = models.IntegerField(primary_key=True, unique=True)
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, blank=True, choices=GENDER_CHOICES)
     dob = models.DateField()
@@ -165,8 +202,8 @@ class participant_skill(models.Model):
     category = models.CharField(max_length=25, blank=True, choices=CATEGORY_CHOICES)
     disability = participant_disability_skill()
     domicile = participant_domicile_skill()
-    participant_idcard = participant_idcard_skill()
-    mobile = participant_mobile_skill()
+    idcard_skill = participant_idcard()
+    mobile_skill = participant_mobile()
     education_level = models.CharField(max_length=25, blank=True)
     perm_address = participant_perm_address_skill()
     pa_same_as_ca = models.CharField(max_length=25, blank=True, choices=PA_SAME_AS_CA_CHOICES)
@@ -187,6 +224,10 @@ class participant_skill(models.Model):
         elif self.training_status == 'Experienced' and self.participant_job_details is None:
             raise ValidationError('Job details are required for Experienced!')
 
+class placement_id_skill(CompositeField):
+    batch_id = models.IntegerField()
+    rced_batch_id = models.IntegerField()
+
 class placement_skill(models.Model):
     participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE)
     placement_id = placement_id_skill()
@@ -202,42 +243,3 @@ class placement_skill(models.Model):
     date_of_joining = models.DateField()
     contact_person = models.CharField(max_length=25, blank=True, unique=False)
     contact_person_no = models.IntegerField()
-
-
-class participant_entre(models.Model):
-    CATEGORY_CHOICES = (('General','General'),( 'OBC', 'OBC'),( 'SC','SC'),('ST','ST' ))
-    program_id = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
-    participant_id_ent = models.IntegerField(primary_key=True, unique=True)
-    name_of_trainee = models.CharField(max_length=50,unique=False)
-    father_or_husband_name = models.CharField(max_length=50, unique=False)
-    gender = models.CharField(max_length=10, unique=False)
-    date_of_birth = models.DateField()
-    aadhar_number = models.IntegerField(unique=True)  # id number
-    primary_email = models.EmailField(max_length=50)
-    secondary_email = models.EmailField(max_length=50)
-    primary_mobile_number = models.IntegerField(unique=True)
-    secondary_mobile_number = models.IntegerField(unique=True)
-    category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES) 
-    job = models.CharField(max_length=25, unique=False)
-    qualification = models.CharField(max_length=25, unique=False)
-    project_identified = models.CharField(max_length=50, unique=False)
-    items_to_be_manufactured = models.CharField(max_length=50, unique=False)
-    place_of_unit = models.CharField(max_length=40, unique=False)
-    self_or_bank_financed = models.CharField(max_length=20, unique=False)
-    own_contribution_amount = models.IntegerField()
-    date_of_loan_release = models.DateField()
-    commencement_date = models.DateField()
-    no_of_persons_employed = models.IntegerField()
-    email = models.CharField(max_length=30)
-    mobile_number = models.IntegerField()
-    address_entre = participant_address_entre()
-
-class participant_project_cost_entre(models.Model):
-    Serial_number = models.ForeignKey(participant_entre, default=1, on_delete=models.CASCADE)
-    CE = models.IntegerField(default=0)
-    WC = models.IntegerField(default=0)
-
-    @property
-    def total(self):
-        return self.CE + self.WC
-

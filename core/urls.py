@@ -16,5 +16,6 @@ urlpatterns = [
     path('insprogEnt', insprogEnt, name='insprogEnt'),
     path('insertparticipant', participant_ent, name='participant_ent'),
     path("", include("authentication.urls")), # Auth routes - login / register
-    path("", include("app.urls"))             # UI Kits Html files
+    path("", include("app.urls")),            # UI Kits Html files
+
 ]
