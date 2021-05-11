@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 """
 Copyright (c) 2019 - present AppSeed.us
-"""
-from core.forms import Program_entreform
+# """
+# from core.forms import Program_entreform
 from core.models import program_entre
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
@@ -42,15 +42,19 @@ def deptSkill(request):
 
 def deptEnt(request):
     return render(request, 'ui-department_ent.html')
-    
+
+def participant_ent(request):
+    return render(request, 'ui-participants_ent.html')
+
 def insprogEnt(request):
-    if request.method == "POST":
-        form = Program_entreform(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Program Added Successfully!')
-        return redirect('/insprogEnt')
-    else:
-        form = Program_entreform()
-    return render(request, 'ui-program_ent.html',{'form':form})
+    # if request.method == "POST":
+    #     form = Program_entreform(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(request, 'Program Added Successfully!')
+    #     return redirect('/insprogEnt')
+    # else:
+    #     form = Program_entreform()
+    # return render(request, 'ui-program_ent.html',{'form':form})
+    return render(request, 'ui-program_ent.html')
 

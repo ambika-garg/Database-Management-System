@@ -65,7 +65,7 @@ class program_address_skill(CompositeField):
 class program_skill(models.Model):
     depart_name_skill = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
     program_name_skill = models.CharField(max_length=100, unique=True)
-    financial_year_skill = financial_year = models.CharField(max_length=10)
+    financial_Year_skill= models.CharField(max_length=10)
     trade_skill = models.CharField(max_length=100, blank=True)
     no_of_participants_skill = models.IntegerField(null=True)
     address_skill = program_address_skill()
@@ -75,7 +75,7 @@ class program_skill(models.Model):
         return self.program_name_skill
 
 class participant_name_skill(CompositeField):
-    SALUTATION_CHOICES = ['Mr','Ms','Mrs','Mx']
+    SALUTATION_CHOICES = (('Mr','Mr'),('Ms','Ms'),('Mrs','Mrs'),('Mx','Mx'))
     salutation = models.CharField(max_length=25, blank=True, choices=SALUTATION_CHOICES)
     FirstName = models.CharField(max_length=25, blank=True)
     LastName = models.CharField(max_length=25, blank=True)
@@ -91,8 +91,8 @@ class participant_comm_address_skill(CompositeField):
 
 
 class participant_disability_skill(CompositeField):
-    INPUT_CHOICES = ['Yes','No']
-    TYPE_CHOICES = ['Locomotor Disability',  'Leprosy Cured Person', 'Dwarfism', 'Acid Attack Victim', 'Blindness/VisualImpairment', 'Low-vision (Visual Impairment)','Deaf','Hard of Hearing','Speech and Language Disability','Intellectual Disability /Mental Retardation','Autism Spectrum Disorder','Specific Learning Disabilities','Mental Behavior-Mental Illness','Haemophilia','Thalassemia','Sickle Cell Disease','Deaf Blindness','Cerebral Palsy','Multiple Sclerosis','Muscular Dystrophy']
+    INPUT_CHOICES = (('Yes','Yes'),('No', 'No'))
+    TYPE_CHOICES = (('Locomotor Disability','Locomotor Disability'),('Leprosy Cured Person','Leprosy Cured Person'),('Dwarfism', 'Dwarfism'),( 'Acid Attack Victim',  'Acid Attack Victim'), ('Blindness/VisualImpairment','Blindness/VisualImpairment'),('Low-vision (Visual Impairment)','Low-vision (Visual Impairment)'),('Deaf','Deaf'), ('Hard of Hearing','Hard of Hearing'), ('Speech and Language Disability','Speech and Language Disability'),('Intellectual Disability /Mental Retardation', 'Intellectual Disability /Mental Retardation'),('Autism Spectrum Disorder','Autism Spectrum Disorder'),('Specific Learning Disabilities','Specific Learning Disabilities'), ('Mental Behavior-Mental Illness','Mental Behavior-Mental Illness'), ('Haemophilia','Haemophilia'), ('Thalassemia','Thalassemia'), ('Sickle Cell Disease','Sickle Cell Disease'), ('Deaf Blindness','Deaf Blindness'), ('Cerebral Palsy','Cerebral Palsy'), ('Multiple Sclerosis','Multiple Sclerosis'),('Muscular Dystrophy', 'Muscular Dystrophy'))
     disability_input = models.CharField(max_length=25, blank=True, choices=INPUT_CHOICES)
     disability_type = models.CharField(max_length=25, blank=True)
     def disability_check(self):
@@ -106,9 +106,9 @@ class participant_domicile_skill(CompositeField):
     dom_district = models.CharField(max_length=25, blank=True)
 
 
-class participant_id_skill(CompositeField):
-    ID_TYPE_CHOICES = ['Alternate ID', 'Aadhar ID']
-    ALT_ID_TYPE_CHOICES = ['PAN Card','Voter ID Card','Domicile Certificate', 'ST/SC Certificate','Permanent Residential Certificate (PRC)','Driving License','Ration Card','Birth Certificate issued by Government','BPL Card','National Population Register (NPR) Card','Identity proof by Gazetted officers','Passport','Jail Identification Card/ Number','School leaving certificate/10th certificate','Letter of domicile from SDM/DM/Government Authority']
+class participant_idcard_skill(CompositeField):
+    ID_TYPE_CHOICES = (('Alternate ID','Alternate ID'), ('Aadhar ID','Aadhar ID'))
+    ALT_ID_TYPE_CHOICES = (('PAN Card','PAN Card'),('Voter ID Card','Voter ID Card'),('Domicile Certificate','Domicile Certificate'),('ST/SC Certificate','ST/SC Certificate'),('Permanent Residential Certificate (PRC)','Permanent Residential Certificate (PRC)'),('Driving License','Driving License'),('Ration Card','Ration Card'),('Birth Certificate issued by Government','Birth Certificate issued by Government'),('BPL Card','BPL Card'),('National Population Register (NPR) Card','National Population Register (NPR) Card''Identity proof by Gazetted officers'),('Passport','Passport'),('Jail Identification Card/ Number','Jail Identification Card/ Number'),('School leaving certificate/10th certificate','School leaving certificate/10th certificate'),('Letter of domicile from SDM/DM/Government Authority','Letter of domicile from SDM/DM/Government Authority'))
     id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES)
     alt_id_type = models.CharField(max_length=25, blank=True, choices=ALT_ID_TYPE_CHOICES)
     aadhaar_ref_no = models.IntegerField(unique=True)
@@ -121,10 +121,10 @@ class participant_id_skill(CompositeField):
             raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
 
 class participant_job_details_skill(CompositeField):
-    EMPLOYED_CHOICES = ['Yes', 'No']
-    EMPLOYMENT_STATUS_CHOICES = ['Employed Through Registered Employer', 'Opted for Higher Studies',
-                                 'Self Employed', 'Up Skilled', 'Employed', 'NA', 'Employed at Training Partner',
-                                 'Employed at Other Firm']
+    EMPLOYED_CHOICES = (('Yes','Yes'),('No','No'))
+    EMPLOYMENT_STATUS_CHOICES = (('Employed Through Registered Employer','Employed Through Registered Employer'),('Opted for Higher Studies','Opted for Higher Studies'),
+                                 ('Self Employed','Self Employed'),('Up Skilled','Up Skilled'),('Employed','Employed'),('NA','NA'),('Employed at Training Partner','Employed at Training Partner'),
+                                 ('Employed at Other Firm','Employed at Other Firm'))
     prev_exp_sector = models.CharField(max_length=25, blank=True)
     no_of_months = models.IntegerField()
     employed = models.CharField(max_length=25, blank=True, choices=EMPLOYED_CHOICES)
@@ -145,15 +145,15 @@ class participant_perm_address_skill(CompositeField):
     constituency_perm = models.CharField(max_length=25, blank=True, unique=False)
 
 class participant_skill(models.Model):
-    CATEGORY_CHOICES = ['General', 'OBC', 'SC', 'ST']
-    GENDER_CHOICES = ['Male', 'Female', 'Transgender']
-    MARITAL_STATUS_CHOICES = ['Single/Unmarried', 'Married', 'Widowed', 'Divorced', 'Separated', 'Not to be Disclosed']
-    PA_SAME_AS_CA_CHOICES=['Yes', 'No']
-    RELIGION_CHOICES=['Atheist', 'Others', 'Hinduism', 'Christianity', 'Islam', 'Jews', 'Buddhism', 'Zoroastrian', 'Jainism', 'Not to be Disclosed']
-    TRAINING_STATUS_CHOICES=['Fresher','Experienced']
-    HEARD_ABOUT_US_CHOICES=['Poster', 'SMS', 'Training Provider', 'Internet', 'Government Agency', 'Radio','Newspaper','Television','Advertisements','Social Media','Pamphlets','Recorded phone','Message','Newsletter','Kaushal Mela','Call Center','Rozgar Mela', 'Others','Event/Workshop','Others']
+    CATEGORY_CHOICES = (('General','General'),( 'OBC', 'OBC'),( 'SC','SC'),('ST','ST' ))
+    GENDER_CHOICES = (('Male','Male'),( 'Female', 'Female'),( 'Transgender','Transgender'))
+    MARITAL_STATUS_CHOICES = (('Single/Unmarried','Single/Unmarried'),('Married','Married'),('Widowed','Widowed'),('Divorced','Divorced'),('Separated','Separated') ,( 'Not to be Disclosed', 'Not to be Disclosed'))
+    PA_SAME_AS_CA_CHOICES=(('Yes','Yes'),('No','No'))
+    RELIGION_CHOICES=(('Atheist','Atheist'),( 'Hinduism', 'Hinduism'),('Christianity','Christianity') ,('Islam','Islam'),('Jews','Jews') ,('Buddhism','Buddhism') ,('Zoroastrian','Zoroastrian') ,( 'Jainism', 'Jainism'),('Not to be Disclosed','Not to be Disclosed'))
+    TRAINING_STATUS_CHOICES=(('Fresher','Fresher'),('Experienced','Experienced'))
+    HEARD_ABOUT_US_CHOICES=(('Poster','Poster'),('SMS','SMS') , ('Training Provider','Training Provider'),( 'Internet', 'Internet'),('Government Agency','Government Agency') ,('Radio','Radio') ,('Newspaper','Newspaper'),('Television','Television'),('Advertisements','Advertisements'),('Social Media','Social Media'),('Pamphlets','Pamphlets'),('Recorded phone','Recorded phone'),('Message','Message'),('Newsletter','Newsletter'),('Kaushal Mela','Kaushal Mela'),('Call Center','Call Center'),('Rozgar Mela','Rozgar Mela'),( 'Others', 'Others'),('Event/Workshop','Event/Workshop'))
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
-    participant_idcard = models.IntegerField(primary_key=True, unique=True)
+    participant_id = models.IntegerField(primary_key=True, unique=True)
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, blank=True, choices=GENDER_CHOICES)
     dob = models.DateField()
@@ -165,7 +165,7 @@ class participant_skill(models.Model):
     category = models.CharField(max_length=25, blank=True, choices=CATEGORY_CHOICES)
     disability = participant_disability_skill()
     domicile = participant_domicile_skill()
-    participant_id = participant_id_skill()
+    participant_idcard = participant_idcard_skill()
     mobile = participant_mobile_skill()
     education_level = models.CharField(max_length=25, blank=True)
     perm_address = participant_perm_address_skill()
@@ -188,7 +188,7 @@ class participant_skill(models.Model):
             raise ValidationError('Job details are required for Experienced!')
 
 class placement_skill(models.Model):
-    participant_id_skill = models.ForeignKey(participant_skill, on_delete=models.CASCADE)
+    participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE)
     placement_id = placement_id_skill()
     course_name = models.CharField(max_length=50, blank=True, unique=False)
     placement_status = models.CharField(max_length=25, blank=True, unique=False)
@@ -205,14 +205,14 @@ class placement_skill(models.Model):
 
 
 class participant_entre(models.Model):
-    CATEGORY_CHOICES = ['General', 'OBC', 'SC', 'ST']
+    CATEGORY_CHOICES = (('General','General'),( 'OBC', 'OBC'),( 'SC','SC'),('ST','ST' ))
     program_id = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
     participant_id_ent = models.IntegerField(primary_key=True, unique=True)
     name_of_trainee = models.CharField(max_length=50,unique=False)
     father_or_husband_name = models.CharField(max_length=50, unique=False)
     gender = models.CharField(max_length=10, unique=False)
     date_of_birth = models.DateField()
-    aadhar_number = models.IntegerField(max_length=20, unique=True)  # id number
+    aadhar_number = models.IntegerField(unique=True)  # id number
     primary_email = models.EmailField(max_length=50)
     secondary_email = models.EmailField(max_length=50)
     primary_mobile_number = models.IntegerField(unique=True)
@@ -229,7 +229,7 @@ class participant_entre(models.Model):
     commencement_date = models.DateField()
     no_of_persons_employed = models.IntegerField()
     email = models.CharField(max_length=30)
-    mobile_number = models.IntegerField(max_length = 10)
+    mobile_number = models.IntegerField()
     address_entre = participant_address_entre()
 
 class participant_project_cost_entre(models.Model):
