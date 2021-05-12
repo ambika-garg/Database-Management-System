@@ -44,15 +44,24 @@ def deptEnt(request):
     return render(request, 'ui-department_ent.html')
 
 
-def participant_ent(request):
+def participant_ent(request, participant_id_ent=0):
     if request.method == "POST":
-        form = participantForm(request.POST)
+        if participant_id_ent == 0:
+            form = participantForm(request.POST)
+            print(form)
+        else:
+            participant = participantForm.objects.get(pk = participant_id_ent)
+            form = participantForm(request.POST, instance = participant)
         if form.is_valid():
             form.save()
             messages.success(request, 'Program Added Successfully!')
         return redirect('/insertparticipant')
     else:
-        form = participantForm()
+        if participant_id_ent == 0:
+            form = participantForm()
+        else:
+            participant = participantForm.objects.get(pk = participant_id_ent)
+            form = participantForm(instance = participant)
     return render(request, 'ui-participants_ent.html', {'form': form})
 
 
@@ -77,15 +86,24 @@ def insprogEnt(request, id=0):
     return render(request, 'ui-program_ent.html', {'form': form})
 
 
-
-
-
 def program_list(request):
     context = {'program_list': program_entre.objects.all()}
     return render(request, 'ui-view_program_ent.html', context)
+
 
 def pm_del(request, id):
     print(id)
     program = program_entre.objects.get(pk=id)
     program.delete()
     return render(request, 'ui-view_program_ent.html')
+
+
+def participant_list(request):
+    context = {'participant_list': participantForm.objects.all()}
+    return render(request, 'ui-view_program_ent.html', context)
+
+
+def participant_del(request, id):
+    program = participantForm.objects.get(pk=id)
+    program.delete()
+    return render(request, 'ui-view_participant_ent.html')

@@ -49,7 +49,7 @@ class program_entre(models.Model):
     address_ent = program_address()
     objects = models.Manager()
 
-    def _str_(self):
+    def __str__(self):
         return self.program_name_ent
 
 
@@ -102,6 +102,13 @@ class participant_idcard(CompositeField):
         elif self.id_type == 'Aadhar ID' and self.alt_id_no is not None:
             raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
 
+class participant_project_cost_entre(CompositeField):
+    CE = models.IntegerField(default=0)
+    WC = models.IntegerField(default=0)
+
+    @property
+    def total(self):
+        return self.CE + self.WC
 
 class participant_entre(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
@@ -129,14 +136,7 @@ class participant_entre(models.Model):
     address_entre = participant_address_entre()
 
 
-class participant_project_cost_entre(models.Model):
-    Serial_number = models.ForeignKey(participant_entre, default=1, on_delete=models.CASCADE)
-    CE = models.IntegerField(default=0)
-    WC = models.IntegerField(default=0)
 
-    @property
-    def total(self):
-        return self.CE + self.WC
 
 
 class participant_name_skill(CompositeField):

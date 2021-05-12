@@ -53,9 +53,6 @@ class participantForm(forms.ModelForm):
             'address_entre_city' : 'City',
             'address_entre_state' : 'State'
         }
-
-
-
     def __init__(self, *args, **kwargs):
         super(participantForm, self).__init__(*args, **kwargs)
         self.fields['program_id'].empty_label = "Select"

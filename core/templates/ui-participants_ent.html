@@ -9,7 +9,6 @@
         <div class="card">
             <div class="card-header"><strong><h3>ADD Participants</h3></strong></div>
             <div class="card-body">
-                {% csrf_token %}
                 <form method="post">
                     {% csrf_token %}
                     <table>{{ form.as_table }}</table>
