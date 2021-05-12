@@ -92,7 +92,7 @@ class participant_idcard(CompositeField):
     ('School leaving certificate/10th certificate', 'School leaving certificate/10th certificate'),
     ('Letter of domicile from SDM/DM/Government Authority', 'Letter of domicile from SDM/DM/Government Authority'))
     id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES, null=True)
-    alt_id_type = models.CharField(max_length=25, blank=True, choices=ALT_ID_TYPE_CHOICES, null=True)
+    alt_id_type = models.CharField(max_length=100, blank=True, choices=ALT_ID_TYPE_CHOICES, null=True)
     aadhaar_ref_no = models.IntegerField(unique=True, null=True)
     alt_id_no = models.IntegerField(unique=True, null=True)
 
@@ -196,7 +196,7 @@ class participant_job_details_skill(CompositeField):
     prev_exp_sector = models.CharField(max_length=25, blank=True)
     no_of_months = models.IntegerField()
     employed = models.CharField(max_length=25, blank=True, choices=EMPLOYED_CHOICES)
-    employment_status = models.CharField(max_length=25, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
+    employment_status = models.CharField(max_length=100, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
     employment_details = models.CharField(max_length=100, blank=True)
 
 
