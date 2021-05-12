@@ -6,84 +6,80 @@
         <div class="card">
             <div class="card-header"><strong><h3>ADD PROGRAM</h3></strong></div>
             <for class="card-body">
-                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+                <form method="post">
                     {% csrf_token %}
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Participant ID</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter ID of program"><span class="help-block"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for=" ">Program name</label>
-                        <div class="col-md-3">
-                            {{ form.program_name }}
-                            <!--                            <input class="form-control" id=" " type="text" name="programname" placeholder="Enter program name" value="">-->
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for=" ">Department name</label>
-                        <div class="col-md-3">
-                            <!--                                <select class=form-control" id="select1" name="depart" data-value="{{ depart_name }}">-->
-                            {{ form.depart_name }}
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Location</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter location"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Collage Name</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Collage where program held"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">City</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter City where program held"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">State</label>
-                        <div class="col-md-3">
-                            {{ form.state }}
-                            <!--                            <input class="form-control" id="" type="text" value = "{{ state }}" name="State" placeholder="Enter State where program held" required><span class="help-block"></span>-->
-
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">No of participants</label>
-                        <div class="col-md-3">
-                            <!--                            <input class="form-control" type="number" name="financialyear" value = "{{ financial_year }}" placeholder="Enter total number of participants" required><span class="help-block"></span>-->
-                            {{ form.financial_year }}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Financial Year</label>
-                        <div class="col-md-3">
-                            <!--                            <input class="form-control"  type="text" name="participants" value = "{{ no_of_participants }}" placeholder="Enter year in which program held" required><span class="help-block"></span>-->
-                            {{ form.no_of_participants }}
-                        </div>
-
-                        <div class="card-footer">
-                            <button class="btn btn-success" type="submit">
-                            <svg class="c-icon">
-                                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-data-transfer-down"></use>
-                            </svg>Submit
-                        </button>
-                            <button class="btn btn-danger" type="reset">
-                            <svg class="c-icon">
-                                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
-                            </svg>Reset
-                        </button>
-                        </div>
+                    <table>{{ form.as_table }}</table>
+                    <button type="submit">Submit</button>
                 </form>
+<!--                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">-->
 
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="program_name">Program name</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="program_name" type="text" name="program_name" placeholder="Enter program name" value="{{ program_name }}">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="depart_name">Department name</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <select class=form-control" id="depart_name" name="depart_name" data-value="{{ depart_name }}"></select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="address_ent_location">Address</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="address_ent_location" type="text" name="address_ent_location" placeholder="Address where program held" value = "{{ address_ent_location }}" required><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="college_name_ent">Collage Name</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="college_name_ent" type="text" name="college_name_ent" placeholder="Enter Collage name" value = "{{ college_name_ent }}"><span class="help-block"></span>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="address_ent_city">City</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="address_ent_city" type="text" name="address_ent_city" placeholder="City" value = "{{ address_ent_city }}" ><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="state_ent">State</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="state_ent" type="text" name="state_ent" placeholder="State" value = "{{ state_ent }}" required><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="no_of_participants_ent">No of participants</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control" id="no_of_participants_ent" type="number" name="no_of_participants_ent" placeholder="Enter total number of participants" value = "{{ no_of_participants_ent }}" required><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-md-2 col-form-label" for="financial_year_ent">Financial Year</label>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <input class="form-control"  type="text" id = "financial_year_ent" name="financial_year_ent" placeholder="YYYY-YY" value = "{{ financial_year_ent }}" required><span class="help-block"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="card-footer">-->
+<!--                        <button class="btn btn-success" type="submit">-->
+<!--                        <svg class="c-icon">-->
+<!--                            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-data-transfer-down"></use>-->
+<!--                        </svg>Submit-->
+<!--                    </button>-->
+<!--                        <button class="btn btn-danger" type="reset">-->
+<!--                        <svg class="c-icon">-->
+<!--                            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>-->
+<!--                        </svg>Reset-->
+<!--                    </button>-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </for>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
 </main>
 {% endblock content %}
 <!-- Specific Page JS goes HERE  -->

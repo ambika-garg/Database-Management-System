@@ -6,15 +6,18 @@ Copyright (c) 2019 - present AppSeed.us
 from django.contrib import admin
 from django.urls import path, include  # add this
 from . import views
-from core.views import deptSkill, deptEnt, insprogEnt, participant_ent
+from core.views import deptSkill, deptEnt, insprogEnt, participant_ent,program_list, pm_del
 
 urlpatterns = [
     # path('admin/', admin.site.urls),          # Django admin route
     path('admin' , admin.site.urls),
     path('deptSkill', deptSkill, name='deptSkill'),
     path('deptEnt', deptEnt, name='deptEnt'),
-    path('insprogEnt', insprogEnt, name='insprogEnt'),
+    path('insprogEnt', insprogEnt, name='insprogEnt'), # get and post request for insert operation
+    path('<int:id>/',insprogEnt,name = "program_update"), #get and post request for update operation
+    path('delete/<int:id>/', pm_del ,name = 'program_delete'),
     path('insertparticipant', participant_ent, name='participant_ent'),
+    path('program_list', program_list, name = 'program_list'),#display program routes
     path("", include("authentication.urls")), # Auth routes - login / register
     path("", include("app.urls")),            # UI Kits Html files
 
