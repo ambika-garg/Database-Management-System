@@ -74,7 +74,7 @@ class participant_address_entre(CompositeField):
 
 class participant_mobile(CompositeField):
     country_code = models.IntegerField()
-    mobile_number = CollectionField(item_type=int, collection_type=set, max_length=10,  max_items=2)
+    number = CollectionField(item_type=int, collection_type=set, max_length=10,  max_items=2)
 
 
 class participant_idcard(CompositeField):
@@ -103,10 +103,9 @@ class participant_idcard(CompositeField):
 class participant_project_cost_entre(CompositeField):
     CE = models.IntegerField(default=0)
     WC = models.IntegerField(default=0)
-
     @property
     def total(self):
-        return self.CE + self.WC
+        return self.CE + self.WC    
 
 #6
 class participant_entre(models.Model):
@@ -133,13 +132,13 @@ class participant_entre(models.Model):
     no_of_persons_employed = models.IntegerField()
     email = CollectionField(collection_type=set, item_type=EmailField, max_items=2)
     address_entre = participant_address_entre()
+    project_cost = participant_project_cost_entre()
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = (('Mr', 'Mr'), ('Ms', 'Ms'), ('Mrs', 'Mrs'), ('Mx', 'Mx'))
     salutation = models.CharField(max_length=25, blank=True, choices=SALUTATION_CHOICES)
     FirstName = models.CharField(max_length=25, blank=True)
     LastName = models.CharField(max_length=25, blank=True)
-
 
 class participant_comm_address_skill(CompositeField):
     address_comm = models.CharField(max_length=100, blank=True)
@@ -149,7 +148,6 @@ class participant_comm_address_skill(CompositeField):
     city_comm = models.CharField(max_length=25, blank=True)
     tehsil_comm = models.CharField(max_length=25, blank=True)
     constituency_comm = models.CharField(max_length=25, blank=True)
-
 
 class participant_disability_skill(CompositeField):
     INPUT_CHOICES = (('Yes', 'Yes'), ('No', 'No'))
@@ -193,7 +191,6 @@ class participant_job_details_skill(CompositeField):
     employed = models.CharField(max_length=25, blank=True, choices=EMPLOYED_CHOICES)
     employment_status = models.CharField(max_length=100, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
     employment_details = models.CharField(max_length=100, blank=True)
-
 
 class participant_perm_address_skill(CompositeField):
     address_perm = models.CharField(max_length=100, blank=True)

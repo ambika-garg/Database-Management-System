@@ -38,15 +38,18 @@ class participantForm(forms.ModelForm):
 
         #updating columns
         labels = {
-            'participant_id_ent' : 'Serial number',
             'program_id' : 'Program Name',
+            'participant_id_ent' : 'Serial number',
             'name_of_trainee' : 'Participant Name',
+            'father_or_husband_name' : 'Father/Husband Name',
+            'gender' : 'Gender',
+            'date_of_birth' : 'Date of Birth',
             'idcard_entre_id_type' : 'Id Type',
             'idcard_entre_alt_id_type' : 'Alternate Id Type',
             'idcard_entre_aadhaar_ref_no' : 'Aadhar Number',
             'idcard_entre_alt_id_no' : 'Alternate Id Number',
             'mobile_entre_country_code' : 'Country Code',
-            'mobile_entre_mobile_number' : 'Mobile Number',
+            'mobile_entre_number' : 'Mobile Number',
             'category_entre' : 'Category',
             'job' : 'Job',
             'qualification' : 'Qualification',
@@ -61,7 +64,10 @@ class participantForm(forms.ModelForm):
             'email' : 'Email',
             'address_entre_location': 'Address',
             'address_entre_city' : 'City',
-            'address_entre_state' : 'State'
+            'address_entre_state' : 'State',
+            'project_cost_entre_CE' : 'CE',
+            'project_cost_entre_WE' : 'WE',
+            'project_cost_entre_total' : 'Total'
         }
 
     def __init__(self, *args, **kwargs):
