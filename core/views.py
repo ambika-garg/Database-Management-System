@@ -1,5 +1,6 @@
+
 from core.forms import program_entreform, participantForm
-from core.models import program_entre
+from core.models import dept_entre, program_entre, participant_entre
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
@@ -41,17 +42,18 @@ def deptSkill(request):
 
 
 def deptEnt(request):
-    return render(request, 'ui-department_ent.html')
+    context = {'deptEnt': dept_entre.objects.all()}
+    return render(request, 'ui-view_department_ent.html', context)
 
 
 def participant_ent(request, participant_id_ent=0):
     if request.method == "POST":
         if participant_id_ent == 0:
             form = participantForm(request.POST)
-            print(form)
         else:
-            participant = participantForm.objects.get(pk = participant_id_ent)
+            participant = participant_entre.objects.get(pk = participant_id_ent)
             form = participantForm(request.POST, instance = participant)
+            print(form)
         if form.is_valid():
             form.save()
             messages.success(request, 'Program Added Successfully!')
@@ -60,7 +62,7 @@ def participant_ent(request, participant_id_ent=0):
         if participant_id_ent == 0:
             form = participantForm()
         else:
-            participant = participantForm.objects.get(pk = participant_id_ent)
+            participant = participant_entre.objects.get(pk = participant_id_ent)
             form = participantForm(instance = participant)
     return render(request, 'ui-participants_ent.html', {'form': form})
 
@@ -99,8 +101,8 @@ def pm_del(request, id):
 
 
 def participant_list(request):
-    context = {'participant_list': participantForm.objects.all()}
-    return render(request, 'ui-view_program_ent.html', context)
+    context = {'participant_list': participant_entre.objects.all()}
+    return render(request, 'ui-view_participant_ent.html', context)
 
 
 def participant_del(request, id):

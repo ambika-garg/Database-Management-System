@@ -16,8 +16,7 @@ class program_entreform(forms.ModelForm):
             'college_name_ent': 'College Name',
             'no_of_participants_ent': 'Total Participants',
             'address_ent_location': 'Location',
-            ' address_ent_city': 'City'
-
+            'address_ent_city': 'City'
         }
 
     def __init__(self, *args, **kwargs):
@@ -42,21 +41,32 @@ class participantForm(forms.ModelForm):
             'participant_id_ent' : 'Serial number',
             'program_id' : 'Program Name',
             'name_of_trainee' : 'Participant Name',
-            'idcard_entre_id_type' : 'Id_type',
-            'idcard_entre_alt_id_type' : 'Alternate Id type',
+            'idcard_entre_id_type' : 'Id Type',
+            'idcard_entre_alt_id_type' : 'Alternate Id Type',
             'idcard_entre_aadhaar_ref_no' : 'Aadhar Number',
             'idcard_entre_alt_id_no' : 'Alternate Id Number',
             'mobile_entre_country_code' : 'Country Code',
             'mobile_entre_mobile_number' : 'Mobile Number',
             'category_entre' : 'Category',
+            'job' : 'Job',
+            'qualification' : 'Qualification',
+            'project_identified' : 'Project Identified',
+            'items_to_be_manufactured' : 'Items to be Manufactured',
+            'place_of_unit' : 'Place of Unit',
+            'self_or_bank_financed' : 'Self or Bank Finanaced',
+            'own_contribution_amount' : 'Own Contribution Amount',
+            'date_of_loan_release' : 'Date of Loan Release',
+            'commencement_date' : 'Commencement Date',
+            'no_of_persons_employed' : 'No. of persons employed',
+            'email' : 'Email',
             'address_entre_location': 'Address',
             'address_entre_city' : 'City',
             'address_entre_state' : 'State'
         }
+
     def __init__(self, *args, **kwargs):
         super(participantForm, self).__init__(*args, **kwargs)
         self.fields['program_id'].empty_label = "Select"
-        print("hello")
         self.fields['gender'].empty_label = "(Select here)"
         self.fields['idcard_entre_id_type'].empty_label = "Select"
         self.fields['idcard_entre_alt_id_type'].empty_label = "Select"
@@ -68,8 +78,6 @@ class participantForm(forms.ModelForm):
                     isinstance(field.widget, forms.DateTimeInput) or \
                     isinstance(field.widget, forms.TimeInput):
                 field.widget.attrs.update({'placeholder': field.label})
-
-
 
     def fields_required(self, fields):
         """Used for conditionally marking fields as required."""

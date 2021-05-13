@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from collectionfield.models import CollectionField
 from django.core.exceptions import ValidationError
+from django.db.models.fields import EmailField
 
 
 # Create your models here.
@@ -24,7 +25,6 @@ class dept_entre(models.Model):
     def __str__(self):
         return self.department_nam_ent
 
-
 # 3
 class dept_skill(models.Model):
     category_skill = models.ForeignKey(category, default=2, verbose_name="category", on_delete=models.CASCADE)
@@ -33,12 +33,11 @@ class dept_skill(models.Model):
     def __str__(self):
         return self.department_name_skill
 
-
 class program_address(CompositeField):
     location = models.CharField(max_length=50, unique=False)
     city = models.CharField(max_length=40, unique=False)
 
-
+#4
 class program_entre(models.Model):
     depart_name_ent = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
     program_name_ent = models.CharField(max_length=100, unique=True)
@@ -52,7 +51,7 @@ class program_entre(models.Model):
     def __str__(self):
         return self.program_name_ent
 
-
+#5
 class program_skill(models.Model):
     depart_name_skill = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
     program_name_skill = models.CharField(max_length=100, unique=True)
@@ -75,7 +74,7 @@ class participant_address_entre(CompositeField):
 
 class participant_mobile(CompositeField):
     country_code = models.IntegerField()
-    mobile_number = CollectionField(item_type=int, collection_type=set, max_length=10)
+    mobile_number = CollectionField(item_type=int, collection_type=set, max_length=10,  max_items=2)
 
 
 class participant_idcard(CompositeField):
@@ -85,9 +84,9 @@ class participant_idcard(CompositeField):
     ('ST/SC Certificate', 'ST/SC Certificate'),
     ('Permanent Residential Certificate (PRC)', 'Permanent Residential Certificate (PRC)'),
     ('Driving License', 'Driving License'), ('Ration Card', 'Ration Card'),
-    ('Birth Certificate issued by Government', 'Birth Certificate issued by Government'), ('BPL Card', 'BPL Card'), (
-    'National Population Register (NPR) Card',
-    'National Population Register (NPR) Card''Identity proof by Gazetted officers'), ('Passport', 'Passport'),
+    ('Birth Certificate issued by Government', 'Birth Certificate issued by Government'), ('BPL Card', 'BPL Card'), 
+    ('National Population Register (NPR) Card', 'National Population Register (NPR) Card'), 
+    ('Identity proof by Gazetted officers', 'Identity proof by Gazetted officers'), ('Passport', 'Passport'),
     ('Jail Identification Card/ Number', 'Jail Identification Card/ Number'),
     ('School leaving certificate/10th certificate', 'School leaving certificate/10th certificate'),
     ('Letter of domicile from SDM/DM/Government Authority', 'Letter of domicile from SDM/DM/Government Authority'))
@@ -95,7 +94,6 @@ class participant_idcard(CompositeField):
     alt_id_type = models.CharField(max_length=100, blank=True, choices=ALT_ID_TYPE_CHOICES, null=True)
     aadhaar_ref_no = models.IntegerField(unique=True, null=True)
     alt_id_no = models.IntegerField(unique=True, null=True)
-
     def alt_it_type_check(self):
         if self.id_type == 'Aadhar ID' and self.alt_id_type is not None:
             raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
@@ -110,6 +108,7 @@ class participant_project_cost_entre(CompositeField):
     def total(self):
         return self.CE + self.WC
 
+#6
 class participant_entre(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
@@ -132,12 +131,8 @@ class participant_entre(models.Model):
     date_of_loan_release = models.DateField()
     commencement_date = models.DateField()
     no_of_persons_employed = models.IntegerField()
-    email = CollectionField(collection_type=set)
+    email = CollectionField(collection_type=set, item_type=EmailField, max_items=2)
     address_entre = participant_address_entre()
-
-
-
-
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = (('Mr', 'Mr'), ('Ms', 'Ms'), ('Mrs', 'Mrs'), ('Mx', 'Mx'))
@@ -209,7 +204,7 @@ class participant_perm_address_skill(CompositeField):
     tehsil_perm = models.CharField(max_length=25, blank=True, unique=False)
     constituency_perm = models.CharField(max_length=25, blank=True, unique=False)
 
-
+#7
 class participant_skill(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
@@ -264,12 +259,11 @@ class participant_skill(models.Model):
         elif self.training_status == 'Experienced' and self.participant_job_details is None:
             raise ValidationError('Job details are required for Experienced!')
 
-
 class placement_id_skill(CompositeField):
     batch_id = models.IntegerField()
     rced_batch_id = models.IntegerField()
 
-
+#8
 class placement_skill(models.Model):
     participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE)
     placement_id = placement_id_skill()
