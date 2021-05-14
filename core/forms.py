@@ -1,5 +1,5 @@
 from django import forms
-from core.models import program_entre, participant_entre
+from core.models import program_entre, program_skill, participant_entre
 from collectionfield.forms import CollectionField
 
 class program_entreform(forms.ModelForm):
@@ -30,6 +30,33 @@ class program_entreform(forms.ModelForm):
                     isinstance(field.widget, forms.TimeInput):
                 field.widget.attrs.update({'placeholder': field.label})
 
+class program_skillform(forms.ModelForm):
+    class Meta:
+        model = program_skill
+        fields = '__all__'
+
+        # updating value of columns
+        labels = {
+            'program_name_skill': 'Program Name',
+            'depart_name_skill': 'Department Name',
+            'state': 'State',
+            'financial_Year_skill': 'Financial Year',
+            'trade_skill': 'Trade',
+            'no_of_participants_skill': 'Total Participants',
+            'address_skill_location': 'Location',
+            'address_skill_city': 'City'
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(program_skillform, self).__init__(*args, **kwargs)
+        self.fields['depart_name_skill'].empty_label = "Select" #empty label pr select aajayega
+        for key, field in self.fields.items():
+            if isinstance(field.widget, forms.TextInput) or \
+                    isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.DateInput) or \
+                    isinstance(field.widget, forms.DateTimeInput) or \
+                    isinstance(field.widget, forms.TimeInput):
+                field.widget.attrs.update({'placeholder': field.label})
 
 class participantForm(forms.ModelForm):
     # email = CollectionField()
