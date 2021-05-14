@@ -16,9 +16,10 @@ urlpatterns = [
     path('insprogEnt', insprogEnt, name='insprogEnt'), # get and post request for insert operation
     path('<int:id>/',insprogEnt,name = "program_update"), #get and post request for update operation
     path('delete/<int:id>/', pm_del ,name = 'program_delete'),
+
     path('insertparticipant', participant_ent, name='participant_ent'),
-    path('<int:participant_id_ent>/', participant_ent, name = "participant_update"),
-    path('delete/<int:participant_id_ent>/', participant_del ,name = 'participant_delete'),
+    path('update/<int:participant_id_ent>/', participant_ent, name = "participant_update"),
+    path('deleteparticipant/<int:participant_id_ent>/', participant_del ,name = 'participant_delete'),
     path('program_list', program_list, name = 'program_list'),#display program routes
     path('participant_list', participant_list, name = 'participant_list'),
     path("", include("authentication.urls")), # Auth routes - login / register

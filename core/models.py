@@ -9,7 +9,7 @@ from django.db import models
 from collectionfield.models import CollectionField
 from django.core.exceptions import ValidationError
 from django.db.models.fields import EmailField
-
+from django_mysql.models import ListCharField
 
 # Create your models here.
 # 1
@@ -74,8 +74,8 @@ class participant_address_entre(CompositeField):
 
 class participant_mobile(CompositeField):
     country_code = models.IntegerField()
-    number = CollectionField(item_type=int, collection_type=set, max_length=10,  max_items=2)
-
+    # mobile_number = CollectionField(item_type=int, collection_type=set, max_length=12,  max_items=2)
+    mobile_number = ListCharField(base_field= models.CharField(max_length = 10),size = 6, max_length = (6*11))
 
 class participant_idcard(CompositeField):
     ID_TYPE_CHOICES = (('Alternate ID', 'Alternate ID'), ('Aadhar ID', 'Aadhar ID'))
@@ -92,8 +92,8 @@ class participant_idcard(CompositeField):
     ('Letter of domicile from SDM/DM/Government Authority', 'Letter of domicile from SDM/DM/Government Authority'))
     id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES, null=True)
     alt_id_type = models.CharField(max_length=100, blank=True, choices=ALT_ID_TYPE_CHOICES, null=True)
-    aadhaar_ref_no = models.IntegerField(unique=True, null=True)
-    alt_id_no = models.IntegerField(unique=True, null=True)
+    aadhaar_ref_no = models.BigIntegerField(unique=True, null=True)
+    alt_id_no = models.BigIntegerField(unique=True, null=True)
     def alt_it_type_check(self):
         if self.id_type == 'Aadhar ID' and self.alt_id_type is not None:
             raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
@@ -103,9 +103,7 @@ class participant_idcard(CompositeField):
 class participant_project_cost_entre(CompositeField):
     CE = models.IntegerField(default=0)
     WC = models.IntegerField(default=0)
-    @property
-    def total(self):
-        return self.CE + self.WC    
+
 
 #6
 class participant_entre(models.Model):
@@ -130,9 +128,16 @@ class participant_entre(models.Model):
     date_of_loan_release = models.DateField()
     commencement_date = models.DateField()
     no_of_persons_employed = models.IntegerField()
-    email = CollectionField(collection_type=set, item_type=EmailField, max_items=2)
+    email = models.fields.TextField(blank=True, null=True,help_text="Enter 2 emails.")
     address_entre = participant_address_entre()
     project_cost = participant_project_cost_entre()
+
+    total = models.IntegerField(default=0)
+
+    def save(self, **kwargs):
+        self.total = self.project_cost.CE + self.project_cost.WC
+        return super(participant_entre, self).save()
+    objects = models.Manager()
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = (('Mr', 'Mr'), ('Ms', 'Ms'), ('Mrs', 'Mrs'), ('Mx', 'Mx'))

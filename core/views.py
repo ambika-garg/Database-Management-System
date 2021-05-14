@@ -49,22 +49,28 @@ def deptEnt(request):
 def participant_ent(request, participant_id_ent=0):
     if request.method == "POST":
         if participant_id_ent == 0:
-            form = participantForm(request.POST)
+            fi = participantForm(request.POST)
+            email = request.POST.get('email')
         else:
             participant = participant_entre.objects.get(pk = participant_id_ent)
-            form = participantForm(request.POST, instance = participant)
-            print(form)
-        if form.is_valid():
-            form.save()
+            print("particpant:", participant)
+            fi = participantForm(request.POST, instance = participant)
+            email = request.POST.get('email')
+            print("email: ", email)
+        if fi.is_valid():
+            fi.save()
             messages.success(request, 'Program Added Successfully!')
-        return redirect('/insertparticipant')
+            return redirect('/insertparticipant')
     else:
         if participant_id_ent == 0:
-            form = participantForm()
+            fi = participantForm()
+            email = request.POST.get('email')
         else:
             participant = participant_entre.objects.get(pk = participant_id_ent)
-            form = participantForm(instance = participant)
-    return render(request, 'ui-participants_ent.html', {'form': form})
+            fi = participantForm(instance = participant)
+            email = request.POST.get('email')
+
+    return render(request, 'ui-participants_ent.html', {'form': fi, 'email': email})
 
 
 def insprogEnt(request, id=0):
@@ -89,15 +95,16 @@ def insprogEnt(request, id=0):
 
 
 def program_list(request):
+
     context = {'program_list': program_entre.objects.all()}
     return render(request, 'ui-view_program_ent.html', context)
 
 
 def pm_del(request, id):
-    print(id)
+    # print(id)
     program = program_entre.objects.get(pk=id)
     program.delete()
-    return render(request, 'ui-view_program_ent.html')
+    return render(request, '/program_list')
 
 
 def participant_list(request):
@@ -105,7 +112,7 @@ def participant_list(request):
     return render(request, 'ui-view_participant_ent.html', context)
 
 
-def participant_del(request, id):
-    program = participantForm.objects.get(pk=id)
+def participant_del(request,  participant_id_ent):
+    program = participant_entre.objects.get(pk= participant_id_ent)
     program.delete()
-    return render(request, 'ui-view_participant_ent.html')
+    return render(request, '/participant_list')

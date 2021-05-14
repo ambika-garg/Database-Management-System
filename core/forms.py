@@ -1,6 +1,6 @@
 from django import forms
 from core.models import program_entre, participant_entre
-
+from collectionfield.forms import CollectionField
 
 class program_entreform(forms.ModelForm):
     class Meta:
@@ -32,6 +32,8 @@ class program_entreform(forms.ModelForm):
 
 
 class participantForm(forms.ModelForm):
+    # email = CollectionField()
+    # email = forms.EmailField(max_length=100, widget = forms.EmailInput)
     class Meta:
         model = participant_entre
         fields = '__all__'
@@ -94,8 +96,17 @@ class participantForm(forms.ModelForm):
 
     def clean(self):
         Id = self.cleaned_data.get('idcard_entre_id_type')
-        print("Id")
+        print(Id)
         if Id == "Alternate ID":
-            self.fields_required(['idcard_entre_alt_id_type', 'idcard_entre_alt_id_no'])
+            self.fields['idcard_entre_alt_id_type'].required = True
+            self.fields['idcard_entre_alt_id_no'].required = True
+            self.fields['idcard_entre_aadhaar_ref_no'].required = False
+            # self.fields_required(['idcard_entre_alt_id_type', 'idcard_entre_alt_id_no'])
         elif Id == "Aadhar ID":
-            self.fields_required(['idcard_entre_aadhaar_ref_no'])
+
+            self.fields['idcard_entre_alt_id_type'].required = False
+            self.fields['idcard_entre_alt_id_no'].required = False
+            # self.fields['idcard_entre_aadhaar_ref_no'].required = True
+
+    def clean_email(self):
+        print(self.cleaned_data['email'])
