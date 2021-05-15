@@ -75,7 +75,7 @@ class participant_address_entre(CompositeField):
 class participant_mobile(CompositeField):
     country_code = models.IntegerField()
     # mobile_number = CollectionField(item_type=int, collection_type=set, max_length=12,  max_items=2)
-    mobile_number = ListCharField(base_field= models.CharField(max_length = 10),size = 6, max_length = (6*11))
+    number = ListCharField(base_field= models.CharField(max_length = 10),size = 6, max_length = (6*11))
 
 class participant_idcard(CompositeField):
     ID_TYPE_CHOICES = (('Alternate ID', 'Alternate ID'), ('Aadhar ID', 'Aadhar ID'))
@@ -131,7 +131,6 @@ class participant_entre(models.Model):
     email = models.fields.TextField(blank=True, null=True,help_text="Enter 2 emails.")
     address_entre = participant_address_entre()
     project_cost = participant_project_cost_entre()
-
     total = models.IntegerField(default=0)
 
     def save(self, **kwargs):
@@ -170,17 +169,17 @@ class participant_disability_skill(CompositeField):
                     ('Sickle Cell Disease', 'Sickle Cell Disease'), ('Deaf Blindness', 'Deaf Blindness'),
                     ('Cerebral Palsy', 'Cerebral Palsy'), ('Multiple Sclerosis', 'Multiple Sclerosis'),
                     ('Muscular Dystrophy', 'Muscular Dystrophy'))
-    disability_input = models.CharField(max_length=25, blank=True, choices=INPUT_CHOICES)
-    disability_type = models.CharField(max_length=25, blank=True)
+    input = models.CharField(max_length=25, blank=True, choices=INPUT_CHOICES)
+    type = models.CharField(max_length=25, blank=True)
 
     def disability_check(self):
-        if self.disability_input == 'Yes' and self.disability_type is None:
+        if self.input == 'Yes' and self.type is None:
             raise ValidationError('Disability type cannot be null!')
 
 
 class participant_domicile_skill(CompositeField):
-    dom_state = models.CharField(max_length=25, blank=True)
-    dom_district = models.CharField(max_length=25, blank=True)
+    state = models.CharField(max_length=25, blank=True)
+    district = models.CharField(max_length=25, blank=True)
 
 
 class participant_job_details_skill(CompositeField):
@@ -198,13 +197,13 @@ class participant_job_details_skill(CompositeField):
     employment_details = models.CharField(max_length=100, blank=True)
 
 class participant_perm_address_skill(CompositeField):
-    address_perm = models.CharField(max_length=100, blank=True)
-    state_perm = models.CharField(max_length=25, blank=True, unique=False)
-    district_perm = models.CharField(max_length=25, blank=True, unique=False)
-    pincode_perm = models.IntegerField()
-    city_perm = models.CharField(max_length=25, blank=True, unique=False)
-    tehsil_perm = models.CharField(max_length=25, blank=True, unique=False)
-    constituency_perm = models.CharField(max_length=25, blank=True, unique=False)
+    address = models.CharField(max_length=100, blank=True)
+    state = models.CharField(max_length=25, blank=True, unique=False)
+    district = models.CharField(max_length=25, blank=True, unique=False)
+    pincode = models.IntegerField()
+    city = models.CharField(max_length=25, blank=True, unique=False)
+    tehsil = models.CharField(max_length=25, blank=True, unique=False)
+    constituency = models.CharField(max_length=25, blank=True, unique=False)
 
 #7
 class participant_skill(models.Model):
@@ -242,11 +241,11 @@ class participant_skill(models.Model):
     idcard_skill = participant_idcard()
     mobile_skill = participant_mobile()
     education_level = models.CharField(max_length=25, blank=True)
-    perm_address = participant_perm_address_skill()
+    perm = participant_perm_address_skill()
     pa_same_as_ca = models.CharField(max_length=25, blank=True, choices=PA_SAME_AS_CA_CHOICES)
-    comm_address = participant_comm_address_skill()
+    comm = participant_comm_address_skill()
     training_status = models.CharField(max_length=25, blank=True)
-    participant_job_details = participant_job_details_skill()
+    job_details = participant_job_details_skill()
     heard_about_us = models.CharField(max_length=25, blank=True)
 
     def comm_address_check(self):
@@ -254,6 +253,8 @@ class participant_skill(models.Model):
             raise ValidationError('Permanent Address is same as Communication Address!')
         elif self.pa_same_as_ca == 'No' and self.comm_address is None:
             raise ValidationError('Permanent Address is not same as Communication Address!')
+        elif self.pa_same_as_ca == 'No' and self.perm_address is None:
+            raise ValidationError('Permanent Address is not same as Communication Address!')    
 
     def participant_job_details_check(self):
         if self.training_status == 'Fresher' and self.participant_job_details is not None:
@@ -261,6 +262,8 @@ class participant_skill(models.Model):
         elif self.training_status == 'Experienced' and self.participant_job_details is None:
             raise ValidationError('Job details are required for Experienced!')
 
+    objects = models.Manager()
+    
 class placement_id_skill(CompositeField):
     batch_id = models.IntegerField()
     rced_batch_id = models.IntegerField()
