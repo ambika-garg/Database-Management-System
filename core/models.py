@@ -74,8 +74,9 @@ class participant_address_entre(CompositeField):
 
 class participant_mobile(CompositeField):
     country_code = models.IntegerField()
-    # mobile_number = CollectionField(item_type=int, collection_type=set, max_length=12,  max_items=2)
-    number = ListCharField(base_field= models.CharField(max_length = 10),size = 6, max_length = (6*11))
+    primary_mobile = models.IntegerField(default=0000000000)
+    secondary_mobile = models.IntegerField(default = 0000000000, null=True, blank = True)
+
 
 class participant_idcard(CompositeField):
     ID_TYPE_CHOICES = (('Alternate ID', 'Alternate ID'), ('Aadhar ID', 'Aadhar ID'))
@@ -128,7 +129,8 @@ class participant_entre(models.Model):
     date_of_loan_release = models.DateField()
     commencement_date = models.DateField()
     no_of_persons_employed = models.IntegerField()
-    email = models.fields.TextField(blank=True, null=True,help_text="Enter 2 emails.")
+    primary_email = models.EmailField(default="example@gmail.com")
+    secondary_email = models.EmailField(null = True, blank = True)
     address_entre = participant_address_entre()
     project_cost = participant_project_cost_entre()
     total = models.IntegerField(default=0)
