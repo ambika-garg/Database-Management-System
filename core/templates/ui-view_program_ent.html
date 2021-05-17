@@ -3,8 +3,23 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-{% endblock stylesheets %} {% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
+
+<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+    <div class="c-subheader px-3">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" class="breadcrumbs-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/deptEnt" class="breadcrumbs-link ">Enterpreneurship</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a href="/program_list" class="breadcrumbs-link active">Manage Programs</a>
+            </li>
+        </ul>
+    </div>
+</header>
 <div class="card">
     <div class="card-body">
         <table class="table table-responsive-sm">
@@ -24,38 +39,38 @@
             </thead>
             <tbody>
                 {% for program in program_list %}
-                    <tr>
-                        <td>{{ program.id }}</td>
-                        <td>{{ program.program_name_ent }}</td>
-                        <td>{{ program.depart_name_ent }}</td>
-                        <td>{{ program.financial_year_ent }}</td>
-                        <td>{{ program.no_of_participants_ent }}</td>
-                        <td>{{ program.college_name_ent }}</td>
-                        <td>{{ program.address_ent_location }}</td>
-                        <td>{{ program.address_ent_city }}</td>
-                        <td>{{ program.state_ent }}</td>
-                        <td>
-                            <a href = "{% url 'program_update' program.id %}" class="btn text-secondary px-0">
-                                <i class="c-icon c-icon-xl cil-pencil"></i>
-                            </a>
-                            <form action="{% url 'program_delete' program.id %}" method = "post" class = "d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="btn text-secondary px-0">
+                <tr>
+                    <td>{{ program.id }}</td>
+                    <td>{{ program.program_name_ent }}</td>
+                    <td>{{ program.depart_name_ent }}</td>
+                    <td>{{ program.financial_year_ent }}</td>
+                    <td>{{ program.no_of_participants_ent }}</td>
+                    <td>{{ program.college_name_ent }}</td>
+                    <td>{{ program.address_ent_location }}</td>
+                    <td>{{ program.address_ent_city }}</td>
+                    <td>{{ program.state_ent }}</td>
+                    <td>
+                        <a href="{% url 'program_update' program.id %}" class="btn text-secondary px-0">
+                            <i class="c-icon c-icon-xl cil-pencil"></i>
+                        </a>
+                        <form action="{% url 'program_delete' program.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn text-secondary px-0">
                                    <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                 </button>
-                            </form>
+                        </form>
 
-                        </td>
-                    </tr>
-                 {% endfor %}
-<!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
-<!--                            <a href="/insprogEnt"><button class="btn btn-success btn-sm px-4" type="submit"> Edit </button></a>-->
-<!--                        </div>-->
-<!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
-<!--                            <a href="/insprogEnt"><button class="btn btn-danger btn-sm px-4" type="submit"> Delete </button></a>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                </tr>-->
+                    </td>
+                </tr>
+                {% endfor %}
+                <!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
+                <!--                            <a href="/insprogEnt"><button class="btn btn-success btn-sm px-4" type="submit"> Edit </button></a>-->
+                <!--                        </div>-->
+                <!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
+                <!--                            <a href="/insprogEnt"><button class="btn btn-danger btn-sm px-4" type="submit"> Delete </button></a>-->
+                <!--                        </div>-->
+                <!--                    </td>-->
+                <!--                </tr>-->
             </tbody>
         </table>
     </div>

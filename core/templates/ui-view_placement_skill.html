@@ -3,8 +3,22 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-{% endblock stylesheets %} 
-{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
+<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+    <div class="c-subheader px-3">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" class="breadcrumbs-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/deptSkill" class="breadcrumbs-link ">Skill</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a href="/placementSkill_list" class="breadcrumbs-link active">Manage Placement Details</a>
+            </li>
+        </ul>
+    </div>
+</header>
 <main class="c-main">
     <div class="fade-in">
         <div style="overflow-x:auto; display: flex;">
@@ -49,18 +63,18 @@
                                     <td>{{ placement.other_benefit }}</td>
                                     <td>{{ placement.date_of_joining }}</td>
                                     <td>{{ placement.contact_person }}</td>
-                                    <td>{{ placement.contact_person_no }}</td>                                    
+                                    <td>{{ placement.contact_person_no }}</td>
                                     <td>
-                                        <a href = "{% url 'placementSkill_update' placement.participant_id_skill %}" class="btn text-secondary px-0">
+                                        <a href="{% url 'placementSkill_update' placement.participant_id_skill %}" class="btn text-secondary px-0">
                                             <i class="c-icon c-icon-xl cil-pencil"></i>
                                         </a>
-                                        <form action="{% url 'placementSkill_del' placement.participant_id_skill %}" method = "post" class = "d-inline">
+                                        <form action="{% url 'placementSkill_del' placement.participant_id_skill %}" method="post" class="d-inline">
                                             {% csrf_token %}
                                             <button type="submit" class="btn text-secondary px-0">
                                                <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                             </button>
                                         </form>
-                                      </td>    
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

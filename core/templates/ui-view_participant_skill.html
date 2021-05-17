@@ -3,8 +3,22 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-{% endblock stylesheets %} 
-{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
+<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+    <div class="c-subheader px-3">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" class="breadcrumbs-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/deptSkill" class="breadcrumbs-link ">Skill</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a href="/participantSkill_list" class="breadcrumbs-link active">Manage Participants</a>
+            </li>
+        </ul>
+    </div>
+</header>
 <main class="c-main">
     <div class="fade-in">
         <div style="overflow-x:auto; display: flex;">
@@ -52,13 +66,13 @@
                                     <th>Comunication Pincode</th>
                                     <th>Communication City</th>
                                     <th>Communication Tehsil</th>
-                                    <th>Communication Constituency</th>                
+                                    <th>Communication Constituency</th>
                                     <th>Training Status</th>
                                     <th>Previous Sector Experience</th>
                                     <th>No. of months</th>
                                     <th>Employed</th>
                                     <th>Employment Status</th>
-                                    <th>Employment Details</th>                        
+                                    <th>Employment Details</th>
                                     <th>Heard About Us</th>
                                     <th>Action</th>
                                 </tr>
@@ -112,16 +126,16 @@
                                     <td>{{ participant.job_details_employment_details }}</td>
                                     <td>{{ participant.heard_about_us }}</td>
                                     <td>
-                                        <a href = "{% url 'participantSkill_update' participant.participant_id_skill %}" class="btn text-secondary px-0">
+                                        <a href="{% url 'participantSkill_update' participant.participant_id_skill %}" class="btn text-secondary px-0">
                                             <i class="c-icon c-icon-xl cil-pencil"></i>
                                         </a>
-                                        <form action="{% url 'participantSkill_del' participant.participant_id_skill %}" method = "post" class = "d-inline">
+                                        <form action="{% url 'participantSkill_del' participant.participant_id_skill %}" method="post" class="d-inline">
                                             {% csrf_token %}
                                             <button type="submit" class="btn text-secondary px-0">
                                                <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                             </button>
                                         </form>
-                                      </td>    
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

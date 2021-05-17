@@ -3,8 +3,22 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-{% endblock stylesheets %} {% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
+<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+    <div class="c-subheader px-3">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#" class="breadcrumbs-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/deptSkill" class="breadcrumbs-link ">Skill</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a href="/programSkill_list" class="breadcrumbs-link active">Manage Programs</a>
+            </li>
+        </ul>
+    </div>
+</header>
 <div class="card">
     <div class="card-body">
         <table class="table table-responsive-sm">
@@ -16,7 +30,7 @@
                     <th>Financial year</th>
                     <th>State</th>
                     <th>City</th>
-                    <th>Location</th>\
+                    <th>Location</th>
                     <th>Trade</th>
                     <th>No of participants</th>
                     <th>Action</th>
@@ -24,31 +38,31 @@
             </thead>
             <tbody>
                 {% for program in programSkill_list %}
-                    <tr>
-                        <td>{{ program.id }}</td>
-                        <td>{{ program.program_name_skill }}</td>
-                        <td>{{ program.depart_name_skill }}</td>
-                        <td>{{ program.financial_Year_skill }}</td>
-                        <td>{{ program.state }}</td>
-                        <td>{{ program.address_skill_city }}</td>
-                        <td>{{ program.address_skill_location }}</td>
-                        <td>{{ program.trade_skill }}</td>
-                        <td>{{ program.no_of_participants_ent }}</td>
-                        <td>
-                            <a href = "{% url 'programSkill_update' program.id %}" class="btn text-secondary px-0">
-                                <i class="c-icon c-icon-xl cil-pencil"></i>
-                            </a>
-                            <form action="{% url 'programSkill_del' program.id %}" method = "post" class = "d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="btn text-secondary px-0">
+                <tr>
+                    <td>{{ program.id }}</td>
+                    <td>{{ program.program_name_skill }}</td>
+                    <td>{{ program.depart_name_skill }}</td>
+                    <td>{{ program.financial_Year_skill }}</td>
+                    <td>{{ program.state }}</td>
+                    <td>{{ program.address_skill_city }}</td>
+                    <td>{{ program.address_skill_location }}</td>
+                    <td>{{ program.trade_skill }}</td>
+                    <td>{{ program.no_of_participants_ent }}</td>
+                    <td>
+                        <a href="{% url 'programSkill_update' program.id %}" class="btn text-secondary px-0">
+                            <i class="c-icon c-icon-xl cil-pencil"></i>
+                        </a>
+                        <form action="{% url 'programSkill_del' program.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn text-secondary px-0">
                                    <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                 </button>
-                            </form>
+                        </form>
 
-                        </td>
-                    </tr>
-                 {% endfor %}
-                        <!-- <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">
                             <a href="/insprogEnt"><button class="btn btn-success btn-sm px-4" type="submit"> Edit </button></a>
                         </div>
                         <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">
