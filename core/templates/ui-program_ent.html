@@ -10,8 +10,40 @@
                 <form method="post">
                     {% csrf_token %}
                     <table>{{ form.as_table }}</table>
-                    <button type="submit">Submit</button>
+                    <div class="card-footer">
+                        <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#successModal">
+                            <svg class="c-icon">
+                                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-data-transfer-down"></use>
+                            </svg>Submit
+                        </button>
+                        <button class="btn btn-danger" type="reset">
+                            <svg class="c-icon">
+                                <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>
+                            </svg>Reset
+                        </button>
+                    </div>
+                    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-success" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Modal title</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <p>Record has been Inserted Successfully!</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-success" type="button">Save changes</button>
+                          </div>
+                        </div>
+                        <!-- /.modal-content-->
+                      </div>
+                      <!-- /.modal-dialog-->
+                    </div>
                 </form>
+
+
                 <!--                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">-->
 
                 <!--                    <div class="form-group row">-->
@@ -65,21 +97,13 @@
                 <!--                        </div>-->
                 <!--                    </div>-->
 
-                <!--                    <div class="card-footer">-->
-                <!--                        <button class="btn btn-success" type="submit">-->
-                <!--                        <svg class="c-icon">-->
-                <!--                            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-data-transfer-down"></use>-->
-                <!--                        </svg>Submit-->
-                <!--                    </button>-->
-                <!--                        <button class="btn btn-danger" type="reset">-->
-                <!--                        <svg class="c-icon">-->
-                <!--                            <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lightbulb"></use>-->
-                <!--                        </svg>Reset-->
-                <!--                    </button>-->
-                <!--                    </div>-->
+
                 <!--&lt;!&ndash;                </form>&ndash;&gt;-->
                 <!--&lt;!&ndash;            </for>&ndash;&gt;-->
                 <!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+
+
 </main>
 {% endblock content %}
 <!-- Specific Page JS goes HERE  -->
