@@ -7,6 +7,10 @@ from django.contrib import admin
 from django.urls import path, include  # add this
 from core.views import deptSkill, deptEnt, insprogEnt, insprogSkill, programSkill_list, programSkill_del, participant_ent, program_list, pm_del, participant_del, participant_list, insparticipant_skill, participantSkill_list, participantSkill_del, insplacementSkill, placementSkill_list, placementSkill_del
 
+#django admin header customisation
+admin.site.site_header = "RCED ADMIN PANEL"
+admin.site.site_title = "Administration"
+admin.site.index_title = "ADMIN PANEL"
 urlpatterns = [
     # path('admin/', admin.site.urls),          # Django admin route
     path('admin' , admin.site.urls),

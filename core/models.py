@@ -15,7 +15,8 @@ from django_mysql.models import ListCharField
 # 1
 class category(models.Model):
     category_name = models.CharField(max_length=100)
-
+    def __str__(self):
+        return self.category_name
 
 # 2
 class dept_entre(models.Model):
@@ -135,10 +136,14 @@ class participant_entre(models.Model):
     project_cost = participant_project_cost_entre()
     total = models.IntegerField(default=0)
 
+
     def save(self, **kwargs):
         self.total = self.project_cost.CE + self.project_cost.WC
         return super(participant_entre, self).save()
     objects = models.Manager()
+
+    def __str__(self):
+        return self.name_of_trainee
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = (('Mr', 'Mr'), ('Ms', 'Ms'), ('Mrs', 'Mrs'), ('Mx', 'Mx'))
@@ -265,6 +270,9 @@ class participant_skill(models.Model):
             raise ValidationError('Job details are required for Experienced!')
 
     objects = models.Manager()
+
+    def __str__(self):
+        return self.name_skill
     
 class placement_id_skill(CompositeField):
     batch_id = models.IntegerField()
@@ -286,3 +294,6 @@ class placement_skill(models.Model):
     date_of_joining = models.DateField()
     contact_person = models.CharField(max_length=25, blank=True, unique=False)
     contact_person_no = models.IntegerField()
+
+    def __str__(self):
+        return self.employer_name + "-" + self.job_type
