@@ -20,61 +20,80 @@
         </ul>
     </div>
 </header>
-<div class="card">
-    <div class="card-body">
-        <table class="table table-responsive-sm">
-            <thead>
-                <tr>
-                    <th>Program ID</th>
-                    <th>Program name</th>
-                    <th>Department name</th>
-                    <th>Financial year</th>
-                    <th>No of participants</th>
-                    <th>Collage Name</th>
-                    <th>Location</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for program in program_list %}
-                <tr>
-                    <td>{{ program.id }}</td>
-                    <td>{{ program.program_name_ent }}</td>
-                    <td>{{ program.depart_name_ent }}</td>
-                    <td>{{ program.financial_year_ent }}</td>
-                    <td>{{ program.no_of_participants_ent }}</td>
-                    <td>{{ program.college_name_ent }}</td>
-                    <td>{{ program.address_ent_location }}</td>
-                    <td>{{ program.address_ent_city }}</td>
-                    <td>{{ program.state_ent }}</td>
-                    <td>
-                        <a href="{% url 'program_update' program.id %}" class="btn text-secondary px-0">
-                            <i class="c-icon c-icon-xl cil-pencil"></i>
-                        </a>
-                        <form action="{% url 'program_delete' program.id %}" method="post" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn text-secondary px-0">
+<main class="c-main">
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <div class="input-group ">
+                <input class="form-control" id="input1-group2" type="text" name="input1-group2" placeholder="Search Program Name" autocomplete="username">
+                <span class="input-group-prepend"><button class="btn btn-primary btn-sm" type="button">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-magnifying-glass"></use>
+                    </svg> Search
+                </button></span>
+            </div>
+        </div>
+    </div>
+    <div class="fade-in">
+        <div style="overflow-x:auto; display: flex;">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-responsive-sm">
+                            <thead>
+                                <tr>
+                                    <th>Program ID</th>
+                                    <th>Program name</th>
+                                    <th>Department name</th>
+                                    <th>Financial year</th>
+                                    <th>No of participants</th>
+                                    <th>Collage Name</th>
+                                    <th>Location</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for program in program_list %}
+                                <tr>
+                                    <td>{{ program.id }}</td>
+                                    <td>{{ program.program_name_ent }}</td>
+                                    <td>{{ program.depart_name_ent }}</td>
+                                    <td>{{ program.financial_year_ent }}</td>
+                                    <td>{{ program.no_of_participants_ent }}</td>
+                                    <td>{{ program.college_name_ent }}</td>
+                                    <td>{{ program.address_ent_location }}</td>
+                                    <td>{{ program.address_ent_city }}</td>
+                                    <td>{{ program.state_ent }}</td>
+                                    <td>
+                                        <a href="{% url 'program_update' program.id %}" class="btn text-secondary px-0">
+                                            <i class="c-icon c-icon-xl cil-pencil"></i>
+                                        </a>
+                                        <form action="{% url 'program_delete' program.id %}" method="post" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn text-secondary px-0">
                                    <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                 </button>
-                        </form>
+                                        </form>
 
-                    </td>
-                </tr>
-                {% endfor %}
-                <!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
-                <!--                            <a href="/insprogEnt"><button class="btn btn-success btn-sm px-4" type="submit"> Edit </button></a>-->
-                <!--                        </div>-->
-                <!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
-                <!--                            <a href="/insprogEnt"><button class="btn btn-danger btn-sm px-4" type="submit"> Delete </button></a>-->
-                <!--                        </div>-->
-                <!--                    </td>-->
-                <!--                </tr>-->
-            </tbody>
-        </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
+                                <!--                            <a href="/insprogEnt"><button class="btn btn-success btn-sm px-4" type="submit"> Edit </button></a>-->
+                                <!--                        </div>-->
+                                <!--                        <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0">-->
+                                <!--                            <a href="/insprogEnt"><button class="btn btn-danger btn-sm px-4" type="submit"> Delete </button></a>-->
+                                <!--                        </div>-->
+                                <!--                    </td>-->
+                                <!--                </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>{% endblock content %}
-
-<!-- Specific Page JS goes HERE  -->
+</main>{% endblock content %}
+<!-- Specific Page JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
