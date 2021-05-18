@@ -25,6 +25,7 @@ class program_entreform(forms.ModelForm):
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \
                     isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
                     isinstance(field.widget, forms.DateInput) or \
                     isinstance(field.widget, forms.DateTimeInput) or \
                     isinstance(field.widget, forms.TimeInput):
@@ -53,6 +54,7 @@ class program_skillform(forms.ModelForm):
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \
                     isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
                     isinstance(field.widget, forms.DateInput) or \
                     isinstance(field.widget, forms.DateTimeInput) or \
                     isinstance(field.widget, forms.TimeInput):
@@ -109,6 +111,7 @@ class participantForm(forms.ModelForm):
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \
                     isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
                     isinstance(field.widget, forms.DateInput) or \
                     isinstance(field.widget, forms.DateTimeInput) or \
                     isinstance(field.widget, forms.TimeInput):
@@ -146,7 +149,7 @@ class participantSkillForm(forms.ModelForm):
         #updating columns
         labels = {
             'program_id' : 'Program Name',
-            'participant_id_skill' : 'Serial number',
+            'participant_id_skill' : 'Participant ID',
             'name_skill_salutation' : 'Salutation',
             'name_skill_FirstName' : 'First Name',
             'name_skill_LastName' : 'Last Name',
@@ -167,7 +170,8 @@ class participantSkillForm(forms.ModelForm):
             'idcard_skill_aadhaar_ref_no' : 'Aadhar Number',
             'idcard_skill_alt_id_no' : 'Alternate Id Number',
             'mobile_skill_country_code' : 'Country Code',
-            'mobile_skill_number' : 'Mobile Number',
+            'mobile_skill_primary_mobile' : 'Primary Mobile Number',
+            'mobile_skill_secondary_mobile' : 'Secondary Mobile Number',
             'education_level' : 'Education Level',
             'perm_address' : 'Permanent Address',
             'perm_state' : 'Permanent Address State',
@@ -213,6 +217,7 @@ class participantSkillForm(forms.ModelForm):
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \
                     isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
                     isinstance(field.widget, forms.DateInput) or \
                     isinstance(field.widget, forms.DateTimeInput) or \
                     isinstance(field.widget, forms.TimeInput):
@@ -320,6 +325,7 @@ class placement_skillform(forms.ModelForm):
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \
                     isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
                     isinstance(field.widget, forms.DateInput) or \
                     isinstance(field.widget, forms.DateTimeInput) or \
                     isinstance(field.widget, forms.TimeInput):

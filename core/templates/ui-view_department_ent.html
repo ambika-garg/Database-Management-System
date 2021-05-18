@@ -3,7 +3,9 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+{% endblock stylesheets %} 
+{% block content %}
 <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
     <div class="c-subheader px-3">
         <ul class="breadcrumb">
@@ -28,15 +30,19 @@
                         <table class="table table-responsive-sm">
                             <thead>
                                 <tr>
-                                    <th>DEPARTMENT ID</th>
-                                    <th>DEPARTMENT NAME</th>
+                                    <th>Department ID</th>
+                                    <th>Department Name</th>
+                                    <th>Category</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for department in deptEnt %}
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ department.id }}</td>
+                                    <td>{{ department.department_name_ent }}</td>
+                                    <td>{{ department.category_ent }}</td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

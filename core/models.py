@@ -41,7 +41,7 @@ class program_address(CompositeField):
 #4
 class program_entre(models.Model):
     depart_name_ent = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
-    program_name_ent = models.CharField(max_length=100, unique=True)
+    program_name_ent = models.CharField(max_length=100)
     state_ent = models.CharField(max_length=100, blank=True)
     financial_year_ent = models.CharField(max_length=10)
     college_name_ent = models.CharField(max_length=100)
@@ -54,8 +54,8 @@ class program_entre(models.Model):
 
 #5
 class program_skill(models.Model):
-    depart_name_skill = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
-    program_name_skill = models.CharField(max_length=100, unique=True)
+    depart_name_skill = models.ForeignKey(dept_skill, on_delete=models.CASCADE)
+    program_name_skill = models.CharField(max_length=100)
     state = models.CharField(max_length=30)
     financial_Year_skill = models.CharField(max_length=10)
     trade_skill = models.CharField(max_length=100, blank=True)
@@ -68,14 +68,14 @@ class program_skill(models.Model):
 
 
 class participant_address_entre(CompositeField):
-    location = models.CharField(max_length=100, unique=False)
-    city = models.CharField(max_length=50, unique=False)
-    state = models.CharField(max_length=40, unique=False)
+    location = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    city = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    state = models.CharField(max_length=40, unique=False, null=True, blank=True)
 
 
 class participant_mobile(CompositeField):
-    country_code = models.IntegerField()
-    primary_mobile = models.IntegerField(default=0000000000)
+    country_code = models.IntegerField(null=True, blank=True)
+    primary_mobile = models.IntegerField(default=0000000000, null=True, blank=True)
     secondary_mobile = models.IntegerField(default = 0000000000, null=True, blank = True)
 
 
@@ -92,10 +92,10 @@ class participant_idcard(CompositeField):
     ('Jail Identification Card/ Number', 'Jail Identification Card/ Number'),
     ('School leaving certificate/10th certificate', 'School leaving certificate/10th certificate'),
     ('Letter of domicile from SDM/DM/Government Authority', 'Letter of domicile from SDM/DM/Government Authority'))
-    id_type = models.CharField(max_length=25, blank=True, choices=ID_TYPE_CHOICES, null=True)
-    alt_id_type = models.CharField(max_length=100, blank=True, choices=ALT_ID_TYPE_CHOICES, null=True)
-    aadhaar_ref_no = models.BigIntegerField(unique=True, null=True)
-    alt_id_no = models.BigIntegerField(unique=True, null=True)
+    id_type = models.CharField(max_length=25, choices=ID_TYPE_CHOICES, null=True, blank=True)
+    alt_id_type = models.CharField(max_length=100, choices=ALT_ID_TYPE_CHOICES, null=True, blank=True)
+    aadhaar_ref_no = models.BigIntegerField(unique=True, null=True, blank=True)
+    alt_id_no = models.BigIntegerField(unique=True, null=True, blank=True)
     def alt_it_type_check(self):
         if self.id_type == 'Aadhar ID' and self.alt_id_type is not None:
             raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
@@ -103,8 +103,8 @@ class participant_idcard(CompositeField):
             raise ValidationError('Not to be filled if selected as Aadhar ID in the ID Type')
 
 class participant_project_cost_entre(CompositeField):
-    CE = models.IntegerField(default=0)
-    WC = models.IntegerField(default=0)
+    CE = models.IntegerField(default=0, null=True, blank=True)
+    WC = models.IntegerField(default=0, null=True, blank=True)
 
 
 #6
@@ -114,28 +114,27 @@ class participant_entre(models.Model):
     program_id = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
     participant_id_ent = models.IntegerField(primary_key=True, unique=True)
     name_of_trainee = models.CharField(max_length=50, unique=False)
-    father_or_husband_name = models.CharField(max_length=50, unique=False)
-    gender = models.CharField(max_length=25, blank=True, choices=GENDER_CHOICES)
-    date_of_birth = models.DateField()
+    father_or_husband_name = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICES, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
     idcard_entre = participant_idcard()
     mobile_entre = participant_mobile()
-    category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-    job = models.CharField(max_length=25, unique=False)
-    qualification = models.CharField(max_length=25, unique=False)
-    project_identified = models.CharField(max_length=50, unique=False)
-    items_to_be_manufactured = models.CharField(max_length=50, unique=False)
-    place_of_unit = models.CharField(max_length=40, unique=False)
-    self_or_bank_financed = models.CharField(max_length=20, unique=False)
-    own_contribution_amount = models.IntegerField()
-    date_of_loan_release = models.DateField()
-    commencement_date = models.DateField()
-    no_of_persons_employed = models.IntegerField()
+    category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
+    job = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    project_identified = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    items_to_be_manufactured = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    place_of_unit = models.CharField(max_length=40, unique=False, null=True, blank=True)
+    self_or_bank_financed = models.CharField(max_length=20, unique=False, null=True, blank=True)
+    own_contribution_amount = models.IntegerField(null=True, blank=True)
+    date_of_loan_release = models.DateField(null=True, blank=True)
+    commencement_date = models.DateField(null=True, blank=True)
+    no_of_persons_employed = models.IntegerField(null=True, blank=True)
     primary_email = models.EmailField(default="example@gmail.com")
-    secondary_email = models.EmailField(null = True, blank = True)
+    secondary_email = models.EmailField(default="example@gmail.com", null = True, blank = True)
     address_entre = participant_address_entre()
     project_cost = participant_project_cost_entre()
     total = models.IntegerField(default=0)
-
 
     def save(self, **kwargs):
         self.total = self.project_cost.CE + self.project_cost.WC
@@ -147,18 +146,18 @@ class participant_entre(models.Model):
 
 class participant_name_skill(CompositeField):
     SALUTATION_CHOICES = (('Mr', 'Mr'), ('Ms', 'Ms'), ('Mrs', 'Mrs'), ('Mx', 'Mx'))
-    salutation = models.CharField(max_length=25, blank=True, choices=SALUTATION_CHOICES)
+    salutation = models.CharField(max_length=25, choices=SALUTATION_CHOICES, null = True, blank = True)
     FirstName = models.CharField(max_length=25, blank=True)
-    LastName = models.CharField(max_length=25, blank=True)
+    LastName = models.CharField(max_length=25, null = True, blank = True)
 
 class participant_comm_address_skill(CompositeField):
-    address_comm = models.CharField(max_length=100, blank=True)
-    state_comm = models.CharField(max_length=25, blank=True)
-    district_comm = models.CharField(max_length=25, blank=True)
-    pincode_comm = models.IntegerField()
-    city_comm = models.CharField(max_length=25, blank=True)
-    tehsil_comm = models.CharField(max_length=25, blank=True)
-    constituency_comm = models.CharField(max_length=25, blank=True)
+    address_comm = models.CharField(max_length=100, null = True, blank = True)
+    state_comm = models.CharField(max_length=25, null = True, blank = True)
+    district_comm = models.CharField(max_length=25, null = True, blank = True)
+    pincode_comm = models.IntegerField(null = True, blank = True)
+    city_comm = models.CharField(max_length=25, null = True, blank = True)
+    tehsil_comm = models.CharField(max_length=25, null = True, blank = True)
+    constituency_comm = models.CharField(max_length=25, null = True, blank = True)
 
 class participant_disability_skill(CompositeField):
     INPUT_CHOICES = (('Yes', 'Yes'), ('No', 'No'))
@@ -176,8 +175,8 @@ class participant_disability_skill(CompositeField):
                     ('Sickle Cell Disease', 'Sickle Cell Disease'), ('Deaf Blindness', 'Deaf Blindness'),
                     ('Cerebral Palsy', 'Cerebral Palsy'), ('Multiple Sclerosis', 'Multiple Sclerosis'),
                     ('Muscular Dystrophy', 'Muscular Dystrophy'))
-    input = models.CharField(max_length=25, blank=True, choices=INPUT_CHOICES)
-    type = models.CharField(max_length=25, blank=True)
+    input = models.CharField(max_length=25, choices=INPUT_CHOICES, null = True, blank = True)
+    type = models.CharField(max_length=25, null = True, blank = True)
 
     def disability_check(self):
         if self.input == 'Yes' and self.type is None:
@@ -185,8 +184,8 @@ class participant_disability_skill(CompositeField):
 
 
 class participant_domicile_skill(CompositeField):
-    state = models.CharField(max_length=25, blank=True)
-    district = models.CharField(max_length=25, blank=True)
+    state = models.CharField(max_length=25, null = True, blank = True)
+    district = models.CharField(max_length=25, null = True, blank = True)
 
 
 class participant_job_details_skill(CompositeField):
@@ -197,20 +196,20 @@ class participant_job_details_skill(CompositeField):
                                  ('Employed', 'Employed'), ('NA', 'NA'),
                                  ('Employed at Training Partner', 'Employed at Training Partner'),
                                  ('Employed at Other Firm', 'Employed at Other Firm'))
-    prev_exp_sector = models.CharField(max_length=25, blank=True)
-    no_of_months = models.IntegerField()
-    employed = models.CharField(max_length=25, blank=True, choices=EMPLOYED_CHOICES)
-    employment_status = models.CharField(max_length=100, blank=True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
-    employment_details = models.CharField(max_length=100, blank=True)
+    prev_exp_sector = models.CharField(max_length=25, null = True, blank = True)
+    no_of_months = models.IntegerField(null = True, blank = True)
+    employed = models.CharField(max_length=25, null = True, blank = True, choices=EMPLOYED_CHOICES)
+    employment_status = models.CharField(max_length=100, null = True, blank = True, unique=False, choices=EMPLOYMENT_STATUS_CHOICES)
+    employment_details = models.CharField(max_length=100, null = True, blank = True)
 
 class participant_perm_address_skill(CompositeField):
-    address = models.CharField(max_length=100, blank=True)
-    state = models.CharField(max_length=25, blank=True, unique=False)
-    district = models.CharField(max_length=25, blank=True, unique=False)
-    pincode = models.IntegerField()
-    city = models.CharField(max_length=25, blank=True, unique=False)
-    tehsil = models.CharField(max_length=25, blank=True, unique=False)
-    constituency = models.CharField(max_length=25, blank=True, unique=False)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=25, null=True, blank=True, unique=False)
+    district = models.CharField(max_length=25, null=True, blank=True, unique=False)
+    pincode = models.IntegerField(null=True, blank=True)
+    city = models.CharField(max_length=25, null=True, blank=True, unique=False)
+    tehsil = models.CharField(max_length=25, null=True, blank=True, unique=False)
+    constituency = models.CharField(max_length=25, null=True, blank=True, unique=False)
 
 #7
 class participant_skill(models.Model):
@@ -235,25 +234,25 @@ class participant_skill(models.Model):
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
     name_skill = participant_name_skill()
-    gender = models.CharField(max_length=25, blank=True, choices=GENDER_CHOICES)
-    dob = models.DateField()
-    email = models.EmailField(max_length=25, blank=True, unique=True)
-    marital_status = models.CharField(max_length=25, blank=True, choices=MARITAL_STATUS_CHOICES)
-    fathers_name = models.CharField(max_length=25, blank=True)
-    mothers_name = models.CharField(max_length=25, blank=True)
-    religion = models.CharField(max_length=25, blank=True, choices=RELIGION_CHOICES)
-    category = models.CharField(max_length=25, blank=True, choices=CATEGORY_CHOICES)
+    gender = models.CharField(max_length=25, null=True, blank=True, choices=GENDER_CHOICES)
+    dob = models.DateField(null=True, blank=True)
+    email = models.EmailField(default="example@gmail.com", max_length=50)
+    marital_status = models.CharField(max_length=25, null=True, blank=True, choices=MARITAL_STATUS_CHOICES)
+    fathers_name = models.CharField(max_length=25, null=True, blank=True)
+    mothers_name = models.CharField(max_length=25, null=True, blank=True)
+    religion = models.CharField(max_length=25, null=True, blank=True, choices=RELIGION_CHOICES)
+    category = models.CharField(max_length=25, null=True, blank=True, choices=CATEGORY_CHOICES)
     disability = participant_disability_skill()
     domicile = participant_domicile_skill()
     idcard_skill = participant_idcard()
     mobile_skill = participant_mobile()
-    education_level = models.CharField(max_length=25, blank=True)
+    education_level = models.CharField(max_length=25, null=True, blank=True)
     perm = participant_perm_address_skill()
-    pa_same_as_ca = models.CharField(max_length=25, blank=True, choices=PA_SAME_AS_CA_CHOICES)
+    pa_same_as_ca = models.CharField(max_length=25, null=True, blank=True, choices=PA_SAME_AS_CA_CHOICES)
     comm = participant_comm_address_skill()
-    training_status = models.CharField(max_length=25, blank=True)
+    training_status = models.CharField(max_length=25, null=True, blank=True)
     job_details = participant_job_details_skill()
-    heard_about_us = models.CharField(max_length=25, blank=True)
+    heard_about_us = models.CharField(max_length=25, null=True, blank=True)
 
     def comm_address_check(self):
         if self.pa_same_as_ca == 'Yes' and self.comm_address is not None:
@@ -282,18 +281,23 @@ class placement_id_skill(CompositeField):
 class placement_skill(models.Model):
     participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE)
     placement_id = placement_id_skill()
-    course_name = models.CharField(max_length=50, blank=True, unique=False)
-    placement_status = models.CharField(max_length=25, blank=True, unique=False)
-    reason = models.CharField(max_length=25, blank=True, unique=False)
-    employer_name = models.CharField(max_length=25, blank=True, unique=False)
-    job_type = models.CharField(max_length=25, blank=True, unique=False)
-    job_position = models.CharField(max_length=25, blank=True, unique=False)
-    salary = models.IntegerField()
-    job_id = models.IntegerField()
-    other_benefit = models.CharField(max_length=100, blank=True, unique=False)
-    date_of_joining = models.DateField()
-    contact_person = models.CharField(max_length=25, blank=True, unique=False)
-    contact_person_no = models.IntegerField()
+    course_name = models.CharField(max_length=50, unique=False)
+    placement_status = models.CharField(max_length=25, null = True, blank = True, unique=False)
+    reason = models.CharField(max_length=25, null = True, blank = True, unique=False)
+    employer_name = models.CharField(max_length=25, null = True, blank = True, unique=False)
+    job_type = models.CharField(max_length=25, null = True, blank = True, unique=False)
+    job_position = models.CharField(max_length=25, null = True, blank = True, unique=False)
+    salary = models.IntegerField(null = True, blank = True)
+    job_id = models.IntegerField(null = True, blank = True)
+    other_benefit = models.CharField(max_length=100, null = True, blank = True, unique=False)
+    date_of_joining = models.DateField(null = True, blank = True)
+    contact_person = models.CharField(max_length=25, null = True, blank = True, unique=False)
+    contact_person_no = models.IntegerField(null = True, blank = True)
+
+    # def save(self, **kwargs):
+    #     self.course_name = program_skill
+    #     return super(participant_skill, self).save()
+    objects = models.Manager()
 
     def __str__(self):
         return self.employer_name + "-" + self.job_type
