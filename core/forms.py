@@ -60,6 +60,12 @@ class program_skillform(forms.ModelForm):
                     isinstance(field.widget, forms.TimeInput):
                 field.widget.attrs.update({'placeholder': field.label})
 
+        self.fields["state"].required = False
+        self.fields["trade_skill"].required = False
+        self.fields["address_skill_location"].required = False
+        self.fields["address_skill_city"].required = False
+        self.fields["no_of_participants_skill"].required = False
+
 class participantForm(forms.ModelForm):
     # email = CollectionField()
     # email = forms.EmailField(max_length=100, widget = forms.EmailInput)
@@ -117,12 +123,12 @@ class participantForm(forms.ModelForm):
                     isinstance(field.widget, forms.TimeInput):
                 field.widget.attrs.update({'placeholder': field.label})
 
-    def fields_required(self, fields):
-        """Used for conditionally marking fields as required."""
-        for field in fields:
-            if not self.cleaned_data.get(field, ''):
-                msg = forms.ValidationError("This field is required.")
-                self.add_error(field, msg)
+    # def fields_required(self, fields):
+    #     """Used for conditionally marking fields as required."""
+    #     for field in fields:
+    #         if not self.cleaned_data.get(field, ''):
+    #             msg = forms.ValidationError("This field is required.")
+    #             self.add_error(field, msg)
 
     def clean(self):
         Id = self.cleaned_data.get('idcard_entre_id_type')
@@ -223,12 +229,12 @@ class participantSkillForm(forms.ModelForm):
                     isinstance(field.widget, forms.TimeInput):
                 field.widget.attrs.update({'placeholder': field.label})
 
-    def fields_required(self, fields):
-        """Used for conditionally marking fields as required."""
-        for field in fields:
-            if not self.cleaned_data.get(field, ''):
-                msg = forms.ValidationError("This field is required.")
-                self.add_error(field, msg)
+    # def fields_required(self, fields):
+    #     """Used for conditionally marking fields as required."""
+    #     for field in fields:
+    #         if not self.cleaned_data.get(field, ''):
+    #             msg = forms.ValidationError("This field is required.")
+    #             self.add_error(field, msg)
 
     def clean(self):
         Id = self.cleaned_data.get('idcard_skill_id_type')
@@ -269,7 +275,6 @@ class participantSkillForm(forms.ModelForm):
             self.fields['comm_city'].required = True
             self.fields['comm_tehsil'].required = True
             self.fields['comm_constituency'].required = True
-
         TrainingStatus = self.cleaned_data.get('training_status')  
         print(TrainingStatus)
         if TrainingStatus == "Fresher":

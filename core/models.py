@@ -63,7 +63,7 @@ class program_skill(models.Model):
     address_skill = program_address()
     objects = models.Manager()
 
-    def _str_(self):
+    def __str__(self):
         return self.program_name_skill
 
 
@@ -75,8 +75,8 @@ class participant_address_entre(CompositeField):
 
 class participant_mobile(CompositeField):
     country_code = models.IntegerField(null=True, blank=True)
-    primary_mobile = models.IntegerField(default=0000000000, null=True, blank=True)
-    secondary_mobile = models.IntegerField(default = 0000000000, null=True, blank = True)
+    primary_mobile = models.BigIntegerField(default=0000000000, null=True, blank=True)
+    secondary_mobile = models.BigIntegerField(default = 0000000000, null=True, blank = True)
 
 
 class participant_idcard(CompositeField):
@@ -151,13 +151,13 @@ class participant_name_skill(CompositeField):
     LastName = models.CharField(max_length=25, null = True, blank = True)
 
 class participant_comm_address_skill(CompositeField):
-    address_comm = models.CharField(max_length=100, null = True, blank = True)
-    state_comm = models.CharField(max_length=25, null = True, blank = True)
-    district_comm = models.CharField(max_length=25, null = True, blank = True)
-    pincode_comm = models.IntegerField(null = True, blank = True)
-    city_comm = models.CharField(max_length=25, null = True, blank = True)
-    tehsil_comm = models.CharField(max_length=25, null = True, blank = True)
-    constituency_comm = models.CharField(max_length=25, null = True, blank = True)
+    address = models.CharField(max_length=100, null = True, blank = True)
+    state = models.CharField(max_length=25, null = True, blank = True)
+    district = models.CharField(max_length=25, null = True, blank = True)
+    pincode = models.IntegerField(null = True, blank = True)
+    city = models.CharField(max_length=25, null = True, blank = True)
+    tehsil = models.CharField(max_length=25, null = True, blank = True)
+    constituency = models.CharField(max_length=25, null = True, blank = True)
 
 class participant_disability_skill(CompositeField):
     INPUT_CHOICES = (('Yes', 'Yes'), ('No', 'No'))
@@ -236,7 +236,7 @@ class participant_skill(models.Model):
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, null=True, blank=True, choices=GENDER_CHOICES)
     dob = models.DateField(null=True, blank=True)
-    email = models.EmailField(default="example@gmail.com", max_length=50)
+    email = models.EmailField(default="example@gmail.com", max_length=50, null = True, blank = True)
     marital_status = models.CharField(max_length=25, null=True, blank=True, choices=MARITAL_STATUS_CHOICES)
     fathers_name = models.CharField(max_length=25, null=True, blank=True)
     mothers_name = models.CharField(max_length=25, null=True, blank=True)

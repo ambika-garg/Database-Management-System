@@ -73,7 +73,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Gender</th>
-                                    <th>Date of Birth</th>
+                                    <th>Date-of-Birth</th>
                                     <th>Email</th>
                                     <th>Marital Status</th>
                                     <th>Father's Name</th>
@@ -117,58 +117,59 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for participant in participantSkill_list %}
+                                {% for participantskill in participantSkill_list %}
                                 <tr>
-                                    <td>{{ participant.program_id }}</td>
-                                    <td>{{ participant.participant_id_skill }}</td>
-                                    <td>{{ participant.name_skill_salutation }}</td>
-                                    <td>{{ participant.name_skill_FirstName }}</td>
-                                    <td>{{ participant.name_skill_LastName }}</td>
-                                    <td>{{ participant.gender }}</td>
-                                    <td>{{ participant.dob }}</td>
-                                    <td>{{ participant.email }}</td>
-                                    <td>{{ participant.fathers_name }}</td>
-                                    <td>{{ participant.mothers_name }}</td>\
-                                    <td>{{ participant.religion }}</td>
-                                    <td>{{ participant.category }}</td>
-                                    <td>{{ participant.disability_input }}</td>
-                                    <td>{{ participant.disability_type }}</td>
-                                    <td>{{ participant.domicile_state }}</td>
-                                    <td>{{ participant.domicile_district }}</td>
-                                    <td>{{ participant.idcard_skill_id_type }}</td>
-                                    <td>{{ participant.idcard_skill_alt_id_type }}</td>
-                                    <td>{{ participant.idcard_skill_alt_id_no }}</td>
-                                    <td>{{ participant.idcard_skill_aadhaar_ref_no }}</td>
-                                    <td>{{ participant.mobile_skill_country_code }}</td>
-                                    <td>{{ participant.mobile_skill_number }}</td>
-                                    <td>{{ participant.education_level }}</td>
-                                    <td>{{ participant.perm_address }}</td>
-                                    <td>{{ participant.perm_state }}</td>
-                                    <td>{{ participant.perm_district }}</td>
-                                    <td>{{ participant.perm_pincode }}</td>
-                                    <td>{{ participant.perm_city }}</td>
-                                    <td>{{ participant.perm_tehsil }}</td>
-                                    <td>{{ participant.perm_constituency }}</td>
-                                    <td>{{ participant.pa_same_as_ca }}</td>
-                                    <td>{{ participant.comm_address }}</td>
-                                    <td>{{ participant.comm_state }}</td>
-                                    <td>{{ participant.comm_district }}</td>
-                                    <td>{{ participant.comm_pincode }}</td>
-                                    <td>{{ participant.comm_city }}</td>
-                                    <td>{{ participant.comm_tehsil }}</td>
-                                    <td>{{ participant.comm_constituency }}</td>
-                                    <td>{{ participant.training_status }}</td>
-                                    <td>{{ participant.job_details_prev_exp_sector }}</td>
-                                    <td>{{ participant.job_details_no_of_months }}</td>
-                                    <td>{{ participant.job_details_employed }}</td>
-                                    <td>{{ participant.job_details_employment_status }}</td>
-                                    <td>{{ participant.job_details_employment_details }}</td>
-                                    <td>{{ participant.heard_about_us }}</td>
+                                    <td>{{ participantskill.program_id }}</td>
+                                    <td>{{ participantskill.participant_id_skill }}</td>
+                                    <td>{{ participantskill.name_skill_salutation }}</td>
+                                    <td>{{ participantskill.name_skill_FirstName }}</td>
+                                    <td>{{ participantskill.name_skill_LastName }}</td>
+                                    <td>{{ participantskill.gender }}</td>
+                                    <td>{{ participantskill.dob }}</td>
+                                    <td>{{ participantskill.email }}</td>
+                                    <td>{{ participantskill.marital_status }}</td>
+                                    <td>{{ participantskill.fathers_name }}</td>
+                                    <td>{{ participantskill.mothers_name }}</td>\
+                                    <td>{{ participantskill.religion }}</td>
+                                    <td>{{ participantskill.category }}</td>
+                                    <td>{{ participantskill.disability_input }}</td>
+                                    <td>{{ participantskill.disability_type }}</td>
+                                    <td>{{ participantskill.domicile_state }}</td>
+                                    <td>{{ participantskill.domicile_district }}</td>
+                                    <td>{{ participantskill.idcard_skill_id_type }}</td>
+                                    <td>{{ participantskill.idcard_skill_alt_id_type }}</td>
+                                    <td>{{ participantskill.idcard_skill_alt_id_no }}</td>
+                                    <td>{{ participantskill.idcard_skill_aadhaar_ref_no }}</td>
+                                    <td>{{ participantskill.mobile_skill_country_code }}</td>
+                                    <td>{{ participantskill.mobile_skill_number }}</td>
+                                    <td>{{ participantskill.education_level }}</td>
+                                    <td>{{ participantskill.perm_address }}</td>
+                                    <td>{{ participantskill.perm_state }}</td>
+                                    <td>{{ participantskill.perm_district }}</td>
+                                    <td>{{ participantskill.perm_pincode }}</td>
+                                    <td>{{ participantskill.perm_city }}</td>
+                                    <td>{{ participantskill.perm_tehsil }}</td>
+                                    <td>{{ participantskill.perm_constituency }}</td>
+                                    <td>{{ participantskill.pa_same_as_ca }}</td>
+                                    <td>{{ participantskill.comm_address }}</td>
+                                    <td>{{ participantskill.comm_state }}</td>
+                                    <td>{{ participantskill.comm_district }}</td>
+                                    <td>{{ participantskill.comm_pincode }}</td>
+                                    <td>{{ participantskill.comm_city }}</td>
+                                    <td>{{ participantskill.comm_tehsil }}</td>
+                                    <td>{{ participantskill.comm_constituency }}</td>
+                                    <td>{{ participantskill.training_status }}</td>
+                                    <td>{{ participantskill.job_details_prev_exp_sector }}</td>
+                                    <td>{{ participantskill.job_details_no_of_months }}</td>
+                                    <td>{{ participantskill.job_details_employed }}</td>
+                                    <td>{{ participantskill.job_details_employment_status }}</td>
+                                    <td>{{ participantskill.job_details_employment_details }}</td>
+                                    <td>{{ participantskill.heard_about_us }}</td>
                                     <td>
-                                        <a href="{% url 'participantSkill_update' participant.participant_id_skill %}" class="btn text-secondary px-0">
+                                        <a href="{% url 'participantSkill_update' participantskill.participant_id_skill %}" class="btn text-secondary px-0">
                                             <i class="c-icon c-icon-xl cil-pencil"></i>
                                         </a>
-                                        <form action="{% url 'participantSkill_del' participant.participant_id_skill %}" method="post" class="d-inline">
+                                        <form action="{% url 'participantSkill_del' participantskill.participant_id_skill %}" method="post" class="d-inline">
                                             {% csrf_token %}
                                             <button type="submit" class="btn text-secondary px-0">
                                                <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
