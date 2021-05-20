@@ -32,6 +32,7 @@ class program_entreform(forms.ModelForm):
                 field.widget.attrs.update({'placeholder': field.label})
 
 class program_skillform(forms.ModelForm):
+
     class Meta:
         model = program_skill
         fields = '__all__'
@@ -67,8 +68,6 @@ class program_skillform(forms.ModelForm):
         self.fields["no_of_participants_skill"].required = False
 
 class participantForm(forms.ModelForm):
-    # email = CollectionField()
-    # email = forms.EmailField(max_length=100, widget = forms.EmailInput)
     class Meta:
         model = participant_entre
         fields = '__all__'

@@ -7,6 +7,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
+from .filters import program_skillFilter
 
 
 @login_required(login_url="/login/")
@@ -98,8 +99,17 @@ def insprogSkill(request, id=0):
 
 
 def programSkill_list(request):
-    context = {'programSkill_list': program_skill.objects.all()}
+    myFilter = program_skillFilter(request.GET,queryset=program_skill.objects.all())
+    print("myFilter:", myFilter)
+    context = {'programSkill_list': program_skill.objects.all(), 'myFilter': myFilter}
     return render(request, 'ui-view_program_skill.html', context)
+
+# def programskill_filter(request, id):
+#     program = program_skill.objects.get(pk = id)
+#     myFilter = program_skillFilter()
+#
+#     context = {'myFilter':myFilter}
+#     return render(request, 'ui-program_skill.html', context)
 
 
 def programSkill_del(request, id):
