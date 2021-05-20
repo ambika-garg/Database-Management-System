@@ -1,13 +1,12 @@
 from core.forms import program_entreform, program_skillform, participantForm, participantSkillForm, placement_skillform
-from core.models import dept_entre, dept_skill, program_entre, program_skill, participant_entre, participant_skill, \
-    placement_skill
+from core.models import dept_entre, dept_skill, program_entre, program_skill, participant_entre, participant_skill, placement_skill
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
-from .filters import program_skillFilter
+from core.filters import DepartmentEntFilter
 
 
 @login_required(login_url="/login/")
@@ -36,8 +35,8 @@ def pages(request):
 
 
 def deptEnt(request):
-    context = {'deptEnt': dept_entre.objects.all()}
-    return render(request, 'ui-view_department_ent.html', context)
+    f=DepartmentEntFilter(request.GET, queryset=dept_entre.objects.all())
+    return render(request, 'ui-view_department_ent.html', {'filter':f})  
 
 
 def deptSkill(request):
@@ -151,9 +150,9 @@ def participant_list(request):
 
 
 def participant_del(request, participant_id_ent):
-    program = participant_entre.objects.get(pk=participant_id_ent)
-    program.delete()
-    return redirect(request, '/participant_list')
+    participant = participant_entre.objects.get(pk=participant_id_ent)
+    participant.delete()
+    return redirect('/participant_list') 
 
 
 def insparticipant_skill(request, participant_id_skill=0):
@@ -178,7 +177,6 @@ def insparticipant_skill(request, participant_id_skill=0):
             participant = participant_skill.objects.get(pk=participant_id_skill)
             fi = participantSkillForm(instance=participant)
             email = request.POST.get('email')
-
     return render(request, 'ui-participants_skill.html', {'form': fi, 'email': email})
 
 
