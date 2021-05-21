@@ -1,0 +1,12 @@
+{% extends "layouts/base_skill.html" %}
+
+{% block content %}
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for obj in filter.qs %}
+        {{ obj.program_name_skill }} - ${{ obj.state }}
+        {{ obj.depart_name_skill }}<br />
+    {% endfor %}
+{% endblock %}

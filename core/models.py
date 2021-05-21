@@ -25,6 +25,7 @@ class category(models.Model):
 class dept_entre(models.Model):
     category_ent = models.ForeignKey(category, default=1, verbose_name="category", on_delete=models.CASCADE)
     department_nam_ent = models.CharField(max_length=100)
+    objects = models.Manager()
 
     def __str__(self):
         return self.department_nam_ent
@@ -34,6 +35,7 @@ class dept_entre(models.Model):
 class dept_skill(models.Model):
     category_skill = models.ForeignKey(category, default=2, verbose_name="category", on_delete=models.CASCADE)
     department_name_skill = models.CharField(max_length=100)
+    objects = models.Manager()
 
     def __str__(self):
         return self.department_name_skill

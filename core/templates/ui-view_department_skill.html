@@ -25,12 +25,14 @@
     <div class="form-group row">
         <div class="col-sm-3">
             <div class="input-group ">
-                <input class="form-control" id="input1-group2" type="text" name="input1-group2" placeholder="Search Department Name" autocomplete="username">
-                <span class="input-group-prepend"><button class="btn btn-primary btn-sm" type="button">
-                    <svg class="c-icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-magnifying-glass"></use>
-                    </svg> Search
-                </button></span>
+                <form method="get">
+                    {{ filter.form.department_name_skill }}
+                    <span class="input-group-prepend"><button class="btn btn-primary btn-sm" type="submit">
+                        <svg class="c-icon">
+                          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-magnifying-glass"></use>
+                        </svg> Search
+                    </button></span>
+                </form>
             </div>
         </div>
     </div>
@@ -48,7 +50,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for department in deptSkill %}
+                                {% for department in filter.qs %}
                                 <tr>
                                     <td>{{ department.id }}</td>
                                     <td>{{ department.department_name_skill }}</td>

@@ -21,7 +21,7 @@ urlpatterns = [
     path('program_list', program_list, name = 'program_list'),#display program routes
     path('delete/<int:id>/', pm_del ,name = 'program_delete'),
     path('insprogSkill', insprogSkill, name='insprogSkill'), # get and post request for insert operation
-
+    # path('program_filter', program_filter, name = 'program_filter'),
     path('Programskillupdate/<int:id>/',insprogSkill,name = "programSkill_update"), #get and post request for update operation
     path('programSkill_list', programSkill_list, name = 'programSkill_list'),#display program routes
     path('deleteprogramskill/<int:id>/', programSkill_del ,name = 'programSkill_del'),

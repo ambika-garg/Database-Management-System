@@ -7,7 +7,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
-from .filters import program_skillFilter
+from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter
 
 
 @login_required(login_url="/login/")
@@ -36,13 +36,13 @@ def pages(request):
 
 
 def deptEnt(request):
-    context = {'deptEnt': dept_entre.objects.all()}
-    return render(request, 'ui-view_department_ent.html', context)
+    myFilter = department_ENTFilter(request.GET, queryset=dept_entre.objects.all())
+    return render(request, 'ui-view_department_ent.html',{'filter' : myFilter})
 
 
 def deptSkill(request):
-    context = {'deptSkill': dept_skill.objects.all()}
-    return render(request, 'ui-view_department_skill.html', context)
+    myFilter = department_skillFilter(request.GET, queryset= dept_skill.objects.all())
+    return render(request, 'ui-view_department_skill.html',{'filter' : myFilter})
 
 
 def insprogEnt(request, id=0):
@@ -67,7 +67,8 @@ def insprogEnt(request, id=0):
 
 
 def program_list(request):
-    context = {'program_list': program_entre.objects.all()}
+    myFilter = program_ENTFilter(request.GET, queryset=program_entre.objects.all())
+    context = {'filter': myFilter}
     return render(request, 'ui-view_program_ent.html', context)
 
 
@@ -99,18 +100,8 @@ def insprogSkill(request, id=0):
 
 
 def programSkill_list(request):
-    myFilter = program_skillFilter(request.GET,queryset=program_skill.objects.all())
-    print("myFilter:", myFilter)
-    context = {'programSkill_list': program_skill.objects.all(), 'myFilter': myFilter}
-    return render(request, 'ui-view_program_skill.html', context)
-
-# def programskill_filter(request, id):
-#     program = program_skill.objects.get(pk = id)
-#     myFilter = program_skillFilter()
-#
-#     context = {'myFilter':myFilter}
-#     return render(request, 'ui-program_skill.html', context)
-
+    myFilter = program_skillFilter(request.GET, queryset=program_skill.objects.all())
+    return render(request, 'ui-view_program_skill.html',  {'filter': myFilter})
 
 def programSkill_del(request, id):
     program = program_skill.objects.get(pk=id)
@@ -146,7 +137,8 @@ def participant_ent(request, participant_id_ent=0):
 
 
 def participant_list(request):
-    context = {'participant_list': participant_entre.objects.all()}
+    filter = particpant_ENTFilter(request.GET, queryset=participant_entre.objects.all())
+    context = {'filter': filter}
     return render(request, 'ui-view_participant_ent.html', context)
 
 
@@ -183,7 +175,8 @@ def insparticipant_skill(request, participant_id_skill=0):
 
 
 def participantSkill_list(request):
-    context = {'participantSkill_list': participant_skill.objects.all()}
+    filter = particpant_skillFilter(request.GET, queryset=participant_skill.objects.all())
+    context = {'filter': filter}
     return render(request, 'ui-view_participant_skill.html', context)
 
 
@@ -215,7 +208,8 @@ def insplacementSkill(request, participant_id_skill=0):
 
 
 def placementSkill_list(request):
-    context = {'placementSkill_list': placement_skill.objects.all()}
+    filter = placement_skillFilter(request.GET, queryset= placement_skill.objects.all())
+    context = {'filter': filter}
     return render(request, 'ui-view_placement_skill.html', context)
 
 
@@ -224,3 +218,5 @@ def placementSkill_del(request, participant_id_skill):
     placement = placement_skill.objects.get(pk=participant_id_skill)
     placement.delete()
     return redirect('/placementSkill_list')
+
+
