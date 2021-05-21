@@ -6,7 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.contrib import admin
 from django.urls import path, include  # add this
 from core.views import deptSkill, deptEnt, insprogEnt, insprogSkill, programSkill_list, programSkill_del, participant_ent, program_list, pm_del, participant_del, participant_list, insparticipant_skill, participantSkill_list, participantSkill_del, insplacementSkill, placementSkill_list, placementSkill_del
-from django_filters.views import FilterView
+
 
 #django admin header customisation
 admin.site.site_header = "RCED ADMIN PANEL"
@@ -15,17 +15,13 @@ admin.site.index_title = "ADMIN PANEL"
 urlpatterns = [
     # path('admin/', admin.site.urls),          # Django admin route
     path('admin' , admin.site.urls),
-    path(r'^list/$', FilterView.as_view(model=deptEnt)),
     path('deptEnt', deptEnt, name='deptEnt'),
+    path('deptSkill', deptSkill, name = 'deptSkill'),
     path('insprogEnt', insprogEnt, name='insprogEnt'), # get and post request for insert operation
     path('<int:id>/',insprogEnt,name = "program_update"), #get and post request for update operation
     path('program_list', program_list, name = 'program_list'),#display program routes
     path('delete/<int:id>/', pm_del ,name = 'program_delete'),
     path('insprogSkill', insprogSkill, name='insprogSkill'), # get and post request for insert operation
-<<<<<<< HEAD
-    # path('program_filter', program_filter, name = 'program_filter'),
-=======
->>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
     path('Programskillupdate/<int:id>/',insprogSkill,name = "programSkill_update"), #get and post request for update operation
     path('programSkill_list', programSkill_list, name = 'programSkill_list'),#display program routes
     path('deleteprogramskill/<int:id>/', programSkill_del ,name = 'programSkill_del'),

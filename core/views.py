@@ -6,11 +6,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
-<<<<<<< HEAD
 from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter
-=======
-from core.filters import DepartmentEntFilter
->>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
 
 
 @login_required(login_url="/login/")
@@ -39,14 +35,8 @@ def pages(request):
 
 
 def deptEnt(request):
-<<<<<<< HEAD
     myFilter = department_ENTFilter(request.GET, queryset=dept_entre.objects.all())
     return render(request, 'ui-view_department_ent.html',{'filter' : myFilter})
-=======
-    f=DepartmentEntFilter(request.GET, queryset=dept_entre.objects.all())
-    return render(request, 'ui-view_department_ent.html', {'filter':f})  
->>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
-
 
 def deptSkill(request):
     myFilter = department_skillFilter(request.GET, queryset= dept_skill.objects.all())
