@@ -38,51 +38,75 @@
             </form>
         </div>
     </div>
-    <div class=" card ">
-        <div class="card-body ">
-            <table class="table table-responsive-sm ">
-                <thead>
-                    <tr>
-                        <th>Program ID</th>
-                        <th>Program name</th>
-                        <th>Department Name</th>
-                        <th>Financial year</th>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Location</th>
-                        <th>Trade</th>
-                        <th>No of participants</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for program in filter.qs %}
-                    <tr>
-                        <td>{{ program.id }}</td>
-                        <td>{{ program.program_name_skill }}</td>
-                        <td>{{ program.depart_name_skill }}</td>
-                        <td>{{ program.financial_Year_skill }}</td>
-                        <td>{{ program.state }}</td>
-                        <td>{{ program.address_skill_city }}</td>
-                        <td>{{ program.address_skill_location }}</td>
-                        <td>{{ program.trade_skill }}</td>
-                        <td>{{ program.no_of_participants_ent }}</td>
-                        <td>
-                            <a href="{% url 'programSkill_update' program.id %}" class="btn text-secondary px-0 ">
-                                <i class="c-icon c-icon-xl cil-pencil "></i>
-                            </a>
-                            <form action="{% url 'programSkill_del' program.id %}" method="post" class="d-inline ">
-                                {% csrf_token %}
-                                <button type="submit" class="btn text-secondary px-0 ">
-                                   <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash "></i>
-                                </button>
-                            </form>
-
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    
+    <div class="container-fluid">
+      <div class="fade-in">
+        <div class="row">
+            <!-- /.row-->
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-align-justify"></i>Program Details</div>
+                    <div class="card-body">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Program ID</th>
+                                <th>Program name</th>
+                                <th>Department Name</th>
+                                <th>Financial year</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Location</th>
+                                <th>Trade</th>
+                                <th>No of participants</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for program in filter.qs %}
+                            <tr>
+                                <td>{{ program.id }}</td>
+                                <td>{{ program.program_name_skill }}</td>
+                                <td>{{ program.depart_name_skill }}</td>
+                                <td>{{ program.financial_Year_skill }}</td>
+                                <td>{{ program.state }}</td>
+                                <td>{{ program.address_skill_city }}</td>
+                                <td>{{ program.address_skill_location }}</td>
+                                <td>{{ program.trade_skill }}</td>
+                                <td>{{ program.no_of_participants_ent }}</td>
+                                <td>
+                                    <a href="{% url 'programSkill_update' program.id %}" class="btn text-secondary px-0 ">
+                                        <i class="c-icon c-icon-xl cil-pencil "></i>
+                                    </a>
+                                    <form action="{% url 'programSkill_del' program.id %}" method="post" class="d-inline ">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn text-secondary px-0 ">
+                                           <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash "></i>
+                                        </button>
+                                    </form>
+        
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                    </div>
+                </div>
+                </div>
+                <!-- /.col-->
+            </div>
+            <!-- /.row-->
         </div>
     </div>
 </main>
