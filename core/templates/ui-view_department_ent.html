@@ -27,6 +27,7 @@
         <div class="col-sm-9">
             <div class="input-group ">
                 <form method="get">
+<<<<<<< HEAD
                     {{ filter.form.department_name_ent }}
                     <span class="input-group-prepend"><button class="btn btn-primary btn-sm" type="submit">
                         <svg class="c-icon">
@@ -35,6 +36,12 @@
                     </button></span>
                 </form>
 
+=======
+                    {{ filter.form.as_p }}
+                    <input type="submit" />
+                </form>
+                </span>
+>>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
             </div>
         </div>
     </div>
@@ -52,11 +59,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                                 {% for department in filter.qs %}
+=======
+                                {% for obj in filter.qs %}
+>>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
                                 <tr>
-                                    <td>{{ department.id }}</td>
-                                    <td>{{ department.department_name_ent }}</td>
-                                    <td>{{ department.category_ent }}</td>
+                                    <td>{{ obj.id }}</td>
+                                    <td>{{ obj.department_nam_ent }}</td>
+                                    <td>{{ obj.category_ent }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

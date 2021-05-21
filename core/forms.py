@@ -138,7 +138,6 @@ class participantForm(forms.ModelForm):
             self.fields['idcard_entre_aadhaar_ref_no'].required = False
             # self.fields_required(['idcard_entre_alt_id_type', 'idcard_entre_alt_id_no'])
         elif Id == "Aadhar ID":
-
             self.fields['idcard_entre_alt_id_type'].required = False
             self.fields['idcard_entre_alt_id_no'].required = False
             # self.fields['idcard_entre_aadhaar_ref_no'].required = True

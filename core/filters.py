@@ -3,6 +3,7 @@ import django_filters
 from django.forms.widgets import TextInput
 from .models import *
 
+<<<<<<< HEAD
 class program_skillFilter(django_filters.FilterSet):
     program_name_skill = django_filters.ModelChoiceFilter(queryset=program_skill.objects.all() , empty_label = "Select Program Name")
     depart_name_skill = django_filters.ModelChoiceFilter(queryset = dept_skill.objects.all(),  empty_label = 'Department Name')
@@ -89,3 +90,9 @@ class particpant_ENTFilter(django_filters.FilterSet):
     class Meta:
         model = participant_entre
         fields = ['name_of_trainee', 'program_id', 'gender', 'category_entre']
+=======
+class DepartmentEntFilter(django_filters.FilterSet):
+    class Meta:
+        model=dept_entre
+        fields = ['department_nam_ent']
+>>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241

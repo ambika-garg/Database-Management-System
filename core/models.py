@@ -325,5 +325,7 @@ class placement_skill(models.Model):
 
     objects = models.Manager()
 
+    # def __str__(self):
+    #     return self.employer_name + "-" + self.job_type
     def __str__(self):
-        return self.employer_name + "-" + self.job_type
+        return self.participant_id_skill

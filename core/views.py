@@ -1,13 +1,16 @@
 from core.forms import program_entreform, program_skillform, participantForm, participantSkillForm, placement_skillform
-from core.models import dept_entre, dept_skill, program_entre, program_skill, participant_entre, participant_skill, \
-    placement_skill
+from core.models import dept_entre, dept_skill, program_entre, program_skill, participant_entre, participant_skill, placement_skill
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
+<<<<<<< HEAD
 from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter
+=======
+from core.filters import DepartmentEntFilter
+>>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
 
 
 @login_required(login_url="/login/")
@@ -36,8 +39,13 @@ def pages(request):
 
 
 def deptEnt(request):
+<<<<<<< HEAD
     myFilter = department_ENTFilter(request.GET, queryset=dept_entre.objects.all())
     return render(request, 'ui-view_department_ent.html',{'filter' : myFilter})
+=======
+    f=DepartmentEntFilter(request.GET, queryset=dept_entre.objects.all())
+    return render(request, 'ui-view_department_ent.html', {'filter':f})  
+>>>>>>> ec1829fe8c7e2b565f33a68031ce8a8b8b163241
 
 
 def deptSkill(request):
@@ -143,9 +151,9 @@ def participant_list(request):
 
 
 def participant_del(request, participant_id_ent):
-    program = participant_entre.objects.get(pk=participant_id_ent)
-    program.delete()
-    return redirect(request, '/participant_list')
+    participant = participant_entre.objects.get(pk=participant_id_ent)
+    participant.delete()
+    return redirect('/participant_list') 
 
 
 def insparticipant_skill(request, participant_id_skill=0):
@@ -170,7 +178,6 @@ def insparticipant_skill(request, participant_id_skill=0):
             participant = participant_skill.objects.get(pk=participant_id_skill)
             fi = participantSkillForm(instance=participant)
             email = request.POST.get('email')
-
     return render(request, 'ui-participants_skill.html', {'form': fi, 'email': email})
 
 
