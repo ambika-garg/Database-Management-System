@@ -23,23 +23,18 @@
     </div>
 </header>
 <main class="c-main">
-    <div class="form-group row">
-        <div class="col-sm-3">
-            <form method="get">
-                {{ filter.form.program_name_skill }}
-                {{ filter.form.depart_name_skill }}
-                {{ filter.form.state }}
-                {{ filter.form.financial_Year_skill }}
-                 <span class="input-group-prepend"><button class="btn btn-primary btn-sm" type="submit">
-                        <svg class="c-icon">
-                          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-magnifying-glass"></use>
-                        </svg> Search
-                 </button></span>
-            </form>
-        </div>
-    </div>
-    
     <div class="container-fluid">
+        <div class="form-group row">
+            <div class="input-group ">
+                <form method="get">
+                    {{ filter.form.program_name_skill }}
+                    {{ filter.form.depart_name_skill }}
+                    {{ filter.form.state }}
+                    {{ filter.form.financial_Year_skill }}
+                    <button class="btn btn-sm btn-primary" type="submit"> Search</button>
+                </form>
+            </div>
+        </div>
       <div class="fade-in">
         <div class="row">
             <!-- /.row-->
