@@ -54,10 +54,10 @@ class placement_skillFilter(django_filters.FilterSet):
 
 #--------------------------------------ENTERPENEURSHIP FILTERS-----------------------------------------------------------------------
 class department_ENTFilter(django_filters.FilterSet):
-    department_name_ent = django_filters.CharFilter(field_name="department_name_ent", widget=TextInput(attrs={'placeholder': 'Department Name'}), lookup_expr='icontains')
+    department_nam_ent = django_filters.CharFilter(field_name="department_nam_ent", widget=TextInput(attrs={'placeholder': 'Department Name'}), lookup_expr='icontains')
     class Meta:
         model = dept_entre
-        fields = ['department_name_ent']
+        fields = ['department_nam_ent']
 
 class program_ENTFilter(django_filters.FilterSet):
     program_name_ent = django_filters.ModelChoiceFilter(queryset=program_entre.objects.all() , empty_label = "Select Program Name")
