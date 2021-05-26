@@ -3,9 +3,7 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
-{% endblock stylesheets %} 
-{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
 <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
     <div class="c-subheader px-3">
         <ul class="breadcrumb">
@@ -13,7 +11,7 @@
                 <a href="#" class="breadcrumbs-link">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/deptSkill" class="breadcrumbs-link ">Skill</a>
+                <a href="/ui-view_department_skill_chart.html" class="breadcrumbs-link ">Skill</a>
             </li>
             <li class="breadcrumb-item ">
                 <a href="/participantSkill_list" class="breadcrumbs-link active">Manage Participants</a>
@@ -26,158 +24,155 @@
         <div class="form-group row">
             <div class="input-group ">
                 <form method="get">
-                    {{ filter.form.name_skill }}
-                    {{ filter.form.program_id }}
-                    {{ filter.form.gender }}
-                    {{ filter.form.category }}
+                    {{ filter.form.name_skill }} {{ filter.form.program_id }} {{ filter.form.gender }} {{ filter.form.category }}
                     <button class="btn btn-sm btn-primary" type="submit"> Search</button>
                 </form>
             </div>
         </div>
-      <div class="fade-in">
-        <div style="overflow-x:auto; display: flex;">
-            <div class="row">
-                <!-- /.row-->
+        <div class="fade-in">
+            <div style="overflow-x:auto; display: flex;">
                 <div class="row">
-                    <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header"><i class="fa fa-align-justify"></i>Participant Details</div>
-                        <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Program ID</th>
-                                    <th>Participant ID</th>
-                                    <th>Salutation</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Gender</th>
-                                    <th>Date-of-Birth</th>
-                                    <th>Email</th>
-                                    <th>Marital Status</th>
-                                    <th>Father's Name</th>
-                                    <th>Mother's Name</th>
-                                    <th>Relgion</th>
-                                    <th>Category</th>
-                                    <th>Disibility Input</th>
-                                    <th>Disibility Type</th>
-                                    <th>Domicile State</th>
-                                    <th>Domicile District</th>
-                                    <th>ID Type</th>
-                                    <th>Alternate ID Type</th>
-                                    <th>Aadhar Number</th>
-                                    <th>Alternate Id Number</th>
-                                    <th>Country Code</th>
-                                    <th>Phone Number</th>
-                                    <th>Education Level</th>
-                                    <th>Permanent Address</th>
-                                    <th>Permanent State</th>
-                                    <th>Permanent District</th>
-                                    <th>Permanent Pincode</th>
-                                    <th>Permanent City</th>
-                                    <th>Permanent Tehsil</th>
-                                    <th>Permanent Constituency</th>
-                                    <th>Permanent Address same as Communication Address</th>
-                                    <th>Communication Address</th>
-                                    <th>Communication State</th>
-                                    <th>Communication District</th>
-                                    <th>Comunication Pincode</th>
-                                    <th>Communication City</th>
-                                    <th>Communication Tehsil</th>
-                                    <th>Communication Constituency</th>
-                                    <th>Training Status</th>
-                                    <th>Previous Sector Experience</th>
-                                    <th>No. of months</th>
-                                    <th>Employed</th>
-                                    <th>Employment Status</th>
-                                    <th>Employment Details</th>
-                                    <th>Heard About Us</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for participantskill in filter.qs %}
-                                <tr>
-                                    <td>{{ participantskill.program_id }}</td>
-                                    <td>{{ participantskill.participant_id_skill }}</td>
-                                    <td>{{ participantskill.name_skill_salutation }}</td>
-                                    <td>{{ participantskill.name_skill_FirstName }}</td>
-                                    <td>{{ participantskill.name_skill_LastName }}</td>
-                                    <td>{{ participantskill.gender }}</td>
-                                    <td>{{ participantskill.dob }}</td>
-                                    <td>{{ participantskill.email }}</td>
-                                    <td>{{ participantskill.marital_status }}</td>
-                                    <td>{{ participantskill.fathers_name }}</td>
-                                    <td>{{ participantskill.mothers_name }}</td>\
-                                    <td>{{ participantskill.religion }}</td>
-                                    <td>{{ participantskill.category }}</td>
-                                    <td>{{ participantskill.disability_input }}</td>
-                                    <td>{{ participantskill.disability_type }}</td>
-                                    <td>{{ participantskill.domicile_state }}</td>
-                                    <td>{{ participantskill.domicile_district }}</td>
-                                    <td>{{ participantskill.idcard_skill_id_type }}</td>
-                                    <td>{{ participantskill.idcard_skill_alt_id_type }}</td>
-                                    <td>{{ participantskill.idcard_skill_alt_id_no }}</td>
-                                    <td>{{ participantskill.idcard_skill_aadhaar_ref_no }}</td>
-                                    <td>{{ participantskill.mobile_skill_country_code }}</td>
-                                    <td>{{ participantskill.mobile_skill_number }}</td>
-                                    <td>{{ participantskill.education_level }}</td>
-                                    <td>{{ participantskill.perm_address }}</td>
-                                    <td>{{ participantskill.perm_state }}</td>
-                                    <td>{{ participantskill.perm_district }}</td>
-                                    <td>{{ participantskill.perm_pincode }}</td>
-                                    <td>{{ participantskill.perm_city }}</td>
-                                    <td>{{ participantskill.perm_tehsil }}</td>
-                                    <td>{{ participantskill.perm_constituency }}</td>
-                                    <td>{{ participantskill.pa_same_as_ca }}</td>
-                                    <td>{{ participantskill.comm_address }}</td>
-                                    <td>{{ participantskill.comm_state }}</td>
-                                    <td>{{ participantskill.comm_district }}</td>
-                                    <td>{{ participantskill.comm_pincode }}</td>
-                                    <td>{{ participantskill.comm_city }}</td>
-                                    <td>{{ participantskill.comm_tehsil }}</td>
-                                    <td>{{ participantskill.comm_constituency }}</td>
-                                    <td>{{ participantskill.training_status }}</td>
-                                    <td>{{ participantskill.job_details_prev_exp_sector }}</td>
-                                    <td>{{ participantskill.job_details_no_of_months }}</td>
-                                    <td>{{ participantskill.job_details_employed }}</td>
-                                    <td>{{ participantskill.job_details_employment_status }}</td>
-                                    <td>{{ participantskill.job_details_employment_details }}</td>
-                                    <td>{{ participantskill.heard_about_us }}</td>
-                                    <td>
-                                        <a href="{% url 'participantSkill_update' participantskill.participant_id_skill %}" class="btn text-secondary px-0">
-                                            <i class="c-icon c-icon-xl cil-pencil"></i>
-                                        </a>
-                                        <form action="{% url 'participantSkill_del' participantskill.participant_id_skill %}" method="post" class="d-inline">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn text-secondary px-0">
+                    <!-- /.row-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header"><i class="fa fa-align-justify"></i>Participant Details</div>
+                                <div class="card-body">
+                                    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Program ID</th>
+                                                <th>Participant ID</th>
+                                                <th>Salutation</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Gender</th>
+                                                <th>Date-of-Birth</th>
+                                                <th>Email</th>
+                                                <th>Marital Status</th>
+                                                <th>Father's Name</th>
+                                                <th>Mother's Name</th>
+                                                <th>Relgion</th>
+                                                <th>Category</th>
+                                                <th>Disibility Input</th>
+                                                <th>Disibility Type</th>
+                                                <th>Domicile State</th>
+                                                <th>Domicile District</th>
+                                                <th>ID Type</th>
+                                                <th>Alternate ID Type</th>
+                                                <th>Aadhar Number</th>
+                                                <th>Alternate Id Number</th>
+                                                <th>Country Code</th>
+                                                <th>Phone Number</th>
+                                                <th>Education Level</th>
+                                                <th>Permanent Address</th>
+                                                <th>Permanent State</th>
+                                                <th>Permanent District</th>
+                                                <th>Permanent Pincode</th>
+                                                <th>Permanent City</th>
+                                                <th>Permanent Tehsil</th>
+                                                <th>Permanent Constituency</th>
+                                                <th>Permanent Address same as Communication Address</th>
+                                                <th>Communication Address</th>
+                                                <th>Communication State</th>
+                                                <th>Communication District</th>
+                                                <th>Comunication Pincode</th>
+                                                <th>Communication City</th>
+                                                <th>Communication Tehsil</th>
+                                                <th>Communication Constituency</th>
+                                                <th>Training Status</th>
+                                                <th>Previous Sector Experience</th>
+                                                <th>No. of months</th>
+                                                <th>Employed</th>
+                                                <th>Employment Status</th>
+                                                <th>Employment Details</th>
+                                                <th>Heard About Us</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for participantskill in filter.qs %}
+                                            <tr>
+                                                <td>{{ participantskill.program_id }}</td>
+                                                <td>{{ participantskill.participant_id_skill }}</td>
+                                                <td>{{ participantskill.name_skill_salutation }}</td>
+                                                <td>{{ participantskill.name_skill_FirstName }}</td>
+                                                <td>{{ participantskill.name_skill_LastName }}</td>
+                                                <td>{{ participantskill.gender }}</td>
+                                                <td>{{ participantskill.dob }}</td>
+                                                <td>{{ participantskill.email }}</td>
+                                                <td>{{ participantskill.marital_status }}</td>
+                                                <td>{{ participantskill.fathers_name }}</td>
+                                                <td>{{ participantskill.mothers_name }}</td>\
+                                                <td>{{ participantskill.religion }}</td>
+                                                <td>{{ participantskill.category }}</td>
+                                                <td>{{ participantskill.disability_input }}</td>
+                                                <td>{{ participantskill.disability_type }}</td>
+                                                <td>{{ participantskill.domicile_state }}</td>
+                                                <td>{{ participantskill.domicile_district }}</td>
+                                                <td>{{ participantskill.idcard_skill_id_type }}</td>
+                                                <td>{{ participantskill.idcard_skill_alt_id_type }}</td>
+                                                <td>{{ participantskill.idcard_skill_alt_id_no }}</td>
+                                                <td>{{ participantskill.idcard_skill_aadhaar_ref_no }}</td>
+                                                <td>{{ participantskill.mobile_skill_country_code }}</td>
+                                                <td>{{ participantskill.mobile_skill_number }}</td>
+                                                <td>{{ participantskill.education_level }}</td>
+                                                <td>{{ participantskill.perm_address }}</td>
+                                                <td>{{ participantskill.perm_state }}</td>
+                                                <td>{{ participantskill.perm_district }}</td>
+                                                <td>{{ participantskill.perm_pincode }}</td>
+                                                <td>{{ participantskill.perm_city }}</td>
+                                                <td>{{ participantskill.perm_tehsil }}</td>
+                                                <td>{{ participantskill.perm_constituency }}</td>
+                                                <td>{{ participantskill.pa_same_as_ca }}</td>
+                                                <td>{{ participantskill.comm_address }}</td>
+                                                <td>{{ participantskill.comm_state }}</td>
+                                                <td>{{ participantskill.comm_district }}</td>
+                                                <td>{{ participantskill.comm_pincode }}</td>
+                                                <td>{{ participantskill.comm_city }}</td>
+                                                <td>{{ participantskill.comm_tehsil }}</td>
+                                                <td>{{ participantskill.comm_constituency }}</td>
+                                                <td>{{ participantskill.training_status }}</td>
+                                                <td>{{ participantskill.job_details_prev_exp_sector }}</td>
+                                                <td>{{ participantskill.job_details_no_of_months }}</td>
+                                                <td>{{ participantskill.job_details_employed }}</td>
+                                                <td>{{ participantskill.job_details_employment_status }}</td>
+                                                <td>{{ participantskill.job_details_employment_details }}</td>
+                                                <td>{{ participantskill.heard_about_us }}</td>
+                                                <td>
+                                                    <a href="{% url 'participantSkill_update' participantskill.participant_id_skill %}" class="btn text-secondary px-0">
+                                                        <i class="c-icon c-icon-xl cil-pencil"></i>
+                                                    </a>
+                                                    <form action="{% url 'participantSkill_del' participantskill.participant_id_skill %}" method="post" class="d-inline">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn text-secondary px-0">
                                                <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                        <nav>
-                            <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <nav>
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
+                        <!-- /.col-->
                     </div>
-                    </div>
-                    <!-- /.col-->
                 </div>
+                <!-- /.row-->
             </div>
-            <!-- /.row-->
         </div>
-    </div>
 </main>
 {% endblock content %}
 

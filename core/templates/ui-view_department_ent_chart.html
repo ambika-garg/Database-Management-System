@@ -11,10 +11,10 @@
                 <a href="# " class="breadcrumbs-link ">Home</a>
             </li>
             <li class="breadcrumb-item ">
-                <a href="/deptEnt " class="breadcrumbs-link ">Enterpreneurship</a>
+                <a href="/ui-view_department_ent_chart.html" class="breadcrumbs-link ">Enterpreneurship</a>
             </li>
             <li class="breadcrumb-item ">
-                <a href="/deptEnt " class="breadcrumbs-link active ">Manage Department</a>
+                <a href="/ui-view_department_ent_chart.html" class="breadcrumbs-link active ">Analytics</a>
             </li>
         </ul>
     </div>
@@ -65,7 +65,7 @@
 </body>
 
 </html> -->
-<html>
+<!-- <html>
 
 <head>
     <script>
@@ -120,8 +120,99 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 
-</html>
+</html> -->
+<main class="c-main">
+    <div class="container-fluid">
+        <div class="fade-in">
+            <div class="card-columns cols-2">
+                <div class="card">
+                    <div class="card-header">No. of Participants
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-1"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants Placed
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-2"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants in each Gender
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-3"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants in each Category
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-4"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants in each Category
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-5"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants in each State
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-6"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants in each Department
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-7"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">No. of Participants in each Program
+                        <!-- <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="c-chart-wrapper">
+                            <canvas id="canvas-8"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="/static/assets/vendors/@coreui/chartjs/js/coreui-chartjs.bundle.js"></script>
+<script src="/static/assets/js/charts.js"></script>
+{% endblock javascripts %}
