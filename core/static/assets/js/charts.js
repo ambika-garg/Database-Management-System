@@ -147,8 +147,8 @@ var pieChart = new Chart(document.getElementById('canvas-7'), {
     labels: ['KVIC', 'Tech Mahindra and CSR', 'PCRA', 'MCC', 'Team Lease TATA', 'IBM CRS', 'MBI', 'DIRECTORATE OF URBAN DEVELOPMENT', 'NSDC-SJVN'],
     datasets: [{
       data: [random(), random(), random(), random(), random(), random(), random(), random(), random()],
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#E7E9ED', '#321fdb','#2eb85c','#636f83','#f9b115'],
-      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#E7E9ED', '#321fdb','#2eb85c','#636f83','#f9b115']
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#E7E9ED', '#321fdb', '#2eb85c', '#636f83', '#f9b115'],
+      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#E7E9ED', '#321fdb', '#2eb85c', '#636f83', '#f9b115']
     }]
   },
   options: {
@@ -162,7 +162,7 @@ var polarAreaChart = new Chart(document.getElementById('canvas-8'), {
     labels: ['PCRA', 'Team Lease TATA', 'NSDC-SJVN', 'Tech Mahindra and CSR', 'Team Lease TATA', 'DIRECTORATE OF URBAN DEVELOPMENT', 'Team Lease TATA'],
     datasets: [{
       data: [random(), random(), random(), random(), random(), random(), random()],
-      backgroundColor: ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB', '#321fdb','#636f83','#2eb85c']
+      backgroundColor: ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB', '#321fdb', '#2eb85c']
     }]
   },
   options: {
