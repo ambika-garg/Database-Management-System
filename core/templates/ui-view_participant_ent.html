@@ -20,26 +20,27 @@
     </div>
 </header>
 <main class="c-main">
-    <div class="container-fluid">
-        <div class="form-group row">
+    <div class=" container-fluid ">
+        <div class="form-group row ">
             <div class="input-group ">
-                <form method="get">
+                <form method="get ">
                     {{ filter.form.name_of_trainee }} {{ filter.form.program_id }} {{ filter.form.gender }} {{ filter.form.category_entre }}
-                    <button class="btn btn-sm btn-primary" type="submit"> Search</button>
+                    <button class="btn btn-sm btn-primary " type="submit "> Search</button>
                 </form>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="fade-in">
-                <div style="overflow-x:auto; display: flex;">
-                    <div class="row">
+
+        <body style="overflow-x:scroll">
+            <div class="container-fluid ">
+                <div class="fade-in ">
+                    <div class="row ">
                         <!-- /.row-->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header"><i class="fa fa-align-justify"></i>Participant Details</div>
-                                    <div class="card-body">
-                                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <div class="row ">
+                            <div class="col-lg-12 ">
+                                <div class="card ">
+                                    <div class="card-header "><i class="fa fa-align-justify "></i>Participant Details</div>
+                                    <div class="card-body ">
+                                        <table class="table table-responsive-sm table-bordered table-striped table-sm ">
                                             <thead>
                                                 <tr>
                                                     <th>Serial number</th>
@@ -109,13 +110,13 @@
                                                     <td>{{ participant.project_cost_WC }}</td>
                                                     <td>{{ participant.total }}</td>
                                                     <td>
-                                                        <a href="{% url 'participant_update' participant.participant_id_ent %}" class="btn text-secondary px-0">
-                                                            <i class="c-icon c-icon-xl cil-pencil"></i>
+                                                        <a href="{% url 'participant_update' participant.participant_id_ent %} " class="btn text-secondary px-0 ">
+                                                            <i class="c-icon c-icon-xl cil-pencil "></i>
                                                         </a>
-                                                        <form action="{% url 'participant_delete' participant.participant_id_ent %}" method="post" class="d-inline">
+                                                        <form action="{% url 'participant_delete' participant.participant_id_ent %} " method="post " class="d-inline ">
                                                             {% csrf_token %}
-                                                            <button type="submit" class="btn text-secondary px-0">
-                                                <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
+                                                            <button type="submit " class="btn text-secondary px-0 ">
+                                                <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash "></i>
                                             </button>
                                                         </form>
                                                     </td>
@@ -124,13 +125,13 @@
                                             </tbody>
                                         </table>
                                         <nav>
-                                            <ul class="pagination">
-                                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            <ul class="pagination ">
+                                                <li class="page-item "><a class="page-link " href="# ">Prev</a></li>
+                                                <li class="page-item active "><a class="page-link " href="# ">1</a></li>
+                                                <li class="page-item "><a class="page-link " href="# ">2</a></li>
+                                                <li class="page-item "><a class="page-link " href="# ">3</a></li>
+                                                <li class="page-item "><a class="page-link " href="# ">4</a></li>
+                                                <li class="page-item "><a class="page-link " href="# ">Next</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -142,6 +143,8 @@
                     <!-- /.row-->
                 </div>
             </div>
+        </body>
+    </div>
 </main>
 {% endblock content %}
 
