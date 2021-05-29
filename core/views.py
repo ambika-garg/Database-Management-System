@@ -33,7 +33,6 @@ def pages(request):
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
 
-
 def deptEnt(request):
     myFilter = department_ENTFilter(request.GET, queryset=dept_entre.objects.all())
     return render(request, 'ui-view_department_ent.html',{'filter' : myFilter})

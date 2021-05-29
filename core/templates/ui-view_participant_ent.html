@@ -3,9 +3,7 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
-{% endblock stylesheets %} 
-{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %}
 <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
     <div class="c-subheader px-3">
         <ul class="breadcrumb">
@@ -13,7 +11,7 @@
                 <a href="#" class="breadcrumbs-link">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/deptEnt" class="breadcrumbs-link ">Enterpreneurship</a>
+                <a href="/ui-view_department_ent_chart.html" class="breadcrumbs-link ">Enterpreneurship</a>
             </li>
             <li class="breadcrumb-item ">
                 <a href="/participant_list" class="breadcrumbs-link active">Manage Participants</a>
@@ -26,127 +24,124 @@
         <div class="form-group row">
             <div class="input-group ">
                 <form method="get">
-                    {{ filter.form.name_of_trainee }}
-                    {{ filter.form.program_id }}
-                    {{ filter.form.gender }}
-                    {{ filter.form.category_entre }}
+                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id }} {{ filter.form.gender }} {{ filter.form.category_entre }}
                     <button class="btn btn-sm btn-primary" type="submit"> Search</button>
                 </form>
             </div>
         </div>
-    <div class="container-fluid">
-      <div class="fade-in">
-        <div style="overflow-x:auto; display: flex;">
-            <div class="row">
-                <!-- /.row-->
-                <div class="row">
-                    <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header"><i class="fa fa-align-justify"></i>Participant Details</div>
-                        <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Serial number</th>
-                                    <th>Participant name</th>
-                                    <th>Program Name</th>
-                                    <th>Gender</th>
-                                    <th>Father/Husband's Name</th>
-                                    <th>Date of Birth</th>
-                                    <th>Id_type</th>
-                                    <th>Alternate Id type</th>
-                                    <th>Alternate Id Number</th>
-                                    <th>Aadhar Number</th>
-                                    <th>Category</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>City</th>
-                                    <th>State</th>
-                                    <th>Country Code</th>
-                                    <th>Mobile number</th>
-                                    <th>Job</th>
-                                    <th>Qualification</th>
-                                    <th>Date on which unit started</th>
-                                    <th>Number of Participants employed</th>
-                                    <th>Place of unit</th>
-                                    <th>Amount deposited</th>
-                                    <th>Financed By</th>
-                                    <th>Date of Loan released</th>
-                                    <th>Project Identified</th>
-                                    <th>Items manufactured</th>
-                                    <th>CE</th>
-                                    <th>WC</th>
-                                    <th>total</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for participant in filter.qs %}
-                                <tr>
-                                    <td>{{ participant.participant_id_ent }}</td>
-                                    <td>{{ participant.name_of_trainee }}</td>
-                                    <td>{{ participant.program_id }}</td>
-                                    <td>{{ participant.gender }}</td>
-                                    <td>{{ participant.father_or_husband_name }}</td>
-                                    <td>{{ participant.date_of_birth }}</td>
-                                    <td>{{ participant.idcard_entre_id_type }}</td>
-                                    <td>{{ participant.idcard_entre_alt_id_type }}</td>
-                                    <td>{{ participant.idcard_entre_alt_id_no }}</td>
-                                    <td>{{ participant.idcard_entre_aadhaar_ref_no }}</td>
-                                    <td>{{ participant.category_entre }}</td>
-                                    <td>{{ participant.email }}</td>
-                                    <td>{{ participant.address_entre_location }}</td>
-                                    <td>{{ participant.address_entre_city }}</td>
-                                    <td>{{ participant.address_entre_state }}</td>
-                                    <td>{{ participant.mobile_entre_country_code }}</td>
-                                    <td>{{ participant.mobile_entre_number }}</td>
-                                    <td>{{ participant.job }}</td>
-                                    <td>{{ participant.qualification }}</td>
-                                    <td>{{ participant.commencement_date }}</td>
-                                    <td>{{ participant.no_of_persons_employed }}</td>
-                                    <td>{{ participant.place_of_unit }}</td>
-                                    <td>{{ participant.own_contribution_amount }}</td>
-                                    <td>{{ participant.self_or_bank_financed }}</td>
-                                    <td>{{ participant.date_of_loan_release }}</td>
-                                    <td>{{ participant.project_identified }}</td>
-                                    <td>{{ participant.items_to_be_manufactured }}</td>
-                                    <td>{{ participant.project_cost_CE }}</td>
-                                    <td>{{ participant.project_cost_WC }}</td>
-                                    <td>{{ participant.total }}</td>
-                                    <td>
-                                        <a href="{% url 'participant_update' participant.participant_id_ent %}" class="btn text-secondary px-0">
-                                            <i class="c-icon c-icon-xl cil-pencil"></i>
-                                        </a>
-                                        <form action="{% url 'participant_delete' participant.participant_id_ent %}" method="post" class="d-inline">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn text-secondary px-0">
+        <div class="container-fluid">
+            <div class="fade-in">
+                <div style="overflow-x:auto; display: flex;">
+                    <div class="row">
+                        <!-- /.row-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header"><i class="fa fa-align-justify"></i>Participant Details</div>
+                                    <div class="card-body">
+                                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Serial number</th>
+                                                    <th>Participant name</th>
+                                                    <th>Program Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Father/Husband's Name</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Id_type</th>
+                                                    <th>Alternate Id type</th>
+                                                    <th>Alternate Id Number</th>
+                                                    <th>Aadhar Number</th>
+                                                    <th>Category</th>
+                                                    <th>Email</th>
+                                                    <th>Address</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Country Code</th>
+                                                    <th>Mobile number</th>
+                                                    <th>Job</th>
+                                                    <th>Qualification</th>
+                                                    <th>Date on which unit started</th>
+                                                    <th>Number of Participants employed</th>
+                                                    <th>Place of unit</th>
+                                                    <th>Amount deposited</th>
+                                                    <th>Financed By</th>
+                                                    <th>Date of Loan released</th>
+                                                    <th>Project Identified</th>
+                                                    <th>Items manufactured</th>
+                                                    <th>CE</th>
+                                                    <th>WC</th>
+                                                    <th>total</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for participant in filter.qs %}
+                                                <tr>
+                                                    <td>{{ participant.participant_id_ent }}</td>
+                                                    <td>{{ participant.name_of_trainee }}</td>
+                                                    <td>{{ participant.program_id }}</td>
+                                                    <td>{{ participant.gender }}</td>
+                                                    <td>{{ participant.father_or_husband_name }}</td>
+                                                    <td>{{ participant.date_of_birth }}</td>
+                                                    <td>{{ participant.idcard_entre_id_type }}</td>
+                                                    <td>{{ participant.idcard_entre_alt_id_type }}</td>
+                                                    <td>{{ participant.idcard_entre_alt_id_no }}</td>
+                                                    <td>{{ participant.idcard_entre_aadhaar_ref_no }}</td>
+                                                    <td>{{ participant.category_entre }}</td>
+                                                    <td>{{ participant.email }}</td>
+                                                    <td>{{ participant.address_entre_location }}</td>
+                                                    <td>{{ participant.address_entre_city }}</td>
+                                                    <td>{{ participant.address_entre_state }}</td>
+                                                    <td>{{ participant.mobile_entre_country_code }}</td>
+                                                    <td>{{ participant.mobile_entre_number }}</td>
+                                                    <td>{{ participant.job }}</td>
+                                                    <td>{{ participant.qualification }}</td>
+                                                    <td>{{ participant.commencement_date }}</td>
+                                                    <td>{{ participant.no_of_persons_employed }}</td>
+                                                    <td>{{ participant.place_of_unit }}</td>
+                                                    <td>{{ participant.own_contribution_amount }}</td>
+                                                    <td>{{ participant.self_or_bank_financed }}</td>
+                                                    <td>{{ participant.date_of_loan_release }}</td>
+                                                    <td>{{ participant.project_identified }}</td>
+                                                    <td>{{ participant.items_to_be_manufactured }}</td>
+                                                    <td>{{ participant.project_cost_CE }}</td>
+                                                    <td>{{ participant.project_cost_WC }}</td>
+                                                    <td>{{ participant.total }}</td>
+                                                    <td>
+                                                        <a href="{% url 'participant_update' participant.participant_id_ent %}" class="btn text-secondary px-0">
+                                                            <i class="c-icon c-icon-xl cil-pencil"></i>
+                                                        </a>
+                                                        <form action="{% url 'participant_delete' participant.participant_id_ent %}" method="post" class="d-inline">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn text-secondary px-0">
                                                 <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>
                                             </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                        <nav>
-                            <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <nav>
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-->
                         </div>
                     </div>
-                    </div>
-                    <!-- /.col-->
+                    <!-- /.row-->
                 </div>
             </div>
-            <!-- /.row-->
-        </div>
-    </div>
 </main>
 {% endblock content %}
 
