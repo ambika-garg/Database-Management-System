@@ -183,24 +183,28 @@ def participantSkill_del(request, participant_id_skill):
 
 
 def insplacementSkill(request, participant_id_skill=0):
+    messages = None
     if request.method == "POST":
+        print("insert")
         if participant_id_skill == 0:
             form = placement_skillform(request.POST)
         else:
-            placement = placement_skillform.objects.get(pk=participant_id_skill)
+            placement = placement_skill.objects.get(pk=participant_id_skill)
             form = placement_skillform(request.POST, instance=placement)
-            print(form)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Placement Details Added Successfully!')
-        return redirect('/insplacementSkill')
+            messages = 'Placement Details Added Successfully!'
+        # return redirect('/insplacementSkill')
+        # return render(request, 'ui-placement_skill.html', {'form': form, 'msg': messages})
     else:
+        print("update")
         if participant_id_skill == 0:
             form = placement_skillform()
         else:
             placement = placement_skill.objects.get(pk=participant_id_skill)
             form = placement_skillform(instance=placement)
-    return render(request, 'ui-placement_skill.html', {'form': form})
+            messages = "Placement Details Updated Successfully!"
+    return render(request, 'ui-placement_skill.html', {'form': form, 'msg' : messages})
 
 
 def placementSkill_list(request):

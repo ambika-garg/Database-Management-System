@@ -4,7 +4,7 @@
 {% block stylesheets %}
 <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock stylesheets %} {% block content %} {% load crispy_forms_tags %}
-<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+<header class="c-header c-header-light c-header-with-subheader">
     <div class="c-subheader px-3">
         <ul class="breadcrumb">
             <li class="breadcrumb-item">
@@ -181,7 +181,7 @@
                     <!--                        </div>-->
                     <!--                    </div>-->
                     <div class="card-footer">
-                        <button class="btn btn-success" type="submit">
+                        <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#myModal">
                                         <svg class="c-icon">
                                             <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-data-transfer-down"></use>
                                         </svg>Submit
@@ -192,7 +192,35 @@
                                         </svg>Reset
                                     </button>
                     </div>
+
                 </form>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          {% if msg %}
+                        <h4 class="modal-title">Success!</h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <p> {{ msg | safe }}</p>
+                      </div>
+                        {% else %}
+                         <h4 class="modal-title">Failure!</h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <p> Enter Details {% endif %}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="button">Save changes</button>
+                      </div>
+                    </div>
+                    <!-- /.modal-content-->
+                  </div>
+                  <!-- /.modal-dialog-->
+                </div>
             </div>
         </div>
     </div>

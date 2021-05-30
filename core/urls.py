@@ -34,7 +34,7 @@ urlpatterns = [
     path('deleteskill/<int:participant_id_skill>/', participantSkill_del ,name = 'participantSkill_del'),
     path('participantSkill_list', participantSkill_list, name = 'participantSkill_list'),
     path('insplacementSkill', insplacementSkill, name='insplacementSkill'),
-    path('<int:participant_id_skill>/', insplacementSkill, name = "placementSkill_update"),
+    path('updateskillID<int:participant_id_skill>/', insplacementSkill, name = "placementSkill_update"),
     path('delete/<int:participant_id_skill>/', placementSkill_del,name = 'placementSkill_del'),
     path('placementSkill_list', placementSkill_list, name = 'placementSkill_list'),
     path("", include("authentication.urls")), # Auth routes - login / register
