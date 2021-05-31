@@ -76,6 +76,7 @@ class participantForm(forms.ModelForm):
         labels = {
             'program_id' : 'Program Name',
             'participant_id_ent' : 'Serial number',
+            'batchid' : 'Batch Id',
             'name_of_trainee' : 'Participant Name',
             'father_or_husband_name' : 'Father/Husband Name',
             'gender' : 'Gender',
@@ -306,8 +307,6 @@ class placement_skillform(forms.ModelForm):
         # updating value of columns
         labels = {
             'participant_id_skill': 'Particpant ID',
-            'placement_id_batch_id': 'Batch ID',
-            'placement_id_rced_batch_id': 'RCED Batch ID',
             'course_name': 'Program Name',
             'placement_status': 'Placement Status',
             'reason': 'Reason',

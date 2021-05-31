@@ -22,72 +22,47 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header"><strong><h1>Add Program</h1></strong></div>
+                {% if msg %}
+                <div class = "p-10"><span><h3>{{ msg }}</h3></span></div>{% endif %}
+                <hr>
             <div class="card-body">
                 {% csrf_token %}
                 <form method="post">
                     {% csrf_token %}
                     <table>{{ form.as_table }}</table>
-                    <!-- <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Program ID</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter program ID"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Department ID</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter Department ID"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="email-input">Program name</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="email-input" type="text" name="email-input" placeholder="Enter program name"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="email-input">Trade</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="email-input" type="text" name="email-input" placeholder="Enter program name"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">State</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter State where program held"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">City</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter State where program held"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Location</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter State where program held"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">No of participants</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="number" name="text-input" placeholder="Enter total number of participants"><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="text-input">Financial Year</label>
-                        <div class="col-md-3">
-                            <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Enter year in which program held"><span class="help-block"></span>
-                        </div>
-                    </div> -->
-
                     <div class="card-footer">
-                        <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                        <button class="btn btn-sm btn-primary" type="submit" data-toggle="modal" data-target="#myModal"> Submit</button>
                         <button class="btn btn-sm btn-danger" type="reset"> Reset</button>
                     </div>
                 </form>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header ">
+                                  {% if msg %}
+                                  <div><span>{{ msg }}</span></div>
+                                  <h4 class="modal-title">Success!!</h4>
+                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                              </div>
+                               <div class="modal-body">
+                                  <p class="text-muted">Placement Details Added Successfully!</p>
+                               </div>
+                                    {% else %}
+                                     <h4 class="modal-title">Failure!</h4>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p> Enter Details{% endif %} </p>
+                                  </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                            <!-- /.modal-content-->
+                          </div>
+                        <!-- /.modal-dialog-->
+                    </div>
+            </div>
             </div>
         </div>
     </div>

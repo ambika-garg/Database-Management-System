@@ -251,6 +251,7 @@ class participant_skill(models.Model):
         ('Newsletter', 'Newsletter'), ('Kaushal Mela', 'Kaushal Mela'), ('Call Center', 'Call Center'),
         ('Rozgar Mela', 'Rozgar Mela'), ('Others', 'Others'), ('Event/Workshop', 'Event/Workshop'))
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
+    batchid = models.BigIntegerField()
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, null=True, blank=True, choices=GENDER_CHOICES)
@@ -294,17 +295,19 @@ class participant_skill(models.Model):
     def __str__(self):
         return str(self.participant_id_skill)
 
+    class Meta:
+        unique_together = (('program_id', 'participant_id_skill'),)
 
-class placement_id_skill(CompositeField):
-    batch_id = models.IntegerField()
-    rced_batch_id = models.IntegerField()
+# class placement_id_skill(CompositeField):
+#     batch_id = models.IntegerField()
+#     rced_batch_id = models.IntegerField()
 
 
 # 8
 class placement_skill(models.Model):
     CHOICE = (('Yes', 'Yes'), ('No','No'))
     participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE, primary_key=True)
-    placement_id = placement_id_skill()
+    # placement_id = placement_id_skill()
     course_name = models.CharField(max_length=50, unique=False, null=True, blank = True)
     placement_status = models.CharField(max_length=25, null=True, blank=True, unique=False, choices=CHOICE)
     reason = models.CharField(max_length=25, null=True, blank=True, unique=False)
@@ -316,7 +319,7 @@ class placement_skill(models.Model):
     other_benefit = models.CharField(max_length=100, null=True, blank=True, unique=False)
     date_of_joining = models.DateField(null=True, blank=True)
     contact_person = models.CharField(max_length=25, null=True, blank=True, unique=False)
-    contact_person_no = models.IntegerField(null=True, blank=True)
+    contact_person_no = models.BigIntegerField(null=True, blank=True)
 
     # def save(self,*args,  **kwargs):
     #     program = participant_skill.objects.get(pk=participant_skill)

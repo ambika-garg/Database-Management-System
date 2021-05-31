@@ -76,6 +76,7 @@ def pm_del(request, id):
 
 
 def insprogSkill(request, id=0):
+    messages = None
     if request.method == "POST":
         if id == 0:
             form = program_skillform(request.POST)
@@ -85,15 +86,15 @@ def insprogSkill(request, id=0):
             print(form)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Program Added Successfully!')
-        return redirect('/insprogSkill')
+            messages = 'Program Added Successfully!'
+        # return redirect('/insprogSkill')
     else:
         if id == 0:
             form = program_skillform()
         else:
             program = program_skill.objects.get(pk=id)
             form = program_skillform(instance=program)
-    return render(request, 'ui-program_skill.html', {'form': form})
+    return render(request, 'ui-program_skill.html', {'form': form, 'msg': messages})
 
 
 def programSkill_list(request):
@@ -146,6 +147,7 @@ def participant_del(request, participant_id_ent):
 
 
 def insparticipant_skill(request, participant_id_skill=0):
+    messages = None
     if request.method == "POST":
         if participant_id_skill == 0:
             fi = participantSkillForm(request.POST)
@@ -157,8 +159,9 @@ def insparticipant_skill(request, participant_id_skill=0):
             print("email: ", email)
         if fi.is_valid():
             fi.save()
-            messages.success(request, 'Program Added Successfully!')
-            return redirect('/insparticipant_skill')
+            # messages.success(request, 'Program Added Successfully!')
+            messages = 'Participant Details Added Successfully!'
+            # return redirect('/insparticipant_skill')
     else:
         if participant_id_skill == 0:
             fi = participantSkillForm()
@@ -167,7 +170,7 @@ def insparticipant_skill(request, participant_id_skill=0):
             participant = participant_skill.objects.get(pk=participant_id_skill)
             fi = participantSkillForm(instance=participant)
             email = request.POST.get('email')
-    return render(request, 'ui-participants_skill.html', {'form': fi, 'email': email})
+    return render(request, 'ui-participants_skill.html', {'form': fi, 'email': email, 'msg':messages})
 
 
 def participantSkill_list(request):
@@ -203,7 +206,7 @@ def insplacementSkill(request, participant_id_skill=0):
         else:
             placement = placement_skill.objects.get(pk=participant_id_skill)
             form = placement_skillform(instance=placement)
-            messages = "Placement Details Updated Successfully!"
+            # messages = "Placement Details Updated Successfully!"
     return render(request, 'ui-placement_skill.html', {'form': form, 'msg' : messages})
 
 
