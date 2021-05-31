@@ -251,7 +251,7 @@ class participant_skill(models.Model):
         ('Newsletter', 'Newsletter'), ('Kaushal Mela', 'Kaushal Mela'), ('Call Center', 'Call Center'),
         ('Rozgar Mela', 'Rozgar Mela'), ('Others', 'Others'), ('Event/Workshop', 'Event/Workshop'))
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
-    batchid = models.BigIntegerField()
+    batchid = models.BigIntegerField(default = 0)
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, null=True, blank=True, choices=GENDER_CHOICES)
