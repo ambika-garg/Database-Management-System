@@ -155,6 +155,7 @@ class participantSkillForm(forms.ModelForm):
         labels = {
             'program_id' : 'Program Name',
             'participant_id_skill' : 'Participant ID',
+            'batchid' : 'Batch ID',
             'name_skill_salutation' : 'Salutation',
             'name_skill_FirstName' : 'First Name',
             'name_skill_LastName' : 'Last Name',
@@ -307,6 +308,8 @@ class placement_skillform(forms.ModelForm):
         # updating value of columns
         labels = {
             'participant_id_skill': 'Particpant ID',
+            # 'placement_id_batch_id': 'Batch ID',
+            # 'placement_id_rced_batch_id': 'RCED Batch ID',
             'course_name': 'Program Name',
             'placement_status': 'Placement Status',
             'reason': 'Reason',

@@ -231,6 +231,8 @@ class participant_perm_address_skill(CompositeField):
 
 # 7
 class participant_skill(models.Model):
+    # class Meta:
+    #     unique_together = (('participant_id_skill', 'program_id'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     MARITAL_STATUS_CHOICES = (
@@ -253,6 +255,7 @@ class participant_skill(models.Model):
     program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     batchid = models.BigIntegerField(default = 0)
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
+    batchid = models.BigIntegerField(default = 0)
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, null=True, blank=True, choices=GENDER_CHOICES)
     dob = models.DateField(null=True, blank=True)
