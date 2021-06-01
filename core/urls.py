@@ -4,8 +4,8 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.contrib import admin
-from django.urls import path, include  # add this
-from core.views import deptSkill, deptEnt, insprogEnt, insprogSkill, programSkill_list, programSkill_del, participant_ent, program_list, pm_del, participant_del, participant_list, insparticipant_skill, participantSkill_list, participantSkill_del, insplacementSkill, placementSkill_list, placementSkill_del
+from django.urls import path, include, re_path  # add this
+from core.views import deptSkill, deptEnt, insprogEnt, insprogSkill, programSkill_list, programSkill_del, participant_ent, program_list, pm_del, participant_del, participant_list, insparticipant_skill, participantSkill_list, participantSkill_del, insplacementSkill, placementSkill_list, placementSkill_del, index, pages
 
 
 #django admin header customisation
@@ -38,5 +38,8 @@ urlpatterns = [
     path('delete_placementdetail/<int:participant_id_skill>/', placementSkill_del,name = 'placementSkill_del'),
     path('placementSkill_list', placementSkill_list, name = 'placementSkill_list'),
     path("", include("authentication.urls")), # Auth routes - login / register
-    path("", include("app.urls")),            # UI Kits Html files
+    # path("", include("app.urls")),            # UI Kits Html files
+    path('', index, name='home'),
+        # Matches any html file
+    re_path(r'^.*\.*', pages, name='pages')
 ]

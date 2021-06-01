@@ -11,8 +11,11 @@ from .filters import program_skillFilter, department_skillFilter, particpant_ski
 
 @login_required(login_url="/login/")
 def index(request):
-    print("index")
-    return render(request, "index.html")
+    count_entre = participant_entre.objects.count()
+    print(count_entre)
+    count_skill = participant_skill.objects.count()
+    print(count_skill)
+    return render(request, "index.html", {'count_entre': count_entre, 'count_skill' : count_skill})
 
 
 @login_required(login_url="/login/")
