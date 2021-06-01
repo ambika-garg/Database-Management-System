@@ -14,7 +14,7 @@ admin.site.site_title = "Administration"
 admin.site.index_title = "ADMIN PANEL"
 urlpatterns = [
     # path('admin/', admin.site.urls),          # Django admin route
-    path('admin' , admin.site.urls),
+    path('admin/' , admin.site.urls),
     path('deptEnt', deptEnt, name='deptEnt'),
     path('deptSkill', deptSkill, name = 'deptSkill'),
     path('insprogEnt', insprogEnt, name='insprogEnt'), # get and post request for insert operation

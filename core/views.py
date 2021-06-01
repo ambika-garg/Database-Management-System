@@ -87,7 +87,7 @@ def program_list(request):
 def pm_del(request, id):
     program = program_entre.objects.get(pk=id)
     program.delete()
-    return render(request, '/program_list')
+    return redirect('/program_list')
 
 
 def insprogSkill(request, id=0):
