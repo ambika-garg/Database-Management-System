@@ -44,6 +44,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Participant ID</th>
+                                                    <!-- <th>Batch ID</th>
+                                                    <th>RCED Batch ID</th> -->
                                                     <th>Program Name</th>
                                                     <th>Placement Status</th>
                                                     <th>Reason</th>
@@ -63,6 +65,8 @@
                                                 {% for placement in filter.qs %}
                                                 <tr>
                                                     <td>{{ placement.participant_id_skill }}</td>
+                                                    <!-- <td>{{ placement.placement_id_batch_id }}</td>
+                                                    <td>{{ placement.placement_id_rced_batch_id }}</td> -->
                                                     <td>{{ placement.course_name }}</td>
                                                     <td>{{ placement.placement_status }}</td>
                                                     <td>{{ placement.reason }}</td>

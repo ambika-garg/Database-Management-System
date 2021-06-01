@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django import template
 from django.contrib import messages
 from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required(login_url="/login/")
 def index(request):
@@ -42,8 +42,20 @@ def deptEnt(request):
 
 def deptSkill(request):
     myFilter = department_skillFilter(request.GET, queryset= dept_skill.objects.all())
+    # user_list = dept_skill.objects.all()
+    # myFilter = department_skillFilter(request.GET, queryset= user_list)
+    # user_list = department_skillFilter.qs
+    # paginator = Paginator(user_list, 10)
+    # page = request.GET.get('page', 1)
+    # try:
+    #     users = paginator.page(page)
+    # except PageNotAnInteger:
+    #     users = paginator.page(1)
+    # except EmptyPage:
+    #     users = paginator.page(paginator.num_pages)
+    # args = {'paginator': paginator,'filter':myFilter, 'users':users,}
+    # return render(request, 'ui-view_department_skill.html', args)
     return render(request, 'ui-view_department_skill.html',{'filter' : myFilter})
-
 
 def insprogEnt(request, id=0):
     if request.method == "POST":
@@ -108,7 +120,6 @@ def programSkill_del(request, id):
     program = program_skill.objects.get(pk=id)
     program.delete()
     return redirect('/programSkill_list')
-
 
 def participant_ent(request, participant_id_ent=0):
     if request.method == "POST":
