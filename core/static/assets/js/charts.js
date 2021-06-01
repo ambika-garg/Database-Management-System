@@ -169,4 +169,158 @@ var polarAreaChart = new Chart(document.getElementById('canvas-8'), {
     responsive: true
   }
 });
+
+var lineChart = new Chart(document.getElementById('canvas-9'), {
+  type: 'line',
+  data: {
+    labels: ['2012-13', '2013-14', '2014-15', '2015-16', '2016-17', '2017-18', '2018-19', '2019-20'],
+    datasets: [{
+      label: 'No. of Participants',
+      backgroundColor: 'rgba(151, 187, 205, 0.2)',
+      borderColor: 'rgba(151, 187, 205, 1)',
+      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+      pointBorderColor: '#fff',
+      data: [random(), random(), random(), random(), random(), random(), random(), random()]
+    }]
+  },
+  options: {
+    responsive: true
+  }
+}); // eslint-disable-next-line no-unused-vars
+
+// var lineChart = new Chart(document.getElementById('canvas-10'), {
+//   type: 'line',
+//   data: {
+//     labels: ['2012-13', '2013-14', '2014-15', '2015-16', '2016-17', '2017-18', '2018-19', '2019-20'],
+//     datasets: [{
+//       label: 'No. of Participants Placed',
+//       backgroundColor: 'rgba(220, 220, 220, 0.2)',
+//       borderColor: 'rgba(220, 220, 220, 1)',
+//       pointBackgroundColor: 'rgba(220, 220, 220, 1)',
+//       pointBorderColor: '#fff',
+//       data: [random(), random(), random(), random(), random(), random(), random(), random()]
+//     }]
+//   },
+//   options: {
+//     responsive: true
+//   }
+// }); // eslint-disable-next-line no-unused-vars
+
+var barChart = new Chart(document.getElementById('canvas-11'), {
+  type: 'bar',
+  data: {
+    labels: ['2012-13', '2013-14', '2014-15', '2015-16', '2016-17', '2017-18', '2018-19', '2019-20'],
+    datasets: [{
+      label: 'Male',
+      backgroundColor: 'rgba(220, 220, 220, 0.5)',
+      borderColor: 'rgba(220, 220, 220, 0.8)',
+      highlightFill: 'rgba(220, 220, 220, 0.75)',
+      highlightStroke: 'rgba(220, 220, 220, 1)',
+      data: [random(), random(), random(), random(), random(), random(), random(), random()]
+    }, {
+      label: 'Female',
+      backgroundColor: 'rgba(151, 187, 205, 0.5)',
+      borderColor: 'rgba(151, 187, 205, 0.8)',
+      highlightFill: 'rgba(151, 187, 205, 0.75)',
+      highlightStroke: 'rgba(151, 187, 205, 1)',
+      data: [random(), random(), random(), random(), random(), random(), random(), random()]
+    }]
+  },
+  options: {
+    responsive: true
+  }
+}); // eslint-disable-next-line no-unused-vars
+
+var doughnutChart = new Chart(document.getElementById('canvas-12'), {
+  type: 'doughnut',
+  data: {
+    labels: ['General', 'SC', 'ST', 'OBC'],
+    datasets: [{
+      data: [random(), random(), random(), random()],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    }]
+  },
+  options: {
+    responsive: true
+  }
+}); // eslint-disable-next-line no-unused-vars
+
+// var radarChart = new Chart(document.getElementById('canvas-13'), {
+//   type: 'radar',
+//   data: {
+//     labels: ['General', 'SC', 'ST', 'OBC'],
+//     datasets: [{
+//       label: 'Male',
+//       backgroundColor: 'rgba(220, 220, 220, 0.2)',
+//       borderColor: 'rgba(220, 220, 220, 1)',
+//       pointBackgroundColor: 'rgba(220, 220, 220, 1)',
+//       pointBorderColor: '#fff',
+//       pointHighlightFill: '#fff',
+//       pointHighlightStroke: 'rgba(220, 220, 220, 1)',
+//       data: [ random(), random(), random(), random()]
+//     }, {
+//       label: 'Female',
+//       backgroundColor: 'rgba(151, 187, 205, 0.2)',
+//       borderColor: 'rgba(151, 187, 205, 1)',
+//       pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+//       pointBorderColor: '#fff',
+//       pointHighlightFill: '#fff',
+//       pointHighlightStroke: 'rgba(151, 187, 205, 1)',
+//       data: [random(), random(), random(), random()]
+//     }]
+//   },
+//   options: {
+//     responsive: true
+//   }
+// }); // eslint-disable-next-line no-unused-vars
+
+var radarChart = new Chart(document.getElementById('canvas-14'), {
+  type: 'radar',
+  data: {
+    labels: ['Punjab', 'J&K', 'Himachal Pradesh', 'Haryana', 'Uttar Pradesh', 'Rajasthan', 'Uttarakhand', 'Delhi', 'Chandigarh'],
+    datasets: [{
+      label: 'State',
+      backgroundColor: 'rgba(151, 187, 205, 0.2)',
+      borderColor: 'rgba(151, 187, 205, 1)',
+      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+      pointBorderColor: '#fff',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(151, 187, 205, 1)',
+      data: [random(), random(), random(), random(), random(), random(), random(), random(), random()]
+    }]
+  },
+  options: {
+    responsive: true
+  }
+}); // eslint-disable-next-line no-unused-vars
+
+var pieChart = new Chart(document.getElementById('canvas-15'), {
+  type: 'pie',
+  data: {
+    labels: ['DST', 'DI', 'HPCED'],
+    datasets: [{
+      data: [random(), random(), random(), random(), random(), random(), random(), random(), random()],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    }]
+  },
+  options: {
+    responsive: true
+  }
+}); // eslint-disable-next-line no-unused-vars
+
+var polarAreaChart = new Chart(document.getElementById('canvas-16'), {
+  type: 'polarArea',
+  data: {
+    labels: ['TEDP', 'WEDP', 'STEDP', 'EDP', 'EDP WOMEN', 'EDP'],
+    datasets: [{
+      data: [random(), random(), random(), random(), random(), random(), random()],
+      backgroundColor: ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB', '#321fdb', '#2eb85c']
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
 //# sourceMappingURL=charts.js.map
