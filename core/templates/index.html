@@ -97,67 +97,94 @@
                 <!-- /.col-->
             </div>
             <!-- /.row-->
-            <div class="row">
-                <div class="col-sm-6 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-value-lg">{{ count_entre }}</div>
-                            <div>Entrepeneurship
-                                <p>Development Programs</p>
-                            </div>
-                            <div class="progress progress-xs my-2">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow={{ count_entre }} aria-valuemin="0" aria-valuemax="100"></div>
-                            </div><small class="text-muted">Total participants</small>
-                        </div>
+        <div class="row">
+            <div class="col-6 col-lg-3">
+                <div class="card">
+                <div class="card-body p-3 d-flex align-items-center">
+                    <div class="bg-primary p-3 mfe-3">
+                    <svg class="c-icon c-icon-xl">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+                    </svg>
+                    </div>
+                    <div>
+                    <div class="text-value text-primary">{{ count_entre }}</div>
+                    <div class="text-muted text-uppercase font-weight-bold small">Total Participants in Entrepreneurship</div>
                     </div>
                 </div>
-                <!-- /.col-->
-                <div class="col-sm-6 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-value-lg">{{ count_skill }}</div>
-                            <div>Skill
-                                <p>Development Programs</p>
-                            </div>
-                            <div class="progress progress-xs my-2">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow=11 aria-valuemin="0" aria-valuemax="100"></div>
-                            </div><small class="text-muted">Total participants</small>
-                        </div>
-                    </div>
+                <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="ui-view_department_ent_chart.html"><span class="small font-weight-bold">View More</span>
+                    <svg class="c-icon">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                    </svg></a></div>
                 </div>
-                <!-- /.col-->
-                <div class="col-sm-6 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-value-lg">--</div>
-                            <div>Awareness
-                                <p>Development Programs</p>
-                            </div>
-                            <div class="progress progress-xs my-2">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div><small class="text-muted">Total participants</small>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-->
-                <div class="col-sm-6 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-value-lg">--</div>
-                            <div>Capacity
-                                <p>Building Programs</p>
-                            </div>
-                            <div class="progress progress-xs my-2">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div><small class="text-muted">Total participants</small>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-->
             </div>
+            <!-- /.col-->
+            <div class="col-6 col-lg-3">
+                <div class="card">
+                <div class="card-body p-3 d-flex align-items-center">
+                    <div class="bg-info p-3 mfe-3">
+                    <svg class="c-icon c-icon-xl">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-laptop"></use>
+                    </svg>
+                    </div>
+                    <div>
+                    <div class="text-value text-info">{{ count_skill }}</div>
+                    <div class="text-muted text-uppercase font-weight-bold small">Total Participants in Skill</div>
+                    </div>
+                </div>
+                <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="ui-view_department_skill_chart.html"><span class="small font-weight-bold">View More</span>
+                    <svg class="c-icon">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                    </svg></a></div>
+                </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-6 col-lg-3">
+                <div class="card">
+                <div class="card-body p-3 d-flex align-items-center">
+                    <div class="bg-warning p-3 mfe-3">
+                    <svg class="c-icon c-icon-xl">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-moon"></use>
+                    </svg>
+                    </div>
+                    <div>
+                    <div class="text-value text-warning">0</div>
+                    <div class="text-muted text-uppercase font-weight-bold small">Total Participants in Awareness</div>
+                    </div>
+                </div>
+                <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#"><span class="small font-weight-bold">View More</span>
+                    <svg class="c-icon">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                    </svg></a></div>
+                </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-6 col-lg-3">
+                <div class="card">
+                <div class="card-body p-3 d-flex align-items-center">
+                    <div class="bg-danger p-3 mfe-3">
+                    <svg class="c-icon c-icon-xl">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                    </svg>
+                    </div>
+                    <div>
+                    <div class="text-value text-danger">0</div>
+                    <div class="text-muted text-uppercase font-weight-bold small">Total Participants in Capacity</div>
+                    </div>
+                </div>
+                <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#"><span class="small font-weight-bold">View More</span>
+                    <svg class="c-icon">
+                        <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                    </svg></a></div>
+                </div>
+            </div>
+          <!-- /.col-->
+        </div>
+          <!-- /.row-->
         </div>
     </div>
 </main>
+
+
 
 {% endblock content %}
 
