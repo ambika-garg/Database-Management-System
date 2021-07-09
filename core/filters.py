@@ -32,13 +32,13 @@ class particpant_skillFilter(django_filters.FilterSet):
                                                       widget=TextInput(attrs={'placeholder': 'First Name'}),
                                                       lookup_expr='icontains')
 
-    program_id = django_filters.ModelChoiceFilter(queryset=program_skill.objects.all(),empty_label = 'Program Name')
+    program_id_skill = django_filters.ModelChoiceFilter(queryset=program_skill.objects.all(),empty_label = 'Program Name')
     gender = django_filters.ChoiceFilter(choices = GENDER_CHOICES, empty_label ='Gender')
     category = django_filters.ChoiceFilter(choices = CATEGORY_CHOICES, empty_label = 'Category')
 
     class Meta:
         model = participant_skill
-        fields = ['name_skill', 'program_id', 'gender', 'category']
+        fields = ['name_skill', 'program_id_skill', 'gender', 'category']
 
 class placement_skillFilter(django_filters.FilterSet):
     CHOICE = (('Yes', 'Yes'), ('No', 'No'))
@@ -82,11 +82,11 @@ class particpant_ENTFilter(django_filters.FilterSet):
                                                       widget=TextInput(attrs={'placeholder': 'Name of Trainee'}),
                                                       lookup_expr='icontains')
 
-    program_id = django_filters.ModelChoiceFilter(queryset=program_skill.objects.all(),empty_label = 'Program Name')
+    program_id_ent = django_filters.ModelChoiceFilter(queryset=program_entre.objects.all(),empty_label = 'Program Name')
     gender = django_filters.ChoiceFilter(choices = GENDER_CHOICES, empty_label ='Gender')
     category_entre = django_filters.ChoiceFilter(choices = CATEGORY_CHOICES, empty_label = 'Category')
 
     class Meta:
         model = participant_entre
-        fields = ['name_of_trainee', 'program_id', 'gender', 'category_entre']
+        fields = ['name_of_trainee', 'program_id_ent', 'gender', 'category_entre']
 

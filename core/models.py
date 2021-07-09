@@ -122,7 +122,7 @@ class participant_project_cost_entre(CompositeField):
 class participant_entre(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
-    program_id = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
+    program_id_ent = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
     participant_id_ent = models.IntegerField(primary_key=True, unique=True)
     name_of_trainee = models.CharField(max_length=50, unique=False)
     father_or_husband_name = models.CharField(max_length=50, unique=False, null=True, blank=True)
@@ -232,7 +232,7 @@ class participant_perm_address_skill(CompositeField):
 # 7
 class participant_skill(models.Model):
     # class Meta:
-    #     unique_together = (('participant_id_skill', 'program_id'))
+    #     unique_together = (('participant_id_skill', 'program_id_skill'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     MARITAL_STATUS_CHOICES = (
@@ -252,7 +252,7 @@ class participant_skill(models.Model):
         ('Pamphlets', 'Pamphlets'), ('Recorded phone', 'Recorded phone'), ('Message', 'Message'),
         ('Newsletter', 'Newsletter'), ('Kaushal Mela', 'Kaushal Mela'), ('Call Center', 'Call Center'),
         ('Rozgar Mela', 'Rozgar Mela'), ('Others', 'Others'), ('Event/Workshop', 'Event/Workshop'))
-    program_id = models.ForeignKey(program_skill, on_delete=models.CASCADE)
+    program_id_skill = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     batchid = models.BigIntegerField(default = 0)
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
     batchid = models.BigIntegerField(default = 0)
@@ -299,7 +299,7 @@ class participant_skill(models.Model):
         return str(self.participant_id_skill)
 
     class Meta:
-        unique_together = (('program_id', 'participant_id_skill'),)
+        unique_together = (('program_id_skill', 'participant_id_skill'),)
 
 # class placement_id_skill(CompositeField):
 #     batch_id = models.IntegerField()
@@ -326,7 +326,7 @@ class placement_skill(models.Model):
 
     # def save(self,*args,  **kwargs):
     #     program = participant_skill.objects.get(pk=participant_skill)
-    #     self.course_name = program.program_id
+    #     self.course_name = program.program_id_skill
     #     return super(placement_skill, self).save()
 
     objects = models.Manager()

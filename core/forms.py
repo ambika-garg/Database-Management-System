@@ -74,7 +74,7 @@ class participantForm(forms.ModelForm):
 
         #updating columns
         labels = {
-            'program_id' : 'Program Name',
+            'program_id_ent' : 'Program Name',
             'participant_id_ent' : 'Serial number',
             'batchid' : 'Batch Id',
             'name_of_trainee' : 'Participant Name',
@@ -109,7 +109,7 @@ class participantForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(participantForm, self).__init__(*args, **kwargs)
-        self.fields['program_id'].empty_label = "Select"
+        self.fields['program_id_ent'].empty_label = "Select"
         self.fields['gender'].empty_label = "(Select here)"
         self.fields['idcard_entre_id_type'].empty_label = "Select"
         self.fields['idcard_entre_alt_id_type'].empty_label = "Select"
@@ -153,7 +153,7 @@ class participantSkillForm(forms.ModelForm):
 
         #updating columns
         labels = {
-            'program_id' : 'Program Name',
+            'program_id_skill' : 'Program Name',
             'participant_id_skill' : 'Participant ID',
             'batchid' : 'Batch ID',
             'name_skill_salutation' : 'Salutation',
@@ -205,7 +205,7 @@ class participantSkillForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(participantSkillForm, self).__init__(*args, **kwargs)
-        self.fields['program_id'].empty_label = "Select"
+        self.fields['program_id_skill'].empty_label = "Select"
         self.fields['gender'].empty_label = "(Select here)"
         self.fields['idcard_skill_id_type'].empty_label = "Select"
         self.fields['idcard_skill_alt_id_type'].empty_label = "Select"

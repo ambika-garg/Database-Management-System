@@ -24,7 +24,7 @@
         <div class="form-group row ">
             <div class="input-group ">
                 <form method="get ">
-                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id }} {{ filter.form.gender }} {{ filter.form.category_entre }}
+                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id_ent }} {{ filter.form.gender }} {{ filter.form.category_entre }}
                     <button class="btn btn-sm btn-primary " type="submit "> Search</button>
                 </form>
             </div>
@@ -81,7 +81,7 @@
                                                 <tr>
                                                     <td>{{ participant.participant_id_ent }}</td>
                                                     <td>{{ participant.name_of_trainee }}</td>
-                                                    <td>{{ participant.program_id }}</td>
+                                                    <td>{{ participant.program_id_ent }}</td>
                                                     <td>{{ participant.gender }}</td>
                                                     <td>{{ participant.father_or_husband_name }}</td>
                                                     <td>{{ participant.date_of_birth }}</td>
