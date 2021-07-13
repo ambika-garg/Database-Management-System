@@ -64,7 +64,11 @@ class program_entre(models.Model):
 # 5
 class program_skill(models.Model):
     depart_name_skill = models.ForeignKey(dept_skill, on_delete=models.CASCADE)
+<<<<<<< Updated upstream
     program_name_skill = models.CharField(max_length=100)
+=======
+    program_name_skill = models.CharField(max_length=100,)
+>>>>>>> Stashed changes
     state = models.CharField(max_length=30)
     financial_Year_skill = models.CharField(max_length=10)
     trade_skill = models.CharField(max_length=100, blank=True)
