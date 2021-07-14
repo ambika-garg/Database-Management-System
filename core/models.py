@@ -40,13 +40,32 @@ class dept_skill(models.Model):
     def __str__(self):
         return self.department_name_skill
 
+# 4
+class dept_aware(models.Model):
+    category_aware = models.ForeignKey(category, default=3, verbose_name="category", on_delete=models.CASCADE)
+    department_name_aware = models.CharField(max_length=100)
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.department_name_aware
+
+# 5
+class dept_capac(models.Model):
+    category_capac = models.ForeignKey(category, default=4, verbose_name="category", on_delete=models.CASCADE)
+    department_name_capac = models.CharField(max_length=100)
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.department_name_capac
+
+
 
 class program_address(CompositeField):
     location = models.CharField(max_length=50, unique=False)
     city = models.CharField(max_length=40, unique=False)
 
 
-# 4
+# 6
 class program_entre(models.Model):
     depart_name_ent = models.ForeignKey(dept_entre, on_delete=models.CASCADE)
     program_name_ent = models.CharField(max_length=100)
@@ -61,14 +80,10 @@ class program_entre(models.Model):
         return self.program_name_ent
 
 
-# 5
+# 7
 class program_skill(models.Model):
     depart_name_skill = models.ForeignKey(dept_skill, on_delete=models.CASCADE)
-<<<<<<< Updated upstream
-    program_name_skill = models.CharField(max_length=100)
-=======
     program_name_skill = models.CharField(max_length=100,)
->>>>>>> Stashed changes
     state = models.CharField(max_length=30)
     financial_Year_skill = models.CharField(max_length=10)
     trade_skill = models.CharField(max_length=100, blank=True)
@@ -79,8 +94,44 @@ class program_skill(models.Model):
     def __str__(self):
         return self.program_name_skill
 
+# 8
+class program_aware(models.Model):
+    depart_name_aware = models.ForeignKey(dept_aware, on_delete=models.CASCADE)
+    program_name_aware = models.CharField(max_length=100)
+    state_aware = models.CharField(max_length=100, blank=True)
+    financial_year_aware = models.CharField(max_length=10)
+    no_of_participants_aware = models.IntegerField(null=True)
+    address_aware = program_address()
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.program_name_aware
+
+# 9
+class program_capac(models.Model):
+    depart_name_capac = models.ForeignKey(dept_capac, on_delete=models.CASCADE)
+    program_name_capac = models.CharField(max_length=100)
+    state_capac = models.CharField(max_length=100, blank=True)
+    financial_year_capac = models.CharField(max_length=10)
+    no_of_participants_capac = models.IntegerField(null=True)
+    address_capac = program_address()
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.program_name_capac
+
 
 class participant_address_entre(CompositeField):
+    location = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    city = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    state = models.CharField(max_length=40, unique=False, null=True, blank=True)
+
+class participant_address_aware(CompositeField):
+    location = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    city = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    state = models.CharField(max_length=40, unique=False, null=True, blank=True)
+
+class participant_address_capac(CompositeField):
     location = models.CharField(max_length=100, unique=False, null=True, blank=True)
     city = models.CharField(max_length=50, unique=False, null=True, blank=True)
     state = models.CharField(max_length=40, unique=False, null=True, blank=True)
@@ -122,7 +173,7 @@ class participant_project_cost_entre(CompositeField):
     WC = models.IntegerField(default=0, null=True, blank=True)
 
 
-# 6
+# 10
 class participant_entre(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
@@ -233,7 +284,7 @@ class participant_perm_address_skill(CompositeField):
     constituency = models.CharField(max_length=25, null=True, blank=True, unique=False)
 
 
-# 7
+# 11
 class participant_skill(models.Model):
     # class Meta:
     #     unique_together = (('participant_id_skill', 'program_id_skill'))
@@ -310,7 +361,67 @@ class participant_skill(models.Model):
 #     rced_batch_id = models.IntegerField()
 
 
-# 8
+
+# 12
+class participant_aware(models.Model):
+    CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
+    GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
+    program_id_aware = models.ForeignKey(program_aware, default=3, on_delete=models.CASCADE)
+    participant_id_aware = models.IntegerField(primary_key=True, unique=True)
+    name_of_trainee = models.CharField(max_length=50, unique=False)
+    father_or_husband_name = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICES, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    mobile_aware = participant_mobile()
+    category_aware = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
+    qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    primary_email = models.EmailField(default="example@gmail.com")
+    secondary_email = models.EmailField(default="example@gmail.com", null=True, blank=True)
+    address_aware = participant_address_aware()
+    total = models.IntegerField(default=0)
+
+    def save(self, **kwargs):
+        self.total = self.project_cost.CE + self.project_cost.WC
+        return super(participant_aware, self).save()
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.name_of_trainee
+
+
+
+# 13
+class participant_capac(models.Model):
+    CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
+    GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
+    program_id_capac = models.ForeignKey(program_capac, default=4, on_delete=models.CASCADE)
+    participant_id_capac = models.IntegerField(primary_key=True, unique=True)
+    name_of_trainee = models.CharField(max_length=50, unique=False)
+    father_or_husband_name = models.CharField(max_length=50, unique=False, null=True, blank=True)
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICES, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    mobile_capac = participant_mobile()
+    category_capac = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
+    qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    primary_email = models.EmailField(default="example@gmail.com")
+    secondary_email = models.EmailField(default="example@gmail.com", null=True, blank=True)
+    address_capac= participant_address_aware()
+    total = models.IntegerField(default=0)
+
+    def save(self, **kwargs):
+        self.total = self.project_cost.CE + self.project_cost.WC
+        return super(participant_capac, self).save()
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.name_of_trainee
+
+
+
+
+# 14
 class placement_skill(models.Model):
     CHOICE = (('Yes', 'Yes'), ('No','No'))
     participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE, primary_key=True)
