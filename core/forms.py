@@ -1,5 +1,5 @@
 from django import forms
-from core.models import program_entre, program_skill, participant_entre, participant_skill, placement_skill
+from core.models import program_aware, program_capac, program_entre, program_skill, participant_entre, participant_skill, placement_skill
 from collectionfield.forms import CollectionField
 
 class program_entreform(forms.ModelForm):
@@ -66,6 +66,66 @@ class program_skillform(forms.ModelForm):
         self.fields["address_skill_location"].required = False
         self.fields["address_skill_city"].required = False
         self.fields["no_of_participants_skill"].required = False
+
+
+
+class program_awareform(forms.ModelForm):
+    class Meta:
+        model = program_aware
+        fields = '__all__'
+
+        # updating value of columns
+        labels = {
+            'program_name_aware': 'Program Name',
+            'depart_name_aware': 'Department Name',
+            'state_aware': 'State',
+            'financial_year_aware': 'Financial Year',
+            'no_of_participants_aware': 'Total Participants',
+            'address_aware_location': 'Location',
+            'address_aware_city': 'City'
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(program_awareform, self).__init__(*args, **kwargs)
+        self.fields['depart_name_aware'].empty_label = "Select" #empty label pr select aajayega
+        for key, field in self.fields.items():
+            if isinstance(field.widget, forms.TextInput) or \
+                    isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
+                    isinstance(field.widget, forms.DateInput) or \
+                    isinstance(field.widget, forms.DateTimeInput) or \
+                    isinstance(field.widget, forms.TimeInput):
+                field.widget.attrs.update({'placeholder': field.label})
+
+
+class program_capacform(forms.ModelForm):
+    class Meta:
+        model = program_capac
+        fields = '__all__'
+
+        # updating value of columns
+        labels = {
+            'program_name_capac': 'Program Name',
+            'depart_name_capac': 'Department Name',
+            'state_capac': 'State',
+            'financial_year_capac': 'Financial Year',
+            'no_of_participants_capac': 'Total Participants',
+            'address_capac_location': 'Location',
+            'address_capac_city': 'City'
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(program_capacform, self).__init__(*args, **kwargs)
+        self.fields['depart_name_capac'].empty_label = "Select" #empty label pr select aajayega
+        for key, field in self.fields.items():
+            if isinstance(field.widget, forms.TextInput) or \
+                    isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
+                    isinstance(field.widget, forms.DateInput) or \
+                    isinstance(field.widget, forms.DateTimeInput) or \
+                    isinstance(field.widget, forms.TimeInput):
+                field.widget.attrs.update({'placeholder': field.label})
+
 
 class participantForm(forms.ModelForm):
     class Meta:
