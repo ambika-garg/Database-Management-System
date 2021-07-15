@@ -1,5 +1,5 @@
 from django import forms
-from core.models import program_aware, program_capac, program_entre, program_skill, participant_entre, participant_skill, placement_skill
+from core.models import participant_aware, participant_capac, program_aware, program_capac, program_entre, program_skill, participant_entre, participant_skill, placement_skill
 from collectionfield.forms import CollectionField
 
 class program_entreform(forms.ModelForm):
@@ -359,6 +359,111 @@ class participantSkillForm(forms.ModelForm):
     
     def clean_email(self):
         print(self.cleaned_data['email']) 
+
+
+class participantAwareForm(forms.ModelForm):
+    class Meta:
+        model = participant_aware
+        fields = '__all__'
+
+        #updating columns
+        labels = {
+            'program_id_aware' : 'Program Name',
+            'participant_id_aware' : 'Serial number',
+            'name_of_trainee' : 'Participant Name',
+            'father_or_husband_name' : 'Father/Husband Name',
+            'gender_aware' : 'Gender',
+            'date_of_birth_aware' : 'Date of Birth',
+            'idcard_aware_aadhaar_ref_no' : 'Aadhar Number',
+            'mobile_entre_country_code' : 'Country Code',
+            'mobile_entre_number' : 'Mobile Number',
+            'category_aware' : 'Category',
+            'qualification' : 'Qualification',
+            'email' : 'Email',
+            'address_aware_location': 'Address',
+            'address_aware_city' : 'City',
+            'address_aware_state' : 'State',
+            }
+
+    def __init__(self, *args, **kwargs):
+        super(participantAwareForm, self).__init__(*args, **kwargs)
+        self.fields['program_id_aware'].empty_label = "Select"
+        self.fields['gender_aware'].empty_label = "(Select here)"
+        self.fields['category_aware'].empty_label = "Select"
+        for key, field in self.fields.items():
+            if isinstance(field.widget, forms.TextInput) or \
+                    isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
+                    isinstance(field.widget, forms.DateInput) or \
+                    isinstance(field.widget, forms.DateTimeInput) or \
+                    isinstance(field.widget, forms.TimeInput):
+                field.widget.attrs.update({'placeholder': field.label})
+
+    # def fields_required(self, fields):
+    #     """Used for conditionally marking fields as required."""
+    #     for field in fields:
+    #         if not self.cleaned_data.get(field, ''):
+    #             msg = forms.ValidationError("This field is required.")
+    #             self.add_error(field, msg)
+
+
+
+    def clean_email(self):
+        print(self.cleaned_data['email'])
+
+
+class participantCapacForm(forms.ModelForm):
+    class Meta:
+        model = participant_capac
+        fields = '__all__'
+
+        #updating columns
+        labels = {
+            'program_id_capac' : 'Program Name',
+            'participant_id_capac' : 'Serial number',
+            'name_of_trainee' : 'Participant Name',
+            'father_or_husband_name' : 'Father/Husband Name',
+            'gender_capac' : 'Gender',
+            'date_of_birth_capac' : 'Date of Birth',
+            'idcard_aware_aadhaar_ref_no' : 'Aadhar Number',
+            'mobile_entre_country_code' : 'Country Code',
+            'mobile_entre_number' : 'Mobile Number',
+            'category_capac' : 'Category',
+            'qualification' : 'Qualification',
+            'email' : 'Email',
+            'address_capac_location': 'Address',
+            'address_capac_city' : 'City',
+            'address_capac_state' : 'State',
+            }
+
+    def __init__(self, *args, **kwargs):
+        super(participantCapacForm, self).__init__(*args, **kwargs)
+        self.fields['program_id_capac'].empty_label = "Select"
+        self.fields['gender_capac'].empty_label = "(Select here)"
+        self.fields['category_capac'].empty_label = "Select"
+        for key, field in self.fields.items():
+            if isinstance(field.widget, forms.TextInput) or \
+                    isinstance(field.widget, forms.Textarea) or \
+                    isinstance(field.widget, forms.EmailInput) or \
+                    isinstance(field.widget, forms.DateInput) or \
+                    isinstance(field.widget, forms.DateTimeInput) or \
+                    isinstance(field.widget, forms.TimeInput):
+                field.widget.attrs.update({'placeholder': field.label})
+
+    # def fields_required(self, fields):
+    #     """Used for conditionally marking fields as required."""
+    #     for field in fields:
+    #         if not self.cleaned_data.get(field, ''):
+    #             msg = forms.ValidationError("This field is required.")
+    #             self.add_error(field, msg)
+
+
+
+    def clean_email(self):
+        print(self.cleaned_data['email'])
+
+
+
 
 class placement_skillform(forms.ModelForm):
     class Meta:

@@ -373,6 +373,7 @@ class participant_aware(models.Model):
     gender = models.CharField(max_length=25, choices=GENDER_CHOICES, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     mobile_aware = participant_mobile()
+    aadhaar_ref_no = models.BigIntegerField(unique=True, null=True, blank=True)
     category_aware = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
     qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
     primary_email = models.EmailField(default="example@gmail.com")

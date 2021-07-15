@@ -1,12 +1,12 @@
-from core.forms import program_entreform, program_skillform, participantForm, participantSkillForm, placement_skillform
-from core.models import dept_entre, dept_skill, program_entre, program_skill, participant_entre, participant_skill, placement_skill
+from core.forms import program_entreform, program_skillform,program_awareform,program_capacform,participantForm, participantSkillForm,participantAwareForm,participantCapacForm,placement_skillform
+from core.models import dept_entre, dept_skill, dept_aware, dept_capac, program_entre, program_skill, program_aware, program_capac, participant_entre, participant_skill, participant_aware, participant_capac, placement_skill
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
-from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter
+from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter, program_awareFilter, department_awareFilter, participant_awareFilter, program_capacFilter, department_capacFilter, participant_capacFilter
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required(login_url="/login/")
