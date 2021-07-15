@@ -25,7 +25,7 @@ class department_skillFilter(django_filters.FilterSet):
         model = dept_skill
         fields = ['department_name_skill' ]
 
-class particpant_skillFilter(django_filters.FilterSet):
+class participant_skillFilter(django_filters.FilterSet):
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
 
@@ -75,7 +75,7 @@ class program_ENTFilter(django_filters.FilterSet):
         fields = ['state_ent','financial_year_ent']
 
 
-class particpant_ENTFilter(django_filters.FilterSet):
+class participant_ENTFilter(django_filters.FilterSet):
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
 
@@ -151,7 +151,7 @@ class program_capacFilter(django_filters.FilterSet):
         fields = ['state_capac','financial_year_capac']
 
 
-class particpant_capacFilter(django_filters.FilterSet):
+class participant_capacFilter(django_filters.FilterSet):
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
 

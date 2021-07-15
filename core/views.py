@@ -6,7 +6,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from django.contrib import messages
-from .filters import program_skillFilter, department_skillFilter, particpant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, particpant_ENTFilter, program_awareFilter, department_awareFilter, participant_awareFilter, program_capacFilter, department_capacFilter, participant_capacFilter
+from .filters import program_skillFilter, department_skillFilter, participant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, participant_ENTFilter, program_awareFilter, department_awareFilter, participant_awareFilter, program_capacFilter, department_capacFilter, participant_capacFilter
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required(login_url="/login/")
@@ -128,7 +128,7 @@ def participant_ent(request, participant_id_ent=0):
             email = request.POST.get('email')
         else:
             participant = participant_entre.objects.get(pk=participant_id_ent)
-            print("particpant:", participant)
+            print("participant:", participant)
             fi = participantForm(request.POST, instance=participant)
             email = request.POST.get('email')
             print("email: ", email)
@@ -149,7 +149,7 @@ def participant_ent(request, participant_id_ent=0):
 
 
 def participant_list(request):
-    filter = particpant_ENTFilter(request.GET, queryset=participant_entre.objects.all())
+    filter = participant_ENTFilter(request.GET, queryset=participant_entre.objects.all())
     context = {'filter': filter}
     return render(request, 'ui-view_participant_ent.html', context)
 
@@ -188,7 +188,7 @@ def insparticipant_skill(request, participant_id_skill=0):
 
 
 def participantSkill_list(request):
-    filter = particpant_skillFilter(request.GET, queryset=participant_skill.objects.all())
+    filter = participant_skillFilter(request.GET, queryset=participant_skill.objects.all())
     context = {'filter': filter}
     return render(request, 'ui-view_participant_skill.html', context)
 
