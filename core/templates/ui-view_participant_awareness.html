@@ -24,7 +24,7 @@
         <div class="form-group row ">
             <div class="input-group ">
                 <form method="get ">
-                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id_ent }} {{ filter.form.gender }} {{ filter.form.category_entre }}
+                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id_aware_id }} {{ filter.form.gender }} {{ filter.form.category_aware }}
                     <button class="btn btn-sm btn-primary " type="submit "> Search</button>
                 </form>
             </div>
@@ -43,19 +43,60 @@
                                         <table class="table table-responsive-sm table-bordered table-striped table-sm ">
                                             <thead>
                                                 <tr>
-                                                    <th>Serial number</th>
+                                                    <th>Participant ID</th>
+                                                    <th>Program ID</th>
                                                     <th>Name of Trainee</th>
                                                     <th>Father/Husband Name</th>
-                                                    <th>Address</th>
-                                                    <th>Mobile Number</th>
-                                                    <th>Email</th>
-                                                    <th>Aadhar</th>
                                                     <th>Gender</th>
+                                                    <th>date_of_birth</th>
+                                                    <th>Country Code</th>
+                                                    <th>Primary Mobile No.</th>
+                                                    <th>Secondary Mobile No</th>
+                                                    <th>Adhaar No.</th>
                                                     <th>Category</th>
                                                     <th>Qualification</th>
-                                                    <th>Date of Birth</th>
+                                                    <th>Primary Email</th>
+                                                    <th>Secondary Email</th>
+                                                    <th>Location</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                {% for participantaware in filter.qs %}
+                                                <tr>
+                                                    <td>{{ participantaware.participant_id_aware }}</td>
+                                                    <td>{{ participantaware.program_id_aware}}</td>
+                                                    <td>{{ participantaware.name_of_trainee }}</td>
+                                                    <td>{{ participantaware.father_or_husband_name }}</td>
+                                                    <td>{{ participantaware.gender }}</td>
+                                                    <td>{{ participantaware.date_of_birth }}</td>
+                                                    <td>{{ participantaware.mobile_aware_country_code }}</td>
+                                                    <td>{{ participantaware.mobile_aware_primary_mobile }}</td>
+                                                    <td>{{ participantaware.mobile_aware_secondary_mobile }}</td>
+                                                    <td>{{ participantaware.aadhaar_ref_no }}</td>
+                                                    <td>{{ participantaware.category_aware }}</td>
+                                                    <td>{{ participantaware.qualification }}</td>
+                                                    <td>{{ participantaware.primary_email }}</td>
+                                                    <td>{{ participantaware.secondary_email }}</td>
+                                                    <td>{{ participantaware.address_aware_location }}</td>
+                                                    <td>{{ participantaware.address_aware_city }}</td>
+                                                    <td>{{ participantaware.address_aware_state }}</td>
+                                                    <td>
+                                                        <a href="{% url 'participantaware_update' participantaware.participant_id_aware %} " class="btn text-secondary px-0 ">
+                                                            <i class="c-icon c-icon-xl cil-pencil "></i>
+                                                        </a>
+                                                        <form action="{% url 'participantaware_del' participantaware.participant_id_aware %} " method="post " class="d-inline ">
+                                                            {% csrf_token %}
+                                                            <button type="submit " class="btn text-secondary px-0 ">
+                                               <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash "></i>
+                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
                                         </table>
                                         <nav>
                                             <ul class="pagination ">

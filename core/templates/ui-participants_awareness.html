@@ -24,6 +24,9 @@
         <div class="card">
             <div class="card-header"><strong><h1>Add Participants</h1></strong></div>
             <div class="card-body">
+                {% if msg %}
+                <div class = "p-10"><span><h3>{{ msg }}</h3></span></div>{% endif %}
+                <hr>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <table>{{ form.as_table }}</table>

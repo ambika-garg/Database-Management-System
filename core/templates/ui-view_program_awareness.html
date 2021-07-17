@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <div class="input-group ">
                     <form method="get">
-                        {{ filter.form.program_name_ent }} {{ filter.form.depart_name_ent }} {{ filter.form.state_ent }} {{ filter.form.financial_year_ent }}
+                        {{ filter.form.program_name_aware }} {{ filter.form.depart_name_aware }} {{ filter.form.state_aware }} {{ filter.form.financial_year_aware }}
                         <button class="btn btn-sm btn-primary" type="submit"> Search</button>
                     </form>
                 </div>
@@ -49,10 +49,8 @@
                                                     <th>Department name</th>
                                                     <th>Financial year</th>
                                                     <th>No of participants</th>
-                                                    <th>Collage Name</th>
                                                     <th>Location</th>
                                                     <th>City</th>
-                                                    <th>State</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -60,19 +58,19 @@
                                                 {% for program in filter.qs %}
                                                 <tr>
                                                     <td>{{ program.id }}</td>
-                                                    <td>{{ program.program_name_ent }}</td>
-                                                    <td>{{ program.depart_name_ent }}</td>
-                                                    <td>{{ program.financial_year_ent }}</td>
-                                                    <td>{{ program.no_of_participants_ent }}</td>
+                                                    <td>{{ program.program_name_aware }}</td>
+                                                    <td>{{ program.depart_name_aware }}</td>
+                                                    <td>{{ program.financial_year_aware }}</td>
+                                                    <td>{{ program.no_of_participants_aware }}</td>
                                                     <td>{{ program.college_name_ent }}</td>
-                                                    <td>{{ program.address_ent_location }}</td>
-                                                    <td>{{ program.address_ent_city }}</td>
+                                                    <td>{{ program.address_aware_location }}</td>
+                                                    <td>{{ program.address_aware_city }}</td>
                                                     <td>{{ program.state_ent }}</td>
                                                     <td>
-                                                        <a href="{% url 'program_update' program.id %}" class="btn text-secondary px-0">
+                                                        <a href="{% url 'aware_program_update' program.id %}" class="btn text-secondary px-0">
                                                             <i class="c-icon c-icon-xl cil-pencil"></i>
                                                         </a>
-                                                        <form action="{% url 'program_delete' program.id %}" method="post" class="d-inline">
+                                                        <form action="{% url 'aware_program_delete' program.id %}" method="post" class="d-inline">
                                                             {% csrf_token %}
                                                             <button type="submit" class="btn text-secondary px-0">
                                             <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash"></i>

@@ -236,4 +236,160 @@ def placementSkill_del(request, participant_id_skill):
     placement.delete()
     return redirect('/placementSkill_list')
 
+# capacity CRUD operations
+
+#--------------INSERT PROGRAM--------------------------
+
+def deptCapac(request):
+    myFilter = department_capacFilter(request.GET, queryset=dept_capac.objects.all())
+    return render(request, 'ui-view_department_capacity_building.html',{'filter' : myFilter})
+
+
+def insprogcap(request, id=0):
+    messages = None
+    if request.method == "POST":
+        if id == 0:
+            form = program_capacform(request.POST)
+        else:
+            program = program_capac.objects.get(pk=id)
+            form = program_capacform(request.POST, instance=program)
+            print(form)
+        if form.is_valid():
+            form.save()
+            messages =  'Program Added Successfully!'
+        # return redirect('/insprogcap')
+    else:
+        if id == 0:
+            form = program_capacform()
+        else:
+            program = program_capac.objects.get(pk=id)
+            form = program_capacform(instance=program)
+    return render(request, 'ui-program_capacity_building.html', {'form': form, 'msg': messages})
+
+def programCapac_list(request):
+    myFilter = program_capacFilter(request.GET, queryset=program_capac.objects.all())
+    return render(request, 'ui-view_program_capacity_building.html',  {'filter': myFilter})
+
+def programCapac_del(request, id):
+    program = program_capac.objects.get(pk=id)
+    program.delete()
+    return redirect('/capacityprogram_list')
+
+def insparticipant_capac(request, participant_id_capac=0):
+    messages = None
+    if request.method == "POST":
+        if participant_id_capac == 0:
+            fi = participantCapacForm(request.POST)
+            # email = request.POST.get('email')
+        else:
+            participant = participant_capac.objects.get(pk=participant_id_capac)
+            fi = participantCapacForm(request.POST, instance=participant)
+            # email = request.POST.get('email')
+            # print("email: ", email)
+        if fi.is_valid():
+            fi.save()
+            # messages.success(request, 'Program Added Successfully!')
+            messages = 'Participant Details Added Successfully!'
+            # return redirect('/insparticipant_skill')
+    else:
+        if participant_id_capac == 0:
+            fi = participantCapacForm()
+            # email = request.POST.get('email')
+        else:
+            participant = participant_capac.objects.get(pk=participant_id_capac)
+            fi = participantCapacForm(instance=participant)
+            # email = request.POST.get('email')
+    return render(request, 'ui-participants_capacity_building.html', {'form': fi, 'msg':messages})
+
+
+def participantCapac_list(request):
+    filter = participant_skillFilter(request.GET, queryset=participant_capac.objects.all())
+    context = {'filter': filter}
+    return render(request, 'ui-view_participant_capacity_building.html', context)
+
+
+def participantCapac_del(request, participant_id_capac):
+    participant = participant_capac.objects.get(pk=participant_id_capac)
+    participant.delete()
+    return redirect('/participantcapacity_list')
+
+
+# Awareness CRUD operations
+
+
+
+def deptaware(request):
+    myFilter = department_awareFilter(request.GET, queryset=dept_aware.objects.all())
+    return render(request, 'ui-view_department_awareness.html',{'filter' : myFilter})
+
+
+def insprogaware(request, id=0):
+    messages = None
+    if request.method == "POST":
+        if id == 0:
+            form = program_awareform(request.POST)
+        else:
+            program = program_aware.objects.get(pk=id)
+            form = program_awareform(request.POST, instance=program)
+            print(form)
+        if form.is_valid():
+            form.save()
+            messages =  'Program Added Successfully!'
+        # return redirect('/insprogcap')
+    else:
+        if id == 0:
+            form = program_awareform()
+        else:
+            program = program_aware.objects.get(pk=id)
+            form = program_awareform(instance=program)
+    return render(request, 'ui-program_awareness.html', {'form': form, 'msg': messages})
+
+def programaware_list(request):
+    myFilter = program_awareFilter(request.GET, queryset=program_aware.objects.all())
+    return render(request, 'ui-view_program_awareness.html',  {'filter': myFilter})
+
+def programaware_del(request, id):
+    program = program_aware.objects.get(pk=id)
+    program.delete()
+    return redirect('/awareprogram_list')
+
+def insparticipant_aware(request, participant_id_aware=0):
+    messages = None
+    if request.method == "POST":
+        if participant_id_aware == 0:
+            fi = participantAwareForm(request.POST)
+            # email = request.POST.get('email')
+        else:
+            participant = participant_aware.objects.get(pk=participant_id_aware)
+            fi = participantAwareForm(request.POST, instance=participant)
+            # email = request.POST.get('email')
+            # print("email: ", email)
+        if fi.is_valid():
+            fi.save()
+            # messages.success(request, 'Program Added Successfully!')
+            messages = 'Participant Details Added Successfully!'
+            # return redirect('/insparticipant_skill')
+    else:
+        if participant_id_aware == 0:
+            fi = participantAwareForm()
+            # email = request.POST.get('email')
+        else:
+            participant = participant_aware.objects.get(pk=participant_id_aware)
+            fi = participantAwareForm(instance=participant)
+            # email = request.POST.get('email')
+    return render(request, 'ui-participants_awareness.html', {'form': fi, 'msg':messages})
+
+
+def participantaware_list(request):
+    filter = participant_awareFilter(request.GET, queryset=participant_aware.objects.all())
+    context = {'filter': filter}
+    return render(request, 'ui-view_participant_awareness.html', context)
+
+
+def participantaware_del(request, participant_id_aware):
+    participant = participant_aware.objects.get(pk=participant_id_aware)
+    participant.delete()
+    return redirect('/participantaware_list')
+
+
 

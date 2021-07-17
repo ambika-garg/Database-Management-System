@@ -24,7 +24,7 @@
         <div class="form-group row">
             <div class="input-group ">
                 <form method="get">
-                    {{ filter.form.department_nam_ent }}
+                    {{ filter.form.department_name_aware }}
                     <button class="btn btn-sm btn-primary" type="submit"> Search</button>
                 </form>
             </div>
@@ -49,8 +49,8 @@
                                         {% for obj in filter.qs %}
                                         <tr>
                                             <td>{{ obj.id }}</td>
-                                            <td>{{ obj.department_nam_ent }}</td>
-                                            <td>{{ obj.category_ent }}</td>
+                                            <td>{{ obj.department_name_aware }}</td>
+                                            <td>{{ obj.category_aware_id }}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

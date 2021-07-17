@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import category
-from .models import dept_entre
+from .models import dept_entre, dept_aware, dept_capac
 from .models import dept_skill
-from .models import program_entre
+from .models import program_entre, program_capac, program_aware
 from .models import program_skill
-from .models import participant_entre
+from .models import participant_entre, participant_aware, participant_capac
 from .models import participant_skill
 from .models import placement_skill
 from import_export.admin import ImportExportModelAdmin
@@ -17,8 +17,24 @@ class CategoryAdmin(ImportExportModelAdmin):
 class DepartmentEntAdmin(ImportExportModelAdmin):
     pass
 
+@admin.register(dept_aware)
+class DepartmentawareAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(dept_capac)
+class DepartmentcapacAdmin(ImportExportModelAdmin):
+    pass
+
 @admin.register(dept_skill)
 class DepartmentSkillAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(program_aware)
+class ProgramawareAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(program_capac)
+class ProgramCapacAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(program_entre)
@@ -35,6 +51,14 @@ class ParticipantEntAdmin(ImportExportModelAdmin):
 
 @admin.register(participant_skill)
 class ParticipantSkillAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(participant_aware)
+class ParticipantAwareAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(participant_capac)
+class ParticipantCapacAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(placement_skill)

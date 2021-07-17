@@ -379,11 +379,6 @@ class participant_aware(models.Model):
     primary_email = models.EmailField(default="example@gmail.com")
     secondary_email = models.EmailField(default="example@gmail.com", null=True, blank=True)
     address_aware = participant_address_aware()
-    total = models.IntegerField(default=0)
-
-    def save(self, **kwargs):
-        self.total = self.project_cost.CE + self.project_cost.WC
-        return super(participant_aware, self).save()
 
     objects = models.Manager()
 
@@ -408,12 +403,6 @@ class participant_capac(models.Model):
     primary_email = models.EmailField(default="example@gmail.com")
     secondary_email = models.EmailField(default="example@gmail.com", null=True, blank=True)
     address_capac= participant_address_aware()
-    total = models.IntegerField(default=0)
-
-    def save(self, **kwargs):
-        self.total = self.project_cost.CE + self.project_cost.WC
-        return super(participant_capac, self).save()
-
     objects = models.Manager()
 
     def __str__(self):

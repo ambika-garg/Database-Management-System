@@ -388,7 +388,7 @@ class participantAwareForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(participantAwareForm, self).__init__(*args, **kwargs)
         self.fields['program_id_aware'].empty_label = "Select"
-        self.fields['gender_aware'].empty_label = "(Select here)"
+        self.fields['gender'].empty_label = "(Select here)"
         self.fields['category_aware'].empty_label = "Select"
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \
@@ -423,7 +423,7 @@ class participantCapacForm(forms.ModelForm):
             'participant_id_capac' : 'Serial number',
             'name_of_trainee' : 'Participant Name',
             'father_or_husband_name' : 'Father/Husband Name',
-            'gender_capac' : 'Gender',
+            'gender' : 'Gender',
             'date_of_birth_capac' : 'Date of Birth',
             'idcard_aware_aadhaar_ref_no' : 'Aadhar Number',
             'mobile_entre_country_code' : 'Country Code',
@@ -439,7 +439,7 @@ class participantCapacForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(participantCapacForm, self).__init__(*args, **kwargs)
         self.fields['program_id_capac'].empty_label = "Select"
-        self.fields['gender_capac'].empty_label = "(Select here)"
+        self.fields['gender'].empty_label = "(Select here)"
         self.fields['category_capac'].empty_label = "Select"
         for key, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput) or \

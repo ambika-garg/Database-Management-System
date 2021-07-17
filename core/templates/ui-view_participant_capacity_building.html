@@ -24,7 +24,7 @@
         <div class="form-group row ">
             <div class="input-group ">
                 <form method="get ">
-                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id_ent }} {{ filter.form.gender }} {{ filter.form.category_entre }}
+                    {{ filter.form.name_of_trainee }} {{ filter.form.program_id_capac }} {{ filter.form.gender }} {{ filter.form.category_capac }}
                     <button class="btn btn-sm btn-primary " type="submit "> Search</button>
                 </form>
             </div>
@@ -43,19 +43,58 @@
                                         <table class="table table-responsive-sm table-bordered table-striped table-sm ">
                                             <thead>
                                                 <tr>
-                                                    <th>Serial number</th>
+                                                    <th>Participant ID</th>
+                                                    <th>Program ID</th>
                                                     <th>Name of Trainee</th>
                                                     <th>Father/Husband Name</th>
-                                                    <th>Address</th>
-                                                    <th>Mobile Number</th>
-                                                    <th>Email</th>
-                                                    <th>Aadhar</th>
                                                     <th>Gender</th>
+                                                    <th>date_of_birth</th>
+                                                    <th>Country Code</th>
+                                                    <th>Primary Mobile No.</th>
+                                                    <th>Secondary Mobile No</th>
                                                     <th>Category</th>
                                                     <th>Qualification</th>
-                                                    <th>Date of Birth</th>
+                                                    <th>Primary Email</th>
+                                                    <th>Secondary Email</th>
+                                                    <th>Location</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                {% for participantcapac in filter.qs %}
+                                                <tr>
+                                                    <td>{{ participantcapac.participant_id_capac }}</td>
+                                                    <td>{{ participantcapac.program_id_capac}}</td>
+                                                    <td>{{ participantcapac.name_of_trainee }}</td>
+                                                    <td>{{ participantcapac.father_or_husband_name }}</td>
+                                                    <td>{{ participantcapac.gender }}</td>
+                                                    <td>{{ participantcapac.date_of_birth }}</td>
+                                                    <td>{{ participantcapac.mobile_capac_country_code }}</td>
+                                                    <td>{{ participantcapac.mobile_capac_primary_mobile }}</td>
+                                                    <td>{{ participantcapac.mobile_capac_secondary_mobile }}</td>
+                                                    <td>{{ participantcapac.category_capac }}</td>
+                                                    <td>{{ participantcapac.qualification }}</td>
+                                                    <td>{{ participantcapac.primary_email }}</td>
+                                                    <td>{{ participantcapac.secondary_email }}</td>
+                                                    <td>{{ participantcapac.address_capac_location }}</td>
+                                                    <td>{{ participantcapac.address_capac_city }}</td>
+                                                    <td>{{ participantcapac.address_capac_state }}</td>
+                                                    <td>
+                                                        <a href="{% url 'participantcapac_update' participantcapac.participant_id_capac %} " class="btn text-secondary px-0 ">
+                                                            <i class="c-icon c-icon-xl cil-pencil "></i>
+                                                        </a>
+                                                        <form action="{% url 'participantcapac_del' participantcapac.participant_id_capac %} " method="post " class="d-inline ">
+                                                            {% csrf_token %}
+                                                            <button type="submit " class="btn text-secondary px-0 ">
+                                               <i class="c-icon c-icon-xl mt-0 mb-0 cil-trash "></i>
+                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
                                         </table>
                                         <nav>
                                             <ul class="pagination ">
