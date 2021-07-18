@@ -117,17 +117,17 @@ class participant_awareFilter(django_filters.FilterSet):
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
 
-    name_skill = django_filters.CharFilter(field_name="name_of_trainee",
+    name_of_trainee = django_filters.CharFilter(field_name="name_of_trainee",
                                                       widget=TextInput(attrs={'placeholder': 'Name of Trainee'}),
                                                       lookup_expr='icontains')
 
     program_id_aware = django_filters.ModelChoiceFilter(queryset=program_aware.objects.all(),empty_label = 'Program Name')
     gender = django_filters.ChoiceFilter(choices = GENDER_CHOICES, empty_label ='Gender')
-    category = django_filters.ChoiceFilter(choices = CATEGORY_CHOICES, empty_label = 'Category')
+    category_aware = django_filters.ChoiceFilter(choices = CATEGORY_CHOICES, empty_label = 'Category')
 
     class Meta:
         model = participant_aware
-        fields = ['name_of_trainee', 'program_id_aware', 'gender', 'category']
+        fields = ['name_of_trainee', 'program_id_aware', 'gender', 'category_aware']
 
 #-----------------------------------------------------CAPACITY FILTERS---------------------------------------------------
 class department_capacFilter(django_filters.FilterSet):

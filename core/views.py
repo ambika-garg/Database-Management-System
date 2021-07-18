@@ -15,7 +15,9 @@ def index(request):
     print(count_entre)
     count_skill = participant_skill.objects.count()
     print(count_skill)
-    return render(request, "index.html", {'count_entre': count_entre, 'count_skill' : count_skill})
+    count_aware = participant_aware.objects.count()
+    count_capac = participant_capac.objects.count()
+    return render(request, "index.html", {'count_entre': count_entre, 'count_skill' : count_skill, 'count_aware' : count_aware, 'count_capac' : count_capac})
 
 
 @login_required(login_url="/login/")
@@ -38,24 +40,13 @@ def pages(request):
 
 def deptEnt(request):
     myFilter = department_ENTFilter(request.GET, queryset=dept_entre.objects.all())
-    return render(request, 'ui-view_department_ent.html',{'filter' : myFilter})
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_department_ent.html',{'filter' : myFilter, 'count': count})
 
 def deptSkill(request):
     myFilter = department_skillFilter(request.GET, queryset= dept_skill.objects.all())
-    # user_list = dept_skill.objects.all()
-    # myFilter = department_skillFilter(request.GET, queryset= user_list)
-    # user_list = department_skillFilter.qs
-    # paginator = Paginator(user_list, 10)
-    # page = request.GET.get('page', 1)
-    # try:
-    #     users = paginator.page(page)
-    # except PageNotAnInteger:
-    #     users = paginator.page(1)
-    # except EmptyPage:
-    #     users = paginator.page(paginator.num_pages)
-    # args = {'paginator': paginator,'filter':myFilter, 'users':users,}
-    # return render(request, 'ui-view_department_skill.html', args)
-    return render(request, 'ui-view_department_skill.html',{'filter' : myFilter})
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_department_skill.html',{'filter' : myFilter, 'count': count})
 
 def insprogEnt(request, id=0):
     if request.method == "POST":
@@ -80,7 +71,9 @@ def insprogEnt(request, id=0):
 
 def program_list(request):
     myFilter = program_ENTFilter(request.GET, queryset=program_entre.objects.all())
-    context = {'filter': myFilter}
+    count = myFilter.qs.count()
+    # print(count)
+    context = {'filter': myFilter, 'count': count}
     return render(request, 'ui-view_program_ent.html', context)
 
 
@@ -114,7 +107,8 @@ def insprogSkill(request, id=0):
 
 def programSkill_list(request):
     myFilter = program_skillFilter(request.GET, queryset=program_skill.objects.all())
-    return render(request, 'ui-view_program_skill.html',  {'filter': myFilter})
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_program_skill.html',  {'filter': myFilter, 'count': count})
 
 def programSkill_del(request, id):
     program = program_skill.objects.get(pk=id)
@@ -150,7 +144,8 @@ def participant_ent(request, participant_id_ent=0):
 
 def participant_list(request):
     filter = participant_ENTFilter(request.GET, queryset=participant_entre.objects.all())
-    context = {'filter': filter}
+    count = filter.qs.count()
+    context = {'filter': filter, 'count': count}
     return render(request, 'ui-view_participant_ent.html', context)
 
 
@@ -189,7 +184,8 @@ def insparticipant_skill(request, participant_id_skill=0):
 
 def participantSkill_list(request):
     filter = participant_skillFilter(request.GET, queryset=participant_skill.objects.all())
-    context = {'filter': filter}
+    count = filter.qs.count()
+    context = {'filter': filter, 'count': count}
     return render(request, 'ui-view_participant_skill.html', context)
 
 
@@ -226,7 +222,8 @@ def insplacementSkill(request, participant_id_skill=0):
 
 def placementSkill_list(request):
     filter = placement_skillFilter(request.GET, queryset= placement_skill.objects.all())
-    context = {'filter': filter}
+    count = filter.qs.count()
+    context = {'filter': filter, 'count': count}
     return render(request, 'ui-view_placement_skill.html', context)
 
 
@@ -242,7 +239,8 @@ def placementSkill_del(request, participant_id_skill):
 
 def deptCapac(request):
     myFilter = department_capacFilter(request.GET, queryset=dept_capac.objects.all())
-    return render(request, 'ui-view_department_capacity_building.html',{'filter' : myFilter})
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_department_capacity_building.html',{'filter' : myFilter, 'count': count})
 
 
 def insprogcap(request, id=0):
@@ -268,7 +266,8 @@ def insprogcap(request, id=0):
 
 def programCapac_list(request):
     myFilter = program_capacFilter(request.GET, queryset=program_capac.objects.all())
-    return render(request, 'ui-view_program_capacity_building.html',  {'filter': myFilter})
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_program_capacity_building.html',  {'filter': myFilter, 'count': count})
 
 def programCapac_del(request, id):
     program = program_capac.objects.get(pk=id)
@@ -303,8 +302,9 @@ def insparticipant_capac(request, participant_id_capac=0):
 
 
 def participantCapac_list(request):
-    filter = participant_skillFilter(request.GET, queryset=participant_capac.objects.all())
-    context = {'filter': filter}
+    filter = participant_capacFilter(request.GET, queryset=participant_capac.objects.all())
+    count = filter.qs.count()
+    context = {'filter': filter, 'count': count}
     return render(request, 'ui-view_participant_capacity_building.html', context)
 
 
@@ -316,12 +316,10 @@ def participantCapac_del(request, participant_id_capac):
 
 # Awareness CRUD operations
 
-
-
 def deptaware(request):
     myFilter = department_awareFilter(request.GET, queryset=dept_aware.objects.all())
-    return render(request, 'ui-view_department_awareness.html',{'filter' : myFilter})
-
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_department_awareness.html',{'filter' : myFilter, 'count': count})
 
 def insprogaware(request, id=0):
     messages = None
@@ -346,7 +344,8 @@ def insprogaware(request, id=0):
 
 def programaware_list(request):
     myFilter = program_awareFilter(request.GET, queryset=program_aware.objects.all())
-    return render(request, 'ui-view_program_awareness.html',  {'filter': myFilter})
+    count = myFilter.qs.count()
+    return render(request, 'ui-view_program_awareness.html',  {'filter': myFilter, 'count': count})
 
 def programaware_del(request, id):
     program = program_aware.objects.get(pk=id)
@@ -382,7 +381,8 @@ def insparticipant_aware(request, participant_id_aware=0):
 
 def participantaware_list(request):
     filter = participant_awareFilter(request.GET, queryset=participant_aware.objects.all())
-    context = {'filter': filter}
+    count = filter.qs.count()
+    context = {'filter': filter, 'count': count}
     return render(request, 'ui-view_participant_awareness.html', context)
 
 
