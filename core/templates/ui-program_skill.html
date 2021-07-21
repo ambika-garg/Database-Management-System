@@ -10,7 +10,7 @@
                 <a href="#" class="breadcrumbs-link">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/ui-view_department_skill_chart.html" class="breadcrumbs-link ">Skill</a>
+                <a href="/deptSkill" class="breadcrumbs-link ">Skill</a>
             </li>
             <li class="breadcrumb-item ">
                 <a href="/insprogSkill" class="breadcrumbs-link active">Add Programs</a>
@@ -22,9 +22,9 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header"><strong><h2>Add Program</h2></strong></div>
-                {% if msg %}
-                <div class = "p-10"><span><h3>{{ msg }}</h3></span></div>{% endif %}
-                <hr>
+            {% if msg %}
+            <div class="p-10"><span><h3>{{ msg }}</h3></span></div>{% endif %}
+            <hr>
             <div class="card-body">
                 {% csrf_token %}
                 <form method="post">
@@ -36,35 +36,35 @@
                     </div>
                 </form>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header ">
-                                  {% if msg %}
-                                  <div><span>{{ msg }}</span></div>
-                                  <h4 class="modal-title">Success!!</h4>
-                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                              </div>
-                               <div class="modal-body">
-                                  <p class="text-muted">Placement Details Added Successfully!</p>
-                               </div>
-                                    {% else %}
-                                     <h4 class="modal-title">Failure!</h4>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <p> Enter Details{% endif %} </p>
-                                  </div>
-                              <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                              </div>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header ">
+                                {% if msg %}
+                                <div><span>{{ msg }}</span></div>
+                                <h4 class="modal-title">Success!!</h4>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                             </div>
-                            <!-- /.modal-content-->
-                          </div>
-                        <!-- /.modal-dialog-->
+                            <div class="modal-body">
+                                <p class="text-muted">Placement Details Added Successfully!</p>
+                            </div>
+                            {% else %}
+                            <h4 class="modal-title">Failure!</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p> Enter Details{% endif %} </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-            </div>
+                    <!-- /.modal-content-->
+                </div>
+                <!-- /.modal-dialog-->
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </main>
 {% endblock content %}

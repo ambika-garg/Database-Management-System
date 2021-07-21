@@ -10,10 +10,10 @@
                 <a href="#" class="breadcrumbs-link">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="ui-view_department_capacity_building_chart.html" class="breadcrumbs-link ">Capacity Building</a>
+                <a href="/deptCapac" class="breadcrumbs-link ">Capacity Building</a>
             </li>
             <li class="breadcrumb-item ">
-                <a href="ui-program_capacity_building.html" class="breadcrumbs-link active">Add Programs</a>
+                <a href="/insprogcap" class="breadcrumbs-link active">Add Programs</a>
             </li>
         </ul>
     </div>
@@ -22,9 +22,9 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header"><strong><h1>Add Program</h1></strong></div>
-                {% if msg %}
-                <div class = "p-10"><span><h3>{{ msg }}</h3></span></div>{% endif %}
-                <hr>
+            {% if msg %}
+            <div class="p-10"><span><h3>{{ msg }}</h3></span></div>{% endif %}
+            <hr>
             <for class="card-body">
                 {% csrf_token %}
                 <form method="post">
