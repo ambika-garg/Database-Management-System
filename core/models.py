@@ -62,7 +62,7 @@ class dept_capac(models.Model):
 
 class program_address(CompositeField):
     location = models.CharField(max_length=50, unique=False, null=True, blank=True)
-    city = models.CharField(max_length=40, unique=False)
+    city = models.CharField(max_length=40, unique=False, null=True, blank=True)
 
 
 # 6
