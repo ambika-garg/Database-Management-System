@@ -40,7 +40,7 @@ PRO versions include **Premium UI Kits**, Lifetime updates and **24/7 LIVE Suppo
 ## How to use it
 
 ```bash
-$ # Get the code
+$ # Get code
 $ git clone https://github.com/app-generator/django-dashboard-coreui.git
 $ cd django-dashboard-coreui
 $
