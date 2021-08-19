@@ -6,7 +6,6 @@ Copyright (c) 2019 - present AppSeed.us
 from composite_field import CompositeField
 from django.contrib.auth.models import User
 from django.db import models
-from collectionfield.models import CollectionField
 from django.core.exceptions import ValidationError
 from django.db.models.fields import EmailField
 from django_mysql.models import ListCharField
@@ -310,7 +309,6 @@ class participant_skill(models.Model):
     program_id_skill = models.ForeignKey(program_skill, on_delete=models.CASCADE)
     batchid = models.BigIntegerField(default = 0)
     participant_id_skill = models.IntegerField(primary_key=True, unique=True)
-    batchid = models.BigIntegerField(default = 0)
     name_skill = participant_name_skill()
     gender = models.CharField(max_length=25, null=True, blank=True, choices=GENDER_CHOICES)
     dob = models.DateField(null=True, blank=True)

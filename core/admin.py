@@ -8,6 +8,7 @@ from .models import participant_entre, participant_aware, participant_capac
 from .models import participant_skill
 from .models import placement_skill
 from import_export.admin import ImportExportModelAdmin
+from .resources import *
 
 @admin.register(category)
 class CategoryAdmin(ImportExportModelAdmin):
@@ -51,6 +52,7 @@ class ParticipantEntAdmin(ImportExportModelAdmin):
 
 @admin.register(participant_skill)
 class ParticipantSkillAdmin(ImportExportModelAdmin):
+    resource_class  =   ParticipantSkillResource
     pass
 
 @admin.register(participant_aware)

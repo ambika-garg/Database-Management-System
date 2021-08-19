@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
+from dal import autocomplete
 from django.contrib import messages
 from .filters import program_skillFilter, department_skillFilter, participant_skillFilter,placement_skillFilter,program_ENTFilter,department_ENTFilter, participant_ENTFilter, program_awareFilter, department_awareFilter, participant_awareFilter, program_capacFilter, department_capacFilter, participant_capacFilter
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -42,6 +43,17 @@ def deptEnt(request):
     myFilter = department_ENTFilter(request.GET, queryset=dept_entre.objects.all())
     count = myFilter.qs.count()
     return render(request, 'ui-view_department_ent.html',{'filter' : myFilter, 'count': count})
+
+
+class deptEntAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = dept_entre.objects.all()
+
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs
+
 
 def deptSkill(request):
     myFilter = department_skillFilter(request.GET, queryset= dept_skill.objects.all())

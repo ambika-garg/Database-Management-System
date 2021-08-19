@@ -8,6 +8,7 @@ from django.urls import path, include, re_path  # add this
 from core.views import deptSkill, deptEnt, insprogEnt, insprogSkill, programSkill_list, programSkill_del, participant_ent, program_list, pm_del, participant_del, participant_list, insparticipant_skill, participantSkill_list, participantSkill_del, insplacementSkill, placementSkill_list, placementSkill_del, index, pages,insprogcap,deptCapac
 from core.views import programCapac_del, programCapac_list, participantCapac_del, participantCapac_list, insparticipant_capac
 from core.views import programaware_del, insparticipant_aware, deptaware, insprogaware, participantaware_list, programaware_list, participantaware_del
+from core.views import deptEntAutocomplete
 
 #django admin header customisation
 admin.site.site_header = "RCED ADMIN PANEL"
@@ -57,7 +58,6 @@ urlpatterns = [
     path('updateaware/<int:participant_id_aware>/', insparticipant_aware, name = "participantaware_update"),
     path('deleteaware/<int:participant_id_aware>/', participantaware_del ,name = 'participantaware_del'),
     path('participantaware_list', participantaware_list, name = 'participantaware_list'),
-
 
     path("", include("authentication.urls")), # Auth routes - login / register
     # path("", include("app.urls")),            # UI Kits Html files
