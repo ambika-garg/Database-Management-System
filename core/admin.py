@@ -48,21 +48,25 @@ class ProgramSkillAdmin(ImportExportModelAdmin):
 
 @admin.register(participant_entre)
 class ParticipantEntAdmin(ImportExportModelAdmin):
+    resource_class = ParticipantEntAdminResource
     pass
 
 @admin.register(participant_skill)
 class ParticipantSkillAdmin(ImportExportModelAdmin):
-    resource_class  =   ParticipantSkillResource
+    resource_class = ParticipantSkillAdminResource
     pass
 
 @admin.register(participant_aware)
 class ParticipantAwareAdmin(ImportExportModelAdmin):
+    resource_class = ParticipantAwareAdminResource
     pass
 
 @admin.register(participant_capac)
 class ParticipantCapacAdmin(ImportExportModelAdmin):
+    resource_class = ParticipantCapacAdminResource
     pass
 
 @admin.register(placement_skill)
 class PlacementSkillAdmin(ImportExportModelAdmin):
+    resource_class = PlacementSkillAdminResource
     pass
