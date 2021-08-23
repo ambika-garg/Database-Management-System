@@ -14,7 +14,7 @@ from django_mysql.models import ListCharField
 # Create your models here.
 # 1
 class category(models.Model):
-    category_name = models.CharField(max_length=100)
+    category_name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.category_name
