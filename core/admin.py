@@ -12,7 +12,7 @@ from .resources import *
 
 @admin.register(category)
 class CategoryAdmin(ImportExportModelAdmin):
-    resource_class = CategoryAdminAdminResource
+    resource_class = CategoryAdminResource
     pass
 
 @admin.register(dept_entre)

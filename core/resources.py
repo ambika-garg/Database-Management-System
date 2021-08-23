@@ -2,7 +2,7 @@ from import_export import resources
 from .models import *
 from django.db import IntegrityError
 
-class CategoryAdminAdminResource(resources.ModelResource):
+class CategoryAdminResource(resources.ModelResource):
     class Meta:
         model = category
         skip_unchanged = True
@@ -10,7 +10,7 @@ class CategoryAdminAdminResource(resources.ModelResource):
     
     def save_instance(self, instance, using_transactions=True, dry_run=False):
                 try:
-                    super(CategoryAdminAdminResource, self).save_instance(instance, using_transactions, dry_run)
+                    super(CategoryAdminResource, self).save_instance(instance, using_transactions, dry_run)
                 except IntegrityError:
                     pass
 
@@ -27,7 +27,7 @@ class ParticipantSkillAdminResource(resources.ModelResource):
         skip_unchanged = True
         report_skipped = True
         exclude = ('id',)
-        import_id_fields = ('program_id_skill','participant_id_skill','name_skill_salutation', 'name_skill_FirstName', 'name_skill_LastName', 'gender', 'dob', 'Age', 'email', 'marital_status', 'fathers_name', 'mothers_name', 'Annual_income', 'religion', 'category', 'disability_input', 'disability_type', 'domicile_state', 'domicile_district', 'idcard_skill_id_type', 'idcard_skill_alt_id_type', 'idcard_skill_aadhaar_ref_no', 'idcard_skill_alt_id_no', 'mobile_skill_country_code', 'mobile_skill_primary_mobile', 'mobile_skill_secondary_mobile', 'education_level', 'perm_address', 'perm_state', 'perm_district', 'perm_pincode', 'perm_city', 'perm_tehsil', 'perm_constituency', 'pa_same_as_ca', 'comm_address', 'comm_state', 'comm_district', 'comm_pincode', 'comm_city', 'comm_tehsil', 'comm_constituency', 'training_status', 'job_details'_'prev_exp_sector', 'job_details_no_of_months', 'job_details_employed', 'job_details_employment_status', 'job_details_employment_details', 'heard_about_us')      
+        import_id_fields = ('program_id_skill','participant_id_skill','name_skill_salutation', 'name_skill_FirstName', 'name_skill_LastName', 'gender', 'dob', 'Age', 'email', 'marital_status', 'fathers_name', 'mothers_name', 'Annual_income', 'religion', 'category', 'disability_input', 'disability_type', 'domicile_state', 'domicile_district', 'idcard_skill_id_type', 'idcard_skill_alt_id_type', 'idcard_skill_aadhaar_ref_no', 'idcard_skill_alt_id_no', 'mobile_skill_country_code', 'mobile_skill_primary_mobile', 'mobile_skill_secondary_mobile', 'education_level', 'perm_address', 'perm_state', 'perm_district', 'perm_pincode', 'perm_city', 'perm_tehsil', 'perm_constituency', 'pa_same_as_ca', 'comm_address', 'comm_state', 'comm_district', 'comm_pincode', 'comm_city', 'comm_tehsil', 'comm_constituency', 'training_status', 'job_details_prev_exp_sector', 'job_details_no_of_months', 'job_details_employed', 'job_details_employment_status', 'job_details_employment_details', 'heard_about_us')      
 
 class ParticipantAwareAdminResource(resources.ModelResource):
     class Meta:
