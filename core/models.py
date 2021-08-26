@@ -176,7 +176,7 @@ class participant_project_cost_entre(CompositeField):
 class participant_entre(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
-    program_id_ent = models.ForeignKey(program_entre, default=1, on_delete=models.CASCADE)
+    program_id_ent = models.ForeignKey(program_entre, on_delete=models.CASCADE)
     participant_id_ent = models.IntegerField(primary_key=True, unique=True)
     name_of_trainee = models.CharField(max_length=50, unique=False)
     father_or_husband_name = models.CharField(max_length=50, unique=False, null=True, blank=True)
@@ -186,7 +186,7 @@ class participant_entre(models.Model):
     mobile_entre = participant_mobile()
     category_entre = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
     job = models.CharField(max_length=25, unique=False, null=True, blank=True)
-    qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    qualification = models.CharField(max_length=50, unique=False, null=True, blank=True)
     project_identified = models.CharField(max_length=50, unique=False, null=True, blank=True)
     items_to_be_manufactured = models.CharField(max_length=50, unique=False, null=True, blank=True)
     place_of_unit = models.CharField(max_length=40, unique=False, null=True, blank=True)
@@ -200,12 +200,11 @@ class participant_entre(models.Model):
     address_entre = participant_address_entre()
     project_cost = participant_project_cost_entre()
     total = models.IntegerField(default=0)
+    objects = models.Manager()
 
     def save(self, **kwargs):
         self.total = self.project_cost.CE + self.project_cost.WC
         return super(participant_entre, self).save()
-
-    objects = models.Manager()
 
     def __str__(self):
         return self.name_of_trainee
@@ -285,8 +284,6 @@ class participant_perm_address_skill(CompositeField):
 
 # 11
 class participant_skill(models.Model):
-    # class Meta:
-    #     unique_together = (('participant_id_skill', 'program_id_skill'))
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
     GENDER_CHOICES = (('Male', 'Male'), ('Female', 'Female'), ('Transgender', 'Transgender'))
     MARITAL_STATUS_CHOICES = (
@@ -331,6 +328,7 @@ class participant_skill(models.Model):
     training_status = models.CharField(max_length=25, null=True, blank=True)
     job_details = participant_job_details_skill()
     heard_about_us = models.CharField(max_length=25, null=True, blank=True)
+    objects = models.Manager()
 
     def comm_address_check(self):
         if self.pa_same_as_ca == 'Yes' and self.comm_address is not None:
@@ -346,20 +344,12 @@ class participant_skill(models.Model):
         elif self.training_status == 'Experienced' and self.participant_job_details is None:
             raise ValidationError('Job details are required for Experienced!')
 
-    objects = models.Manager()
-
     def __str__(self):
-        return str(self.participant_id_skill)
+        return str(self.participant_id_skill) 
 
     class Meta:
         unique_together = (('program_id_skill', 'participant_id_skill'),)
-
-# class placement_id_skill(CompositeField):
-#     batch_id = models.IntegerField()
-#     rced_batch_id = models.IntegerField()
-
-
-
+    
 # 12
 class participant_aware(models.Model):
     CATEGORY_CHOICES = (('General', 'General'), ('OBC', 'OBC'), ('SC', 'SC'), ('ST', 'ST'))
@@ -373,11 +363,10 @@ class participant_aware(models.Model):
     mobile_aware = participant_mobile()
     aadhaar_ref_no = models.BigIntegerField(unique=True, null=True, blank=True)
     category_aware = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
-    qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    qualification = models.CharField(max_length=50, unique=False, null=True, blank=True)
     primary_email = models.EmailField(default="example@gmail.com")
     secondary_email = models.EmailField(default="example@gmail.com", null=True, blank=True)
     address_aware = participant_address_aware()
-
     objects = models.Manager()
 
     def __str__(self):
@@ -397,7 +386,7 @@ class participant_capac(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     mobile_capac = participant_mobile()
     category_capac = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True)
-    qualification = models.CharField(max_length=25, unique=False, null=True, blank=True)
+    qualification = models.CharField(max_length=50, unique=False, null=True, blank=True)
     primary_email = models.EmailField(default="example@gmail.com")
     secondary_email = models.EmailField(default="example@gmail.com", null=True, blank=True)
     address_capac= participant_address_aware()
@@ -407,13 +396,10 @@ class participant_capac(models.Model):
         return self.name_of_trainee
 
 
-
-
 # 14
 class placement_skill(models.Model):
     CHOICE = (('Yes', 'Yes'), ('No','No'))
     participant_id_skill = models.OneToOneField(participant_skill, on_delete=models.CASCADE, primary_key=True)
-    # placement_id = placement_id_skill()
     course_name = models.CharField(max_length=50, unique=False, null=True, blank = True)
     placement_status = models.CharField(max_length=25, null=True, blank=True, unique=False, choices=CHOICE)
     reason = models.CharField(max_length=25, null=True, blank=True, unique=False)
@@ -426,15 +412,7 @@ class placement_skill(models.Model):
     date_of_joining = models.DateField(null=True, blank=True)
     contact_person = models.CharField(max_length=25, null=True, blank=True, unique=False)
     contact_person_no = models.BigIntegerField(null=True, blank=True)
-
-    # def save(self,*args,  **kwargs):
-    #     program = participant_skill.objects.get(pk=participant_skill)
-    #     self.course_name = program.program_id_skill
-    #     return super(placement_skill, self).save()
-
     objects = models.Manager()
 
-    # def __str__(self):
-    #     return self.employer_name + "-" + self.job_type
     def __str__(self):
-        return self.participant_id_skill
+            return str(self.participant_id_skill) 
