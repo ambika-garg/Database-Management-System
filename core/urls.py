@@ -49,7 +49,6 @@ urlpatterns = [
     path('updatecapacity/<int:participant_id_capac>/', insparticipant_capac, name = "participantcapac_update"),
     path('deletecapacity/<int:participant_id_capac>/', participantCapac_del ,name = 'participantcapac_del'),
     path('participantcapacity_list', participantCapac_list, name = 'participantcapac_list'),
-
     path('insprogaware',insprogaware, name='insprogcap' ),
     path('updateprogramaware/<int:id>/',insprogaware,name = "aware_program_update"), #get and post request for update operation
     path('awareprogram_list', programaware_list, name = 'aware_program_list'),#display program routes
